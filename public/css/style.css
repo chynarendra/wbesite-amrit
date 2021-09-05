@@ -1,0 +1,51 @@
+.backgroundLogin{
+    background-image:url(../images/login-page-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    position:fixed;
+    cursor: pointer;
+    width:100%;
+    top:0;
+    left:0;
+}
+
+.loginSystem{
+    font-size: 15px;  color: #0b58a2;
+}
+
+.loginTitle b{
+    font-size: 18px; text-align: center; color: #9f191f
+}
+
+.boxTopButton {
+    margin-right: 5px;
+}
+.radio-button {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    background: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+}
+.radio-button.checked{
+    background-position: -140px 0;
+}
+#panel-design
+{
+    padding: 15px  0px 16px 0px;
+    border: 2px solid transparent;
+    border-color: #e4e7ea;
+}
+.border-title {
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+

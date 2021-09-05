@@ -1,0 +1,66 @@
+[30-Jul-2021 22:38:10 ASIA/Kathmandu] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php:833
+Stack trace:
+#0 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(833): ReflectionClass->__construct('view')
+#1 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(714): Illuminate\Container\Container->build('view')
+#2 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(652): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('vie in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 835
+[30-Jul-2021 22:42:06 ASIA/Kathmandu] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php:833
+Stack trace:
+#0 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(833): ReflectionClass->__construct('view')
+#1 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(714): Illuminate\Container\Container->build('view')
+#2 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(652): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('vie in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 835
+[30-Jul-2021 22:42:15 ASIA/Kathmandu] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php:833
+Stack trace:
+#0 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(833): ReflectionClass->__construct('view')
+#1 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(714): Illuminate\Container\Container->build('view')
+#2 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(652): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('vie in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 835
+[30-Jul-2021 22:44:23 ASIA/Kathmandu] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php:833
+Stack trace:
+#0 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(833): ReflectionClass->__construct('view')
+#1 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(714): Illuminate\Container\Container->build('view')
+#2 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(652): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('vie in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 835
+[30-Jul-2021 22:46:47 ASIA/Kathmandu] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php:833
+Stack trace:
+#0 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(833): ReflectionClass->__construct('view')
+#1 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(714): Illuminate\Container\Container->build('view')
+#2 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(652): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('vie in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 835
+[30-Jul-2021 17:05:53 UTC] PHP Parse error:  syntax error, unexpected 'm' (T_STRING), expecting ',' or ';' in /home/mahendrapurifier/public_html/crm/setup/public/index.php on line 2
+[30-Jul-2021 22:51:10 ASIA/Kathmandu] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php:833
+Stack trace:
+#0 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(833): ReflectionClass->__construct('view')
+#1 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(714): Illuminate\Container\Container->build('view')
+#2 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(652): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('vie in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 835
+[30-Jul-2021 23:00:56 ASIA/Kathmandu] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php:833
+Stack trace:
+#0 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(833): ReflectionClass->__construct('view')
+#1 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(714): Illuminate\Container\Container->build('view')
+#2 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php(652): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('vie in /home/mahendrapurifier/public_html/crm/setup/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 835
+[30-Jul-2021 23:52:32 ASIA/Kathmandu] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Container/Container.php:833
+Stack trace:
+#0 /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Container/Container.php(833): ReflectionClass->__construct('view')
+#1 /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Container/Container.php(714): Illuminate\Container\Container->build('view')
+#2 /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Container/Container.php(652): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('view', Array)
+#5 /home/mahendrapurifier in /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 835
+[30-Jul-2021 23:52:35 ASIA/Kathmandu] PHP Fatal error:  Uncaught ReflectionException: Class view does not exist in /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Container/Container.php:833
+Stack trace:
+#0 /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Container/Container.php(833): ReflectionClass->__construct('view')
+#1 /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Container/Container.php(714): Illuminate\Container\Container->build('view')
+#2 /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(841): Illuminate\Container\Container->resolve('view', Array, true)
+#3 /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Container/Container.php(652): Illuminate\Foundation\Application->resolve('view', Array)
+#4 /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(826): Illuminate\Container\Container->make('view', Array)
+#5 /home/mahendrapurifier in /home/mahendrapurifier/public_html/crm/vendor/laravel/framework/src/Illuminate/Container/Container.php on line 835
