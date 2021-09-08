@@ -98,7 +98,11 @@ class LoginSettingController extends BaseController
             $id = (int)$id;
             $value = DB::table($this->table)->find($id);
             if ($value) {
-                DB::table($this->table)->where('id',$id)->update([$request->column_name =>$request->status]);
+                if($request->column_name1 !=null){
+                    DB::table($this->table)->where('id',$id)->update([$request->column_name =>$request->status, $request->column_name1 =>$request->column1_value]);
+                }else{
+                    DB::table($this->table)->where('id',$id)->update([$request->column_name =>$request->status]);
+                }
                 $this->resource->createLog($value->id, $this->logMenu, 2, '');
                 session()->flash('success', Lang::get('app.statusUpdate'));
             }else{

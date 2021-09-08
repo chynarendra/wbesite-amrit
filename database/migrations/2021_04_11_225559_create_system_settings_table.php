@@ -24,6 +24,7 @@ class CreateSystemSettingsTable extends Migration
             $table->string('mail_password')->nullable();
             $table->string('mail_encryption')->nullable();
             $table->string('mail_from_address')->nullable();
+            $table->enum('login_attempt_required',['0','1'])->default('0');
             $table->string('login_attempt_limit')->nullable();
             $table->enum('login_captcha_required',['0','1'])->default('0');
             $table->enum('forget_password_required',['0','1'])->default('1');

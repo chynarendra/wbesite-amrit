@@ -31,8 +31,8 @@ class UserRequest extends FormRequest
                 'user_type_id' => 'required',
                 'full_name' => 'required|regex:/[A-Za-z. -]/|min:3|max:40',
                 'avatar_image' => 'mimes:jpeg,jpg,png|max:1048',
-                'email' => 'required|unique:users,email,' . $post_id,
-                'login_user_name' => 'required|min:4|max:40|unique:users,login_user_name,' . $post_id
+                /*'email' => 'required|unique:users,email,' . $post_id,
+                'login_user_name' => 'required|min:4|max:40|unique:users,login_user_name,' . $post_id*/
             ];
         } else {
             if($request->update_status =='1'){

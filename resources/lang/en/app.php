@@ -168,5 +168,7 @@ return [
     'code'=>'Code',
     'start_date'=>'Start Date',
     'end_date'=>'End Date',
+    'loginAttemptLimitRequired' =>'Login Attempt Required ?',
+
 
 ];

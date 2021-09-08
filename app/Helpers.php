@@ -2,6 +2,7 @@
 use App\Models\Roles\Menu;
 use Illuminate\Support\Facades\DB;
 use Jenssegers\Agent\Agent;
+use Illuminate\Support\Facades\Schema;
 
 function helperPermission()
 {
@@ -243,9 +244,12 @@ function getIpLoginFailed()
 /* get all system setting */
 function systemSetting()
 {
-    $data = DB::table('system_settings')
-        ->first();
-    return $data;
+    // check table exist
+    if(Schema::hasTable('system_settings')){
+        $data = DB::table('system_settings')
+            ->first();
+        return $data;
+    }
 }
 
 function customerStatus($code = null ){

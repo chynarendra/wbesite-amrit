@@ -70,7 +70,7 @@ class CommonRepository
 
     //fetch all data form table with pagination
     public function getAllData($model, $order_column_name, $order, $paginateNo, $authCondition = null, $search_status = null,
-                               $data_entry_date = null)
+                               $data_entry_date = null,$authUser = null)
     {
         $data = $model;
         //Check for super admin user
@@ -84,6 +84,11 @@ class CommonRepository
             $cfyEndDate = currentFY()->end_date;
             $data = $data
                 ->whereBetween($data_entry_date, [$cfyStartDate, $cfyEndDate]);
+        }
+
+        if (isset($authUser) ) {
+            $data = $data
+                ->whereNotIn('id', [Auth::user()->id]);
         }
 
         $data = $data
