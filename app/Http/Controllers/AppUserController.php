@@ -74,7 +74,7 @@ class AppUserController extends BaseController
             $data['results'] = $this->searchDataRepository->getAllSearchData($this->model, $this->order_column_name, $this->orderBy, $this->paginateNo,'app',$request);
             $data['totalResult'] = $this->searchDataRepository->getSearchDataCount($this->model,'app',$request);
         }else{
-            $data['results'] = $this->commonRepository->getAllData($this->model, $this->order_column_name, $this->orderBy, $this->paginateNo);
+            $data['results'] = $this->commonRepository->getAllDSRData($this->model, $this->order_column_name, $this->orderBy, $this->paginateNo);
         }
         $data['request'] = $request;
         return $this->resource->index($this->viewFile, $data);

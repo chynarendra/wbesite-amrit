@@ -27,6 +27,22 @@ class CommonRepository
 
     }
 
+    public function allOfficeListWithRequest($model, $order_column_name, $order,$request)
+    {
+        $data = $model;
+        //Check for super admin user
+
+        if($request->office_id !=null){
+            $data=$data->where('id',$request->office_id);
+        }
+
+        $data = $data
+            ->orderBy($order_column_name, $order)
+            ->get();
+        return $data;
+
+    }
+
     public function allList($model, $order_column_name, $order)
     {
         $data = $model;
@@ -61,6 +77,31 @@ class CommonRepository
         if ($authCondition != null && Auth::user()->user_type_id > 1) {
             $data = $data
                 ->whereNotIn('id', [1]);
+        }
+        if ($search_status != null) {
+            //check active fiscal year
+            $cfyStartDate = currentFY()->start_date;
+            $cfyEndDate = currentFY()->end_date;
+            $data = $data
+                ->whereBetween($data_entry_date, [$cfyStartDate, $cfyEndDate]);
+        }
+
+        $data = $data
+            ->orderBy($order_column_name, $order)
+            ->paginate($paginateNo);
+        return $data;
+
+    }
+
+     //fetch all data form table with pagination
+    public function getAllDSRData($model, $order_column_name, $order, $paginateNo, $authCondition = null, $search_status = null,
+                               $data_entry_date = null)
+    {
+        $data = $model;
+        //Check for super admin user
+        if (Auth::user()->user_type_id > 1) {
+            $data = $data
+                ->where('office_id',Auth::user()->office_id);
         }
         if ($search_status != null) {
             //check active fiscal year

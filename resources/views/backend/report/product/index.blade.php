@@ -33,11 +33,7 @@
                         <div class="card">
                             <div class="card-header" style="text-align:right">
                                 <h3 class="card-title">{{trans('app.list')}}</h3>
-                                @if($request->product_id != null ||  $request->from_date != null ||  $request->to_date != null)
-                                    <strong style="margin-right: 350px;"> Total Product Sell Count :
-                                        <span style="font-size: 16px; color: #007bff;">{{$totalResult}}</span>
-                                    </strong>
-                                @endif
+                            
 
                                 <a href="{{URL::previous()}}" class="pull-right" data-toggle="tooltip"
                                    title="Go Back">
@@ -58,13 +54,13 @@
                                             </h4>
                                         </div>
                                         <div id="search"
-                                             class="panel-collapse collapse @if($request->product_id != null ||  $request->from_date != null ||  $request->to_date != null)show @endif">
+                                             class="panel-collapse collapse @if($request->office_id != null ||  $request->from_date != null ||  $request->to_date != null)show @endif">
                                             <table class="table table-responsive p-0" width="100%">
                                                 <form action="{{url($page_url)}}" autocomplete="off">
                                                     <tr>
                                                         <td style="width: 25%">
-                                                            {{Form::select('product_id',$productList->pluck('product_name','id'),Request::get('product_id'),['class'=>'form-control select2','style'=>'width: 100%;','placeholder'=>
-                                                     'Select Product Name'])}}
+                                                            {{Form::select('office_id',$officeList->pluck('office_name','id'),Request::get('office_id'),['class'=>'form-control select2','style'=>'width: 100%;','placeholder'=>
+                                                     'Select Office'])}}
 
                                                         </td>
 
@@ -85,8 +81,8 @@
                                                                         class="fa fa-search"></i> {{trans('app.filter')}}
                                                             </button> &nbsp; &nbsp;
                                                             <a href="{{url($page_url)}}"
-                                                               class="btn btn-default"> <i
-                                                                        class="fas  fa-sync-alt"></i> {{trans('app.refresh')}}
+                                                               class="btn btn-default  refresh-btn"> <i
+                                                                        class="fas  fa-sync-alt"></i>
                                                             </a>
                                                             &nbsp; &nbsp;
                                                             <a class="btn btn-danger" data-toggle="collapse"
@@ -96,23 +92,22 @@
                                                         </td>
 
                                                     </tr>
-                                                    @if($totalResult > 0 && ($request->product_id != null ||  $request->from_date != null ||  $request->to_date != null))
-                                                        <tr>
-                                                            <td colspan="5"
-                                                                class="text-center">
-                                                                <button onclick="exportTableToExcel('tblData')"
-                                                                        class="btn  btn-success"><i
-                                                                            class="fas fa-file-excel"></i> {{trans('Export To Excel')}}
-                                                                </button>
-                                                                &nbsp; &nbsp;
-                                                                <button onclick="printReport()"
-                                                                        class="btn  btn-primary"><i
-                                                                            class="fa fa-print"></i> {{trans('Print')}}
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    @endif
 
+                                                    <tr>
+                                                        <td colspan="5"
+                                                            class="text-center">
+                                                            <button onclick="exportTableToExcel('tblData')"
+                                                                    class="btn  btn-success"><i
+                                                                        class="fas fa-file-excel"></i> {{trans('Export To Excel')}}
+                                                            </button>
+                                                            &nbsp; &nbsp;
+                                                            <button id="pdfPrint"
+                                                                    class="btn  btn-primary"><i
+                                                                        class="fa fa-print"></i> {{trans('Print')}}
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                   
                                                 </form>
                                             </table>
                                         </div>
@@ -121,98 +116,43 @@
                                 <!-- /.col -->
                             </div>
                             <!-- /.card-header -->
-                            @if(sizeof($results) > 0)
                                 <div class="card-body">
                                     <div id="tblData">
                                         <table id="example2" class="table table-striped table-bordered table-hover">
                                             <thead>
                                             <tr>
                                                 <th width="10px">{{trans('app.sn')}}</th>
-                                                <th>{{trans('Office Name')}}</th>
-                                                <th>{{trans('Product')}}</th>
-                                                <th>{{trans('Purchased By')}}</th>
-                                                <th>{{trans('Purchase Date')}}</th>
+                                                <th>{{trans('Product Name')}}</th>
+                                                <th>{{trans('Sell Product No.')}}</th>
+                                                
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @foreach($results as $key=>$data)
                                                 <tr>
-                                                    <th scope=row>{{ ($results->currentpage()-1) * $results->perpage() + $key+1 }}</th>
+                                                    <th scope=row>{{ ++$key }}</th>
                                                     <td>
-                                                        @if(isset($data->office->office_name))
-                                                            {{$data->office->office_name}}
+                                                        @if(isset($data['product_name']))
+                                                            {{$data['product_name']}}
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if(isset($data->product->product_name))
-                                                            {{$data->product->product_name}}
+                                                        @if(isset($data['sell_count']))
+                                                            {{$data['sell_count']}}
                                                         @endif
                                                     </td>
-                                                    <td>
-                                                        @if(isset($data->customer->customer_name))
-                                                            {{$data->customer->customer_name}}
-                                                        @endif
-                                                    </td>
-                                                    <td>
-                                                        {{$data->purchase_date}}
-                                                    </td>
-
+             
                                                 </tr>
                                             @endforeach
                                             </tbody>
                                         </table>
-                                        <span class="float-right">{{ $results->appends(request()->except('page'))->links() }}
                                     </span>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
-                            @else
-                                <div class="col-md-12" style="padding-top: 10px">
-                                    <label class="form-control badge badge-info"
-                                           style="text-align:  center; font-size: 18px;">
-                                        <i class="fas fa-ban"></i> No record found yet !.
-                                    </label>
-                                </div>
-                        </div>
-                        @endif
+                           
                         <div id="printP" style="display: none">
-                            <table  class="table table-striped table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th width="10px">{{trans('app.sn')}}</th>
-                                    <th>{{trans('Office Name')}}</th>
-                                    <th>{{trans('Product')}}</th>
-                                    <th>{{trans('Purchased By')}}</th>
-                                    <th>{{trans('Purchase Date')}}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($results as $key=>$data)
-                                    <tr>
-                                        <td>{{ ++ $key }}</td>
-                                        <td>
-                                            @if(isset($data->office->office_name))
-                                                {{$data->office->office_name}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if(isset($data->product->product_name))
-                                                {{$data->product->product_name}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if(isset($data->customer->customer_name))
-                                                {{$data->customer->customer_name}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            {{$data->purchase_date}}
-                                        </td>
-
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                            @include('backend.report.product.pdf-index')
                         </div>
                         <!-- /.card -->
 
@@ -259,14 +199,22 @@
             }
         }
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        function printReport() {
-            var printContents = document.getElementById("printP").innerHTML;
-            var originalContents = document.body.innerHTML;
-            document.body.innerHTML = "<html><head><title></title></head><body>" + printContents + "</body>";
-            window.print();
-            document.body.innerHTML = originalContents;
-        }
+        $('#pdfPrint').click(function(){
+            var divToPrint = document.getElementById("printP");
+            var htmlToPrint = '' +
+                                 '<style type="text/css">' +
+                                 'table th, table td {' +
+                                 'border:1px solid #ddd;' +
+                                 '}' +
+                                 '</style>';
+             htmlToPrint += divToPrint.innerHTML;
+             newWin = window.open("");
+             newWin.document.write(htmlToPrint);
+             newWin.print();
+             newWin.close();
+         });    
     </script>
     <!-- /.content-wrapper -->
 

@@ -26,6 +26,23 @@ class ResourceController extends Controller
                 $users='';
             }
 
+            if(isset($data['customer'])){
+                $customer=$data['customer'];
+            }else{
+                $customer='';
+            }
+
+            if(isset($data['purchased_products'])){
+                $purchased_products=$data['purchased_products'];
+            }else{
+                $purchased_products='';
+            }
+
+            if(isset($data['customerId'])){
+                $customerId=$data['customerId'];
+            }else{
+                $customerId='';
+            }
             if(isset($data['results'])){
                 $results=$data['results'];
             }else{
@@ -98,6 +115,12 @@ class ResourceController extends Controller
                 $customerList=[];
             }
 
+            if(isset($data['campaignList'])){
+                $campaignList=$data['campaignList'];
+            }else{
+                $campaignList=[];
+            }
+
             if(isset($data['productList'])){
                 $productList=$data['productList'];
             }else{
@@ -168,7 +191,7 @@ class ResourceController extends Controller
             'results','cityList','productCategoryList','sourceList','totalResult','customerList',
             'productList','paymentMethodList','typeList','menus','menuRepo','users','moduleNames',
             'actionNames','totalLogs','districtList','officeList','result','file_upload_url','status_url',
-            'fieldVisitDetail'));
+            'fieldVisitDetail','customer','customerId','purchased_products','campaignList'));
 
         }else{
             session()->flash('error', Lang::get('app.viewFileNotFound'));
@@ -237,6 +260,7 @@ class ResourceController extends Controller
             }else{
                 $appUserDetail='';
             }
+            
 
             return view($view, compact('data','page_title','page_url','page_route','cityList',
             'productCategoryList','sourceList','campaignList','campaignList','customerList',
@@ -284,6 +308,24 @@ class ResourceController extends Controller
                 }else{
                     $details='';
                 }
+
+                if(isset($data['status_history'])){
+                    $status_history=$data['status_history'];
+                }else{
+                    $status_history='';
+                }
+
+                if(isset($data['payments'])){
+                    $payments=$data['payments'];
+                }else{
+                    $payments='';
+                }
+
+                if(isset($data['purchased_products'])){
+                    $purchased_products=$data['purchased_products'];
+                }else{
+                    $purchased_products='';
+                }
     
                 if(isset($data['appUserDetail'])){
                     $appUserDetail=$data['appUserDetail'];
@@ -298,7 +340,8 @@ class ResourceController extends Controller
                 }
 
                 return view($view, compact('data','details','appUserDetail',
-                'fieldVisitDetail','page_title','page_url','page_route'));
+                'fieldVisitDetail','page_title','page_url','page_route','status_history',
+                'purchased_products','payments'));
             } else {
                 session()->flash('error', Lang::get('app.dataNotFoundMessage'));
             }

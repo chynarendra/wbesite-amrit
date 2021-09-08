@@ -2,11 +2,18 @@
 
 namespace App\Repository;
 
+use App\Repository\office\OfficeRepositroy;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SearchDataRepository
 {
+    private $officeRepository;
+    public function __construct(OfficeRepositroy $officeRepository){
+        $this->officeRepository=$officeRepository;
+
+    }
 
     //fetch all data form table with pagination
     public function getAllSearchData($model, $order_column_name, $order, $paginateNo,$searchModule, $request)
@@ -183,11 +190,12 @@ class SearchDataRepository
     }
 
     /* date search filter*/
-    public  function getSellsData($model  ,$orderBy, $order_column_name,$paginateNo,$request=null ,$count=null)
+    public  function getSellsData($model,$orderBy, $order_column_name,$paginateNo,$request=null ,$count=null)
     {
         $data = $model;
         $cfyStartDate = currentFY()->start_date;
         $cfyEndDate = currentFY()->end_date;
+
         if($request->office_id !=null){
             $data = $data
                 ->where('office_id', $request->office_id);
@@ -220,6 +228,44 @@ class SearchDataRepository
             ->whereBetween('purchase_date', [$cfyStartDate, $cfyEndDate])
             ->orderBy($order_column_name,$orderBy)
             ->paginate($paginateNo);
+        return $data;
+    }
+    public  function countSellsData($model,$id,$request,$type)
+    {
+        if($type='product'){
+            $data = $model->where('product_id',$id);
+        }else{
+        $data = $model->where('office_id',$id);
+        }
+
+        $cfyStartDate = currentFY()->start_date;
+        $cfyEndDate = currentFY()->end_date;
+
+        if($request->office_id !=null){
+            $data = $data
+                ->where('office_id', $request->office_id);
+        }
+       
+        if ($request->from_date != null && $request->to_date == null) {
+            $data = $data
+                ->where('purchase_date', '>=', $request->from_date);
+        }
+        if ($request->to_date != null && $request->from_date == null) {
+            $data = $data
+                ->where('purchase_date', '<=', $request->to_date);
+        }
+        if ($request->from_date != null && $request->to_date != null) {
+            $data = $data
+                ->where('purchase_date', '>=', $request->from_date)
+                ->where('purchase_date', '<=', $request->to_date);
+        }
+
+        if($request->fy_id !=null){
+            $data = $data
+            ->whereBetween('purchase_date', [$cfyStartDate, $cfyEndDate]);
+        }
+    
+        $data = $data->count();
         return $data;
     }
 

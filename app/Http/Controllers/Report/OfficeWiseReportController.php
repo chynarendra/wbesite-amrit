@@ -48,8 +48,17 @@ class OfficeWiseReportController extends BaseController
         $data['page_url'] = 'report/officeWiseReport';
         $data['page_route'] = 'officeWiseReport';
         $data['officeList'] = $this->commonRepository->all($this->office, 'office_name', 'asc');
+        $officeList=$this->commonRepository->allOfficeListWithRequest($this->office, 'office_name', 'asc',$request);
+        $officeWiseSellCount=[];
+
+        foreach($officeList as $office){
+            $sellCount=$this->searchDataRepository->countSellsData($this->model,$office->id,$request,'office');
+            $newArr['office_name']=$office->office_name;
+            $newArr['sell_count']=$sellCount;
+            array_push($officeWiseSellCount,$newArr);
+        }
         $data['fiscalYearList'] = $this->commonRepository->all($this->fiscalYear, 'id', 'asc');
-        $data['results'] = $this->searchDataRepository->getSellsData($this->model,$this->orderBy,$this->order_column_name,$this->paginateNo,$request);
+        $data['results'] =$officeWiseSellCount;
         $data['totalResult'] = $this->searchDataRepository->getSellsData($this->model,$this->orderBy,$this->order_column_name,$this->paginateNo,$request,'1');
         $data['request'] = $request;
         return $this->resource->index($this->viewFile, $data);

@@ -65,7 +65,6 @@
 
                                                         </td>
 
-
                                                         <td>
                                                             {!! Form::number('mobile', Request::get('mobile'), ['class' => 'form-control', 'autocomplete' => 'off', 'width' => '100%', 'placeholder' => trans('Mobile Number')]) !!}
                                                         </td>
@@ -103,6 +102,8 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
+
+                                @if (sizeof($results) > 0)
                                 <table id="example2" class="table table-striped table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -117,94 +118,100 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $count = 0; $key=0;?>
-                                        @foreach ($results as $clients)
-                                            <?php $count++; ?>
-                                            @foreach ($clients as $client)
-                                                <?php $count++;?>
-                                                <tr>
-                                                    <th scope=row>
+                                        <?php $count = 0;
+                                        $key = 0;?>
 
-                                                        {{ ($clients->currentpage() - 1) * $clients->perpage() + $key + 1 }}
+                                            @foreach ($results as $clients)
+                                                <?php $count++; ?>
+                                                @foreach ($clients as $client)
+                                                    <?php $count++; ?>
+                                                    <tr>
+                                                        <th scope=row>
 
-                                                    </th>
-                                                    <td>
-                                                        <i class="fa fa-user"> </i> <label> Visited By
-                                                            : </label> {{ $client->visited_by }}
-                                                        <br>
-                                                        <i class="fa fa-globe"> </i> <label>Visit Area
-                                                            : </label> {{ $client->visited_area }}
+                                                            {{ ($clients->currentpage() - 1) * $clients->perpage() + $key + 1 }}
 
-                                                    </td>
+                                                        </th>
+                                                        <td>
+                                                            <i class="fa fa-user"> </i> <label> Visited By
+                                                                : </label> {{ $client->visited_by }}
+                                                            <br>
+                                                            <i class="fa fa-globe"> </i> <label>Visit Area
+                                                                : </label> {{ $client->visited_area }}
 
-                                                    <td>
-                                                        {{ $client->name }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $client->address }}
-                                                    </td>
+                                                        </td>
 
-                                                    <td>
-                                                        {{ $client->contact_no }}
-                                                    </td>
+                                                        <td>
+                                                            {{ $client->name }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $client->address }}
+                                                        </td>
 
-                                                    <td>
-                                                        {{ $client->next_date_of_visit }}
-                                                    </td>
+                                                        <td>
+                                                            {{ $client->contact_no }}
+                                                        </td>
 
-                                                    <td>
-                                                        @if ($client->status_id == '1')
-                                                            <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                                                data-target="#updateStatusModal{{ $count }}"
-                                                                data-placement="top"
-                                                                title="Update Status">{{ customerStatus($client->status_id) }}</button>
-                                                        @elseif($client->status_id == '2')
-                                                            <button class="btn btn-secondary btn-xs" data-toggle="modal"
-                                                                data-target="#updateStatusModal{{ $count }}"
-                                                                data-placement="top"
-                                                                title="Update Status">{{ customerStatus($client->status_id) }}</button>
+                                                        <td>
+                                                            {{ $client->next_date_of_visit }}
+                                                        </td>
 
-                                                        @elseif($client->status_id == '3')
-                                                            <button class="btn btn-success btn-xs" data-toggle="modal"
-                                                                data-target="#updateStatusModal{{ $count }}"
-                                                                data-placement="top"
-                                                                title="Update Status">{{ customerStatus($client->status_id) }}</button>
-                                                        @elseif($client->status_id == '4')
-                                                            <button class="btn btn-warning btn-xs" data-toggle="modal"
-                                                                data-target="#updateStatusModal{{ $count }}"
-                                                                data-placement="top"
-                                                                title="Update Status">{{ customerStatus($client->status_id) }}</button>
-                                                        @elseif($client->status_id == '5')
-                                                            <button
-                                                                class="btn btn-primary btn-xs">{{ customerStatus($client->status_id) }}</button>
-                                                        @else
-                                                            <button class="btn btn-secondary btn-xs" data-toggle="modal"
-                                                                data-target="#updateStatusModal{{ $count }}"
-                                                                data-placement="top"
-                                                                title="Update Status">{{ 'Initial' }}</button>
-                                                        @endif
-                                                    </td>
+                                                        <td>
+                                                            @if ($client->status_id == '1')
+                                                                <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                                    data-target="#updateStatusModal{{ $count }}"
+                                                                    data-placement="top"
+                                                                    title="Update Status">{{ customerStatus($client->status_id) }}</button>
+                                                            @elseif($client->status_id == '2')
+                                                                <button class="btn btn-secondary btn-xs" data-toggle="modal"
+                                                                    data-target="#updateStatusModal{{ $count }}"
+                                                                    data-placement="top"
+                                                                    title="Update Status">{{ customerStatus($client->status_id) }}</button>
 
-                                                    <td>
+                                                            @elseif($client->status_id == '3')
+                                                                <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                                    data-target="#updateStatusModal{{ $count }}"
+                                                                    data-placement="top"
+                                                                    title="Update Status">{{ customerStatus($client->status_id) }}</button>
+                                                            @elseif($client->status_id == '4')
+                                                                <button class="btn btn-warning btn-xs" data-toggle="modal"
+                                                                    data-target="#updateStatusModal{{ $count }}"
+                                                                    data-placement="top"
+                                                                    title="Update Status">{{ customerStatus($client->status_id) }}</button>
+                                                            @elseif($client->status_id == '5')
+                                                                <button
+                                                                    class="btn btn-primary btn-xs">{{ customerStatus($client->status_id) }}</button>
+                                                            @else
+                                                                <button class="btn btn-secondary btn-xs" data-toggle="modal"
+                                                                    data-target="#updateStatusModal{{ $count }}"
+                                                                    data-placement="top"
+                                                                    title="Update Status">{{ 'Initial' }}</button>
+                                                            @endif
+                                                        </td>
 
-                                                        @if ($allowShow)
-                                                            <a href="{{ route($page_route . '.' . 'show', [$client->id]) }}"
-                                                                class="btn btn-secondary btn-xs" data-toggle="tooltip"
-                                                                data-placement="top" title="Details">
-                                                                <i class="fas fa-eye"></i>
-                                                            </a>
-                                                        @endif
+                                                        <td>
 
-                                                    </td>
-                                                </tr>
-                                                <?php $key++;?>
-                                                @include('backend.modal.client_update_status_modal')
+                                                            @if ($allowShow)
+                                                                <a href="{{ route($page_route . '.' . 'show', [$client->id]) }}"
+                                                                    class="btn btn-secondary btn-xs" data-toggle="tooltip"
+                                                                    data-placement="top" title="Details">
+                                                                    <i class="fas fa-eye"></i>
+                                                                </a>
+                                                            @endif
+
+                                                        </td>
+                                                    </tr>
+                                                    <?php $key++; ?>
+                                                    @include('backend.modal.client_update_status_modal')
+                                                @endforeach
                                             @endforeach
-                                        @endforeach
                                     </tbody>
                                 </table>
                                 <span class="float-right">{{ $clients->appends(request()->except('page'))->links() }}
                                 </span>
+                                @else
+                                <p class="text-danger text-center">Data are not available !</p>
+                                @endif
+
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -225,13 +232,15 @@
 
 @endsection
 @section('js')
-<script>
-    $('#example2').DataTable( {
-    scrollY: 300,
-    responsive: true
-    paging: false,
-    "columnDefs": [
-        { "orderable": false, "targets": [0] },
-} );
-</script>
+    <script>
+        $('#example2').DataTable({
+                    scrollY: 300,
+                    responsive: true
+                    paging: false,
+                    "columnDefs": [{
+                            "orderable": false,
+                            "targets": [0]
+                        },
+                    });
+    </script>
 @endsection

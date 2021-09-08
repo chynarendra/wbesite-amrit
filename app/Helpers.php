@@ -24,7 +24,6 @@ function helperPermission()
 
     $controller_name = isset($controllers[0]) ? $controllers[0] : '';
 
-
     $permission = [
         'isView' => false,
         'isAdd' => false,

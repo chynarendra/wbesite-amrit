@@ -24,7 +24,15 @@ class DailySalesReportInterfaceRepository implements DailySalesReportInterface
 
     public function getLatestSalesPersonDetail($id,$pageSize)
     {
-        $data=$this->dailySalesReport->orderBy('id','DESC')->where('app_user_id',$id)->paginate($pageSize);
+
+        $cfyStartDate = currentFY()->start_date;
+        $cfyEndDate = currentFY()->end_date;
+
+        $data=$this->dailySalesReport
+        ->orderBy('id','DESC')
+        ->whereBetween('field_visit_date',[$cfyStartDate,$cfyEndDate])
+        ->where('app_user_id',$id)
+        ->paginate($pageSize);
         return $data;
     }
 

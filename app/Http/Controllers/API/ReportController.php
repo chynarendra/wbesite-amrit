@@ -43,7 +43,14 @@ class ReportController extends Controller
     }
 
     public function performanceReport($id){
-        $dsrs=DailySalesReport::select('id','visited_area','field_visit_date')->where('app_user_id',$id)->paginate(10);
+
+        $cfyStartDate = currentFY()->start_date;
+        $cfyEndDate = currentFY()->end_date;
+
+        $dsrs=DailySalesReport::select('id','visited_area','field_visit_date')
+        ->where('app_user_id',$id)
+        ->whereBetween('field_visit_date',[$cfyStartDate,$cfyEndDate])
+        ->paginate(10);
         $dsrWiseData=[];
         if(sizeof($dsrs) > 0){
             foreach ($dsrs as $dsr){

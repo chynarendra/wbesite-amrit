@@ -33,7 +33,7 @@ class CustomerController extends BaseController
     private $commonRepository;
     private $order_column_name = 'id';
     private $orderBy = 'desc';
-    private $paginateNo = 10;
+    private $paginateNo = 100;
     private $searchDataRepository;
     private $product;
     private $data_entery_column='created_date';

@@ -25,8 +25,9 @@ class ProductWiseReportController extends BaseController
     private $searchDataRepository;
     private $product;
     private $fiscalYear;
+    private $office;
 
-    public function __construct(CustomerPurchaseProduct $model,Product $product, SearchDataRepository $searchDataRepository,
+    public function __construct(CustomerPurchaseProduct $model,Office $office,Product $product, SearchDataRepository $searchDataRepository,
                                 FiscalYear $fiscalYear, CommonRepository $commonRepository, ResourceController $resource)
     {
         parent::__construct();
@@ -36,6 +37,7 @@ class ProductWiseReportController extends BaseController
         $this->commonRepository = $commonRepository;
         $this->fiscalYear = $fiscalYear;
         $this->resource = $resource;
+        $this->office=$office;
     }
 
     /**
@@ -48,9 +50,19 @@ class ProductWiseReportController extends BaseController
         $data['page_title'] = 'Product Wise Sell Report';
         $data['page_url'] = 'report/productWiseSellReport';
         $data['page_route'] = 'productWiseSellReport';
+        $data['officeList'] = $this->commonRepository->all($this->office, 'office_name', 'asc');
         $data['productList'] = $this->commonRepository->all($this->product, 'product_name', 'asc');
+        $productReport=[];
+
+        foreach($data['productList'] as $product){
+            $sellCount=$this->searchDataRepository->countSellsData($this->model,$product->id,$request,'product');
+            $newArr['product_name']=$product->product_name;
+            $newArr['sell_count']=$sellCount;
+            array_push($productReport,$newArr);
+        }
+
         $data['fiscalYearList'] = $this->commonRepository->all($this->fiscalYear, 'id', 'asc');
-        $data['results'] = $this->searchDataRepository->getSellsData($this->model,$this->orderBy,$this->order_column_name,$this->paginateNo,$request);
+        $data['results'] = $productReport;
         $data['totalResult'] = $this->searchDataRepository->getSellsData($this->model,$this->orderBy,$this->order_column_name,$this->paginateNo,$request,'1');
         $data['request'] = $request;
         return $this->resource->index($this->viewFile, $data);
