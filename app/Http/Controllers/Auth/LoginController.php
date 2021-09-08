@@ -58,17 +58,17 @@ class LoginController extends Controller
             'captcha.required' => 'Captcha cannot be empty',
         ];
         //check captcha validation
-//        if(systemSetting()->login_captcha_required == 1)
-        $request->validate([
-            'identity' => 'required|min:3|string',
-            'password' => 'required|min:3|string',
-//            'captcha' => 'required|captcha',
-        ], $messages);
-//        else
-//            $request->validate([
-//                'identity' => 'required|min:3|string',
-//                'password' => 'required|min:3|string',
-//            ], $messages);
+        if(systemSetting()->login_captcha_required == 1)
+            $request->validate([
+                'identity' => 'required|min:3|string',
+                'password' => 'required|min:3|string',
+                'captcha' => 'required|captcha',
+            ], $messages);
+        else
+            $request->validate([
+                'identity' => 'required|min:3|string',
+                'password' => 'required|min:3|string',
+            ], $messages);
 
         //default validation check
         // $this->validateLogin($request);
@@ -76,7 +76,7 @@ class LoginController extends Controller
         $user = User::where($this->username(), $request->{$this->username()})->first();
         if (isset($user)) {
             $loginFailed = getUserLoginFailed($user->id);
-            if ($loginFailed >= getLoginAttempt()->login_attempt_limit) {
+            if (systemSetting()->login_attempt_required == 1 && $loginFailed >= getLoginAttempt()->login_attempt_limit) {
                 $errors = [$this->username() => trans('auth.authBlock')];
                 return redirect()->back()
                     ->withInput($request->only($this->username(), 'remember'))
@@ -184,18 +184,22 @@ class LoginController extends Controller
 
         //set user block status
         if (isset($user)) {
-            $loginFailedCount =  getUserLoginFailed($user->id);
-            $daysTotalAttempt = getLoginAttempt()->login_attempt_limit;
-            $failedAttempt = $daysTotalAttempt - $loginFailedCount;
-            //update user  block status
-            if ($loginFailedCount == getLoginAttempt()->login_attempt_limit) {
-                User::where('id', $user->id)->update(['block_status' => '1']);
-            }
-            //set login fail attempt message
-            if($failedAttempt > 0){
-                $errors = [$this->username() => trans('Invalid User Name or Password. You are left with' .' '. $failedAttempt .'  '. 'Attempts')];
+            if(systemSetting()->login_attempt_required == 1){
+                $loginFailedCount =  getUserLoginFailed($user->id);
+                $daysTotalAttempt = getLoginAttempt()->login_attempt_limit;
+                $failedAttempt = $daysTotalAttempt - $loginFailedCount;
+                //update user  block status
+                if ($loginFailedCount == getLoginAttempt()->login_attempt_limit) {
+                    User::where('id', $user->id)->update(['block_status' => '1']);
+                }
+                //set login fail attempt message
+                if($failedAttempt > 0){
+                    $errors = [$this->username() => trans('Invalid User Name or Password. You are left with' .' '. $failedAttempt .'  '. 'Attempts')];
+                }else{
+                    $errors = [$this->username() => trans('Invalid User Name or Password. You are last Attempt')];
+                }
             }else{
-                $errors = [$this->username() => trans('Invalid User Name or Password. You are last Attempt')];
+                $errors = [$this->username() => trans('Invalid User Name or Password.')];
             }
 
         }

@@ -29,7 +29,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '1',
                 'menu_name' => 'User Types',
-                'menu_link' => '/roles/type',
+                'menu_link' => 'roles/type',
                 'menu_controller' => 'UserTypeController',
                 'menu_icon' => 'fa fa-user-plus',
                 'menu_status' => '1',
@@ -39,7 +39,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '1',
                 'menu_name' => 'Role Access',
-                'menu_link' => '/roles/userTypeRoleAccess',
+                'menu_link' => 'roles/userTypeRoleAccess',
                 'menu_controller' => 'RoleAccessController',
                 'menu_icon' => 'fa fa-unlock',
                 'menu_status' => '1',
@@ -49,7 +49,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '0',
                 'menu_name' => 'Menu Management',
-                'menu_link' => '/roles/menu',
+                'menu_link' => 'roles/menu',
                 'menu_controller' => 'MenuController',
                 'menu_icon' => 'fa fa-list',
                 'menu_status' => '0',
@@ -59,7 +59,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '0',
                 'menu_name' => 'Users Management',
-                'menu_link' => '/users',
+                'menu_link' => 'users',
                 'menu_controller' => 'UserController',
                 'menu_icon' => 'fa fa-users',
                 'menu_status' => '1',
@@ -79,7 +79,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '6',
                 'menu_name' => 'Login Logs',
-                'menu_link' => '/logs/loginLogs',
+                'menu_link' => 'logs/loginLogs',
                 'menu_controller' => 'LoginLogsController',
                 'menu_icon' => 'fa fa-user-plus',
                 'menu_status' => '1',
@@ -90,7 +90,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '6',
                 'menu_name' => 'Failed Login Logs',
-                'menu_link' => '/logs/failLoginLogs',
+                'menu_link' => 'logs/failLoginLogs',
                 'menu_controller' => 'FailedLoginLogsController',
                 'menu_icon' => 'fa fa-user-times',
                 'menu_status' => '1',
@@ -120,7 +120,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '10',
                 'menu_name' => 'Office Type',
-                'menu_link' => '/systemSetting/officeType',
+                'menu_link' => 'systemSetting/officeType',
                 'menu_controller' => 'OfficeTypeController',
                 'menu_icon' => 'fa fa-list-alt',
                 'menu_status' => '1',
@@ -131,7 +131,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '10',
                 'menu_name' => 'Office',
-                'menu_link' => '/systemSetting/office',
+                'menu_link' => 'systemSetting/office',
                 'menu_controller' => 'OfficeController',
                 'menu_icon' => 'fa fa-building',
                 'menu_status' => '1',
@@ -142,7 +142,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '10',
                 'menu_name' => 'Department',
-                'menu_link' => '/systemSetting/department',
+                'menu_link' => 'systemSetting/department',
                 'menu_controller' => 'DepartmentController',
                 'menu_icon' => 'fa fa-home',
                 'menu_status' => '1',
@@ -152,7 +152,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '10',
                 'menu_name' => 'City',
-                'menu_link' => '/systemSetting/city',
+                'menu_link' => 'systemSetting/city',
                 'menu_controller' => 'CityController',
                 'menu_icon' => 'fas fa-home',
                 'menu_status' => '1',
@@ -162,7 +162,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '10',
                 'menu_name' => 'Designation',
-                'menu_link' => '/systemSetting/designation',
+                'menu_link' => 'systemSetting/designation',
                 'menu_controller' => 'DesignationController',
                 'menu_icon' => 'fa fa-user-graduate',
                 'menu_status' => '1',
@@ -172,7 +172,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '10',
                 'menu_name' => 'Fiscal Year',
-                'menu_link' => '/systemSetting/fiscalYear',
+                'menu_link' => 'systemSetting/fiscalYear',
                 'menu_controller' => 'FiscalYearController',
                 'menu_icon' => 'fa fa-calendar',
                 'menu_status' => '1',
@@ -182,7 +182,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '10',
                 'menu_name' => 'Product Category',
-                'menu_link' => '/systemSetting/productCategory',
+                'menu_link' => 'systemSetting/productCategory',
                 'menu_controller' => 'ProductCategoryController',
                 'menu_icon' => 'fas fa-list',
                 'menu_status' => '1',
@@ -193,7 +193,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '10',
                 'menu_name' => 'Source of Queries',
-                'menu_link' => '/systemSetting/sourceQuery',
+                'menu_link' => 'systemSetting/sourceQuery',
                 'menu_controller' => 'SourceQueryController',
                 'menu_icon' => 'fas fa-question',
                 'menu_status' => '1',
@@ -203,7 +203,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '10',
                 'menu_name' => 'Payment Methods',
-                'menu_link' => '/systemSetting/paymentMethod',
+                'menu_link' => 'systemSetting/paymentMethod',
                 'menu_controller' => 'PaymentMethodController',
                 'menu_icon' => 'fas fa-money-bill-alt',
                 'menu_status' => '1',
@@ -246,7 +246,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '0',
                 'menu_name' => 'Campaign',
-                'menu_link' => '/campaign',
+                'menu_link' => 'campaign',
                 'menu_controller' => 'CampaignController',
                 'menu_icon' => 'fas fa-bullseye',
                 'menu_status' => '1',
@@ -257,7 +257,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '0',
                 'menu_name' => 'Product',
-                'menu_link' => '/product',
+                'menu_link' => 'product',
                 'menu_controller' => 'ProductController',
                 'menu_icon' => 'fas fa-list-alt',
                 'menu_status' => '1',
@@ -268,7 +268,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '0',
                 'menu_name' => 'Customer',
-                'menu_link' => '/customer',
+                'menu_link' => 'customer',
                 'menu_controller' => 'CustomerController',
                 'menu_icon' => 'fas fa-user-md',
                 'menu_status' => '1',
@@ -278,7 +278,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '0',
                 'menu_name' => 'Customer Followup',
-                'menu_link' => '/followup',
+                'menu_link' => 'followup',
                 'menu_controller' => 'CustomerFollowupController',
                 'menu_icon' => 'fas fa-phone-square-alt"',
                 'menu_status' => '1',
@@ -289,7 +289,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '0',
                 'menu_name' => 'Customer Queries',
-                'menu_link' => '/query',
+                'menu_link' => 'query',
                 'menu_controller' => 'CustomerQueryController',
                 'menu_icon' => 'fas fa-question-circle',
                 'menu_status' => '1',
@@ -299,7 +299,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '0',
                 'menu_name' => 'Feedback',
-                'menu_link' => '/feedback',
+                'menu_link' => 'feedback',
                 'menu_controller' => 'FeedbackController',
                 'menu_icon' => 'fas fa-comment-dots',
                 'menu_status' => '0',
@@ -309,7 +309,7 @@ class MenusTableSeeder extends Seeder
             [
                 'parent_id' => '0',
                 'menu_name' => 'Payments',
-                'menu_link' => '/payment',
+                'menu_link' => 'payment',
                 'menu_controller' => 'PaymentController',
                 'menu_icon' => 'fas fa-money-bill-alt',
                 'menu_status' => '1',

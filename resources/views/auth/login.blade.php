@@ -52,35 +52,34 @@
             <strong style="color: red">{{ $errors->first('password') }}</strong>
         </div>
     @endif
-{{--    @if(systemSetting()->login_captcha_required == 1)--}}
-{{--        <div class="form-group">--}}
-{{--            <div class="captcha">--}}
-{{--                <span>{!! captcha_img() !!}</span>--}}
-{{--                &nbsp; &nbsp;--}}
-{{--                <button type="button" class="btn btn-info" id="reload" data-toggle="tooltip" title="Refresh Captcha">--}}
-{{--                    &#x21bb;--}}
-{{--                </button>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="form-group {{ ($errors->has('captcha'))?'has-error':'' }}">--}}
-{{--            <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha"--}}
-{{--                   autocomplete="off">--}}
-{{--        </div>--}}
-{{--        @if ($errors->has('captcha'))--}}
-{{--            <div class="input-group mb-3" style="margin-top: -13px;">--}}
-{{--                <strong style="color: red">{{ $errors->first('captcha') }}</strong>--}}
-{{--            </div>--}}
-{{--        @endif--}}
-{{--    @endif--}}
+    @if(@systemSetting()->login_captcha_required == 1)
+        <div class="form-group">
+            <div class="captcha">
+                <span>{!! captcha_img() !!}</span>
+                &nbsp; &nbsp;
+                <button type="button" class="btn btn-info" id="reload" data-toggle="tooltip" title="Refresh Captcha">
+                    &#x21bb;
+                </button>
+            </div>
+        </div>
+        <div class="form-group {{ ($errors->has('captcha'))?'has-error':'' }}">
+            <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha"
+                   autocomplete="off">
+        </div>
+        @if ($errors->has('captcha'))
+            <div class="input-group mb-3" style="margin-top: -13px;">
+                <strong style="color: red">{{ $errors->first('captcha') }}</strong>
+            </div>
+        @endif
+    @endif
 
     <div class="col-xs-12">
-        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        <button type="submit" class="btn btn-info btn-block">Sign In</button>
     </div>
     {!! Form::close() !!}
-    <br>
-{{--    @if(systemSetting()->forget_password_required == 1)--}}
-{{--    <p class="mb-1">--}}
-{{--        <a href="{{ route('password.request') }}">I forgot my password</a>--}}
-{{--    </p>--}}
-{{--    @endif--}}
+    @if(@systemSetting()->forget_password_required == 1)
+        <p class="mb-1">
+            <a href="{{ route('password.request') }}">I forgot my password</a>
+        </p>
+    @endif
 @endsection

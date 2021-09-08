@@ -62,11 +62,11 @@ class UserController extends BaseController
     public function index()
     {
 
-        $data['typeList'] = $this->commonRepository->all($this->parentModel, 'type_name','asc','true');
+        $data['typeList'] = $this->commonRepository->all($this->parentModel, 'type_name','asc',true);
         
         $data['officeList'] = $this->commonRepository->all($this->office, 'office_name','asc');
         $data['designationList'] = $this->commonRepository->all($this->designation, 'name','asc');
-        $data['results'] = $this->commonRepository->getAllData($this->model, $this->order_column_name,$this->orderBy,$this->paginateNo,'true');
+        $data['results'] = $this->commonRepository->getAllData($this->model, $this->order_column_name,$this->orderBy,$this->paginateNo,true,'','',true);
         
         $data['page_title'] = 'User Management';
         $data['page_url'] = 'users';

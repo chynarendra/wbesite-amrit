@@ -10,7 +10,7 @@ class SystemSetting extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $fillable=['app_name','app_logo','mail_driver','mail_host_name','mail_port',
-        'mail_user_name','mail_password','mail_encryption','mail_from_address','login_attempt_limit','login_title',
-        'login_background_image','login_captcha_required', 'forget_password_required', 'login_background_image_display',
+        'mail_user_name','mail_password','mail_encryption','mail_from_address','login_attempt_required','login_attempt_limit',
+        'login_title','login_captcha_required','login_ip_address_required','login_ip_address', 'forget_password_required',
     ];
 }
