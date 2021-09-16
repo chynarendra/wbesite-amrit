@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Http\Controllers\Configurations\OfficeTypeController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
@@ -15,15 +16,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //check foreign  key
-        if(env('DB_CONNECTION') =='mysql')
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        $this->call(MenusTableSeeder::class);
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         $this->call(UserTypesTableSeeder::class);
         $this->call(UserRolesTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(LoginLogTableSeeder::class);
         $this->call(SystemSettingTableSeeder::class);
+        $this->call(MenusTableSeeder::class);
         $this->call(ProvinceTableSeeder::class);
         $this->call(DistrictTableSeeder::class);
         $this->call(OfficeTypeTableSeeder::class);
@@ -37,5 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FiscalYearsTableSeeder::class);
         $this->call(CustomerStatusTableSeeder::class);
         $this->call(ProductTableSeeder::class);
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

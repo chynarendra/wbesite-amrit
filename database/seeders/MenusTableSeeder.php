@@ -324,7 +324,7 @@ class MenusTableSeeder extends Seeder
                 'menu_icon' => 'fas fa-chart-bar',
                 'menu_status' => '1',
                 'menu_order' => '7',
-                'action_module_status' => '0',
+                'action_module_status' => '1',
             ],
             [
                 'parent_id' => '30',
@@ -334,7 +334,7 @@ class MenusTableSeeder extends Seeder
                 'menu_icon' => 'far fa-building',
                 'menu_status' => '1',
                 'menu_order' => '1',
-                'action_module_status' => '0',
+                'action_module_status' => '1',
             ],
             [
                 'parent_id' => '30',
@@ -344,7 +344,7 @@ class MenusTableSeeder extends Seeder
                 'menu_icon' => 'fab fa-product-hunt',
                 'menu_status' => '1',
                 'menu_order' => '2',
-                'action_module_status' => '0',
+                'action_module_status' => '1',
             ],
             [
                 'parent_id' => '0',
@@ -354,7 +354,7 @@ class MenusTableSeeder extends Seeder
                 'menu_icon' => 'fa fa-mobile',
                 'menu_status' => '1',
                 'menu_order' => '2',
-                'action_module_status' => '0',
+                'action_module_status' => '1',
             ],
             [
                 'parent_id' => '0',
@@ -364,7 +364,7 @@ class MenusTableSeeder extends Seeder
                 'menu_icon' => 'fa fa-list',
                 'menu_status' => '1',
                 'menu_order' => '2',
-                'action_module_status' => '0',
+                'action_module_status' => '1',
             ],
             [
                 'parent_id' => '0',
