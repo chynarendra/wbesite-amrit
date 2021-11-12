@@ -19,8 +19,10 @@ class CreateCustomersTable extends Migration
             $table->foreign('campaign_id')->references('id')->on('campaign');
             $table->bigInteger('customer_source_id')->unsigned()->nullable();
             $table->foreign('customer_source_id')->references('id')->on('source_query');
+            $table->string('reference_source')->nullable();
+            $table->string('reference_phone_no')->nullable();
             $table->string('customer_name');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('contact');
             $table->string('email')->nullable();
             $table->string('status');

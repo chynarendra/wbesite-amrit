@@ -242,7 +242,6 @@ class MenusTableSeeder extends Seeder
                 'action_module_status' => '1',
             ],
 
-
             [
                 'parent_id' => '0',
                 'menu_name' => 'Campaign',

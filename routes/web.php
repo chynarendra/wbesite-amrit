@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/appUser/{id}', 'AppUserController@destroy')->name('appUser.destroy');
     Route::get('/appUser/approve/{id}', 'AppUserController@approvedUser');
     Route::get('/dsr','DailySalesReportController@index')->name('dsr');
+    Route::get('/dsr/{id}/clients','DailySalesReportController@clients')->name('dsr.clients');
     Route::get('/dsr/{id}','DailySalesReportController@show')->name('dsr.show');
     Route::post('/dsr/changestatus','DailySalesReportController@statusChange')->name('dsr.changestatus');
 

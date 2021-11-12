@@ -34,6 +34,9 @@ class SourceQueryTableSeeder extends Seeder
             ],
             [
                 'name' => 'Campaign',
+            ],
+            [
+                'name' => 'Reference',
             ]
 
         ];

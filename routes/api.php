@@ -27,12 +27,17 @@ Route::post('authenticate', 'API\LoginApiController@authenticate');
 Route::post('/change/password', 'API\RegisterApiController@changePassword');
 Route::post('sales/person/store', 'API\DailySalesReportController@storeSalesPersonDetail');
 Route::post('salesarea/store', 'API\DailySalesReportController@storeSalesAreaDetailWithResponse');
+
 Route::post('client/store', 'API\DailySalesReportController@storeClientDetail');
+Route::post('client/update/{id}', 'API\DailySalesReportController@updateClientDetail');
+Route::get('sales/clients/{id}', 'API\DailySalesReportController@getClientsData');
+Route::get('sales/followupclients/{id}', 'API\DailySalesReportController@getFollowupClientsData');
+
 Route::get('/user/sales/persons/{id}/{pageSize}', 'API\DailySalesReportController@getLatestSalesPersonDetail');
 Route::get('sales/person/{id}', 'API\DailySalesReportController@getSalesPersonDetail');
-Route::get('sales/clients/{id}', 'API\DailySalesReportController@getClientData');
+
 Route::get('client/{id}', 'API\DailySalesReportController@getClientDetail');
 Route::get('noticeList', 'API\NoticeApiController@getNoticeList');
 Route::get('noticeDetails/{id}', 'API\NoticeApiController@getNoticeDetails');
 Route::get('/office/sale/report','API\ReportController@officeWiseSaleProduct');
-Route::get('/user/performance/report/{id}','API\ReportController@performanceReport');
+Route::get('/user/performance/report/{id}','API\PerformanceController@index');

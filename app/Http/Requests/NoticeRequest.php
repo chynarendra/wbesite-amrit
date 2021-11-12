@@ -26,13 +26,13 @@ class NoticeRequest extends FormRequest
         if ($this->method() == 'PUT') {
             $post_id = $this->segment(2);
             $rules = [
-                'notice_title' => 'required|min:3|unique:notices,notice_title,' . $post_id,
-                'notice_description' => 'required|min:3|max:200',
+                'notice_title' => 'required|unique:notices,notice_title,' . $post_id,
+                'notice_description' => 'required',
             ];
         } else {
             $rules = [
-                'notice_title' => 'nullable|min:3|unique:notices,notice_title',
-                'notice_description' => 'required|min:3',
+                'notice_title' => 'nullable|unique:notices,notice_title',
+                'notice_description' => 'required',
             ];
         }
         return $rules;

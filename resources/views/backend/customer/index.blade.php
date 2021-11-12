@@ -65,7 +65,7 @@
                                                 <form
                                                         action="{{url($page_url)}}" autocomplete="off">
                                                     <tr>
-                                                      <td>
+                                                        <td>
                                                             {{Form::select('customer_source_id',$sourceList->pluck('name','id'),Request::get('customer_source_id'),['class'=>'form-control select2','style'=>'width: 100%;','placeholder'=>
                                                             'Select Source'])}}
 
@@ -117,123 +117,135 @@
                                 <!-- /.col -->
                             </div>
                             <!-- /.card-header -->
-                                <div class="card-body">
-                                    <table id="example2" class="table table-striped table-bordered table-hover">
-                                        <thead>
+                            <div class="card-body">
+                                <table id="example2" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 10px">{{trans('app.sn')}}</th>
+                                        <th>{{trans('Personal Details')}}</th>
+                                        <th>{{trans('Source ')}}</th>
+                                        <th>{{trans('app.status')}}</th>
+                                        <th>{{trans('Register Date')}}</th>
+                                        <th style="width: 160px">{{trans('app.action')}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($results as $key=>$data)
                                         <tr>
-                                            <th style="width: 10px">{{trans('app.sn')}}</th>
-                                            <th>{{trans('Personal Details')}}</th>
-                                            <th>{{trans('Source ')}}</th>
-                                            <th>{{trans('app.status')}}</th>
-                                            <th>{{trans('Register Date')}}</th>
-                                            <th style="width: 160px">{{trans('app.action')}}</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($results as $key=>$data)
-                                            <tr>
-                                                <th scope=row>{{ ($results->currentpage()-1) * $results->perpage() + $key+1 }}</th>
-                                                <td>
-                                                    <i class="fa fa-user"> </i> <label> Full Name
-                                                        : </label> {{$data->customer_name}}
-                                                    <br>
-                                                    <i class="fa fa-home"> </i> <label>Address
-                                                        : </label> {{$data->address}}
-                                                    <br>
-                                                    <i class="fa fa-phone-alt"> </i> <label>Contact
-                                                        Number: </label> {{$data->contact}}
-                                                    <br>
-                                                    <i class="fa fa-envelope"> </i> <label>Email Address: </label>
-                                                    @if($data->email !=null)
-                                                        {{$data->email}}
-                                                    @else
-                                                        Not Available
-                                                    @endif
-                                                </td>
+                                            <th scope=row>{{ ($results->currentpage()-1) * $results->perpage() + $key+1 }}</th>
+                                            <td>
+                                                <i class="fa fa-user"> </i> <label> Full Name
+                                                    : </label> {{$data->customer_name}}
+                                                <br>
+                                                <i class="fa fa-home"> </i> <label>Address
+                                                    : </label> {{$data->address}}
+                                                <br>
+                                                <i class="fa fa-phone-alt"> </i> <label>Contact
+                                                    Number: </label> {{$data->contact}}
+                                                <br>
+                                                <i class="fa fa-envelope"> </i> <label>Email Address: </label>
+                                                @if($data->email !=null)
+                                                    {{$data->email}}
+                                                @else
+                                                    Not Available
+                                                @endif
+                                            </td>
 
-                                                <td>
-                                                    @if(isset($data->source->name))
-                                                        {{$data->source->name}}
-                                                    @endif
-                                                </td>
+                                            <td>
+                                                @if(isset($data->source->name))
+                                                    Source : {{$data->source->name}} <br/>
+                                                @endif
 
-                                                <td>
-                                                    @if($data->status == '1')
-                                                        <button class="btn btn-danger btn-xs" data-toggle="modal"
-                                                                data-target="#updateStatusModal{{$key}}"
-                                                                data-placement="top" title="Update Status"
-                                                        >{{customerStatus($data->status)}}</button>
-                                                    @elseif($data->status == '2')
-                                                        <button class="btn btn-secondary btn-xs" data-toggle="modal"
-                                                                data-target="#updateStatusModal{{$key}}"
-                                                                data-placement="top"
-                                                                title="Update Status">{{customerStatus($data->status)}}</button>
+                                                @if($data->campaign_id !=null)
+                                                    Campaign Name : {{$data->champaign->campaign_name}} <br/>
+                                                @endif
 
-                                                    @elseif($data->status == '3')
-                                                        <button class="btn btn-success btn-xs" data-toggle="modal"
-                                                                data-target="#updateStatusModal{{$key}}"
-                                                                data-placement="top"
-                                                                title="Update Status">{{customerStatus($data->status)}}</button>
-                                                    @elseif($data->status == '4')
-                                                        <button class="btn btn-warning btn-xs" data-toggle="modal"
-                                                                data-target="#updateStatusModal{{$key}}"
-                                                                data-placement="top"
-                                                                title="Update Status">{{customerStatus($data->status)}}</button>
-                                                    @elseif($data->status == '5')
-                                                        <button class="btn btn-primary btn-xs">{{customerStatus($data->status)}}</button>
-                                                    @else
-                                                        <button class="btn btn-secondary btn-xs" data-toggle="modal"
-                                                                data-target="#updateStatusModal{{$key}}"
-                                                                data-placement="top"
-                                                                title="Update Status">{{'Initial'}}</button>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    {{$data->created_date}}
-                                                </td>
-                                                <td>
-                                                    @if( $data->status ==5)
+                                                @if($data->reference_source !=null)
+                                                    Reference By : {{$data->reference_source}} <br/>
+                                                @endif
+
+                                                @if($data->reference_phone_no !=null)
+                                                    Reference Phone No : {{$data->reference_phone_no}} <br/>
+                                                @endif
+                                            </td>
+
+                                            <td>
+                                                @if($data->status == '1')
+                                                    <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                            data-target="#updateStatusModal{{$key}}"
+                                                            data-placement="top" title="Update Status"
+                                                    >{{customerStatus($data->status)}}</button>
+                                                @elseif($data->status == '2')
+                                                    <button class="btn btn-secondary btn-xs" data-toggle="modal"
+                                                            data-target="#updateStatusModal{{$key}}"
+                                                            data-placement="top"
+                                                            title="Update Status">{{customerStatus($data->status)}}</button>
+
+                                                @elseif($data->status == '3')
+                                                    <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                            data-target="#updateStatusModal{{$key}}"
+                                                            data-placement="top"
+                                                            title="Update Status">{{customerStatus($data->status)}}</button>
+                                                @elseif($data->status == '4')
+                                                    <button class="btn btn-warning btn-xs" data-toggle="modal"
+                                                            data-target="#updateStatusModal{{$key}}"
+                                                            data-placement="top"
+                                                            title="Update Status">{{customerStatus($data->status)}}</button>
+                                                @elseif($data->status == '5')
+                                                    <button class="btn btn-primary btn-xs">{{customerStatus($data->status)}}</button>
+                                                @else
+                                                    <button class="btn btn-secondary btn-xs" data-toggle="modal"
+                                                            data-target="#updateStatusModal{{$key}}"
+                                                            data-placement="top"
+                                                            title="Update Status">{{'Initial'}}</button>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                {{$data->created_date}}
+                                            </td>
+                                            <td>
+                                                @if( $data->status ==5)
                                                     <a href="{{url('customer/purchaseproduct/'.$data->id)}}"
                                                        class="btn btn-success btn-xs" title="Purchase Product">
-                                                       Purchase Product
+                                                        Purchase Product
                                                     </a>
-                                                    @endif
-                                                    @if($allowShow)
-                                                        <a href="{{route($page_route.'.'.'show',[$data->id])}}"
-                                                           class="btn btn-secondary btn-xs" data-toggle="tooltip"
-                                                           data-placement="top" title="Details">
-                                                            <i class="fas fa-eye"></i>
-                                                        </a>
-                                                    @endif
-                                                    @if($allowEdit && $data->status !=5)
-                                                        <a href="{{route($page_route.'.'.'edit',[$data->id])}}"
-                                                           class="btn btn-info btn-xs" data-toggle="tooltip"
-                                                           data-placement="top" title="Edit">
-                                                            <i class="fas fa-pencil-alt"></i>
-                                                        </a>
-                                                    @endif
-                                                    @if($allowDelete && $data->status !=5)
-                                                        <button type="button" class="btn btn-danger btn-xs"
-                                                                data-toggle="modal"
-                                                                data-target="#deleteModal{{$key}}"
-                                                                data-placement="top" title="Delete">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    @endif
+                                                @endif
+                                                @if($allowShow)
+                                                    <a href="{{route($page_route.'.'.'show',[$data->id])}}"
+                                                       class="btn btn-secondary btn-xs" data-toggle="tooltip"
+                                                       data-placement="top" title="Details">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                @endif
+                                                @if($allowEdit && $data->status !=5)
+                                                    <a href="{{route($page_route.'.'.'edit',[$data->id])}}"
+                                                       class="btn btn-info btn-xs" data-toggle="tooltip"
+                                                       data-placement="top" title="Edit">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </a>
+                                                @endif
+                                                @if($allowDelete && $data->status !=5)
+                                                    <button type="button" class="btn btn-danger btn-xs"
+                                                            data-toggle="modal"
+                                                            data-target="#deleteModal{{$key}}"
+                                                            data-placement="top" title="Delete">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                @endif
 
-                                                </td>
-                                            </tr>
-                                            @include('backend.modal.delete_modal')
-                                            @include('backend.modal.customer_update_status_modal')
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                    <span class="float-right">{{ $results->appends(request()->except('page'))->links() }}
+                                            </td>
+                                        </tr>
+                                        @include('backend.modal.delete_modal')
+                                        @include('backend.modal.customer_update_status_modal')
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                <span class="float-right">{{ $results->appends(request()->except('page'))->links() }}
                                 </span>
-                                </div>
-                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card-body -->
                         </div>
-                    <!-- /.card -->
+                        <!-- /.card -->
 
                         <!-- /.col -->
                     </div>

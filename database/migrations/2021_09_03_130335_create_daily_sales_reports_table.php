@@ -21,6 +21,7 @@ class CreateDailySalesReportsTable extends Migration
             $table->string('visited_area');
             $table->string('serial_number')->nullable();
             $table->string('field_visit_date');
+            $table->string('followup_date');
             $table->timestamps();
         });
     }

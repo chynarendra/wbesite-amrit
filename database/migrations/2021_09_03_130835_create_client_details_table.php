@@ -15,8 +15,8 @@ class CreateClientDetailsTable extends Migration
     {
         Schema::create('client_details', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('sales_report_id')->unsigned()->nullable();
-            $table->foreign('sales_report_id')->references('id')->on('daily_sales_reports')->onUpdate('cascade');
+            $table->bigInteger('app_user_id')->unsigned()->nullable();
+            $table->foreign('app_user_id')->references('id')->on('app_users')->onUpdate('cascade');
             $table->string('name');
             $table->string('address')->nullable();
             $table->string('contact_no')->nullable();
@@ -25,6 +25,8 @@ class CreateClientDetailsTable extends Migration
             $table->bigInteger('status_id')->unsigned()->nullable();
             $table->foreign('status_id')->references('id')->on('customer_status')->onUpdate('cascade');
             $table->text('remarks')->nullable();
+            $table->enum('data_type',['old','new'])->default('new');
+            $table->string('date_of_visit');
             $table->string('next_date_of_visit')->nullable();
             $table->timestamps();
         });

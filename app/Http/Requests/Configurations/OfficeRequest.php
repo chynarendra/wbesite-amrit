@@ -27,16 +27,12 @@ class OfficeRequest extends FormRequest
             $post_id = $this->segment(3);
             $rules = [
                 'office_name' => 'required|min:3|max:200|unique:office,office_name,' . $post_id,
-                'office_code' => 'required|min:3|max:200|unique:office,office_code,' . $post_id,
                 'office_type_id' => 'required',
-                'district_id' => 'required',
             ];
         } else {
             $rules = [
                 'office_name' => 'required|min:3|max:200|unique:office,office_name',
-                'office_code' => 'required|min:3|max:200|unique:office,office_code',
                 'office_type_id' => 'required',
-                'district_id' => 'required',
             ];
         }
         return $rules;

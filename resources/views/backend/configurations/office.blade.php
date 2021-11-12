@@ -68,7 +68,7 @@
                                         <th width="10px">{{trans('app.sn')}}</th>
                                         <th>{{trans('app.office_name')}}</th>
                                         <th>{{trans('Office Type')}}</th>
-                                        <th>{{trans('app.office_code')}}</th>
+                                        <th>{{trans('Office FB / Website')}}</th>
                                         <th>{{trans('app.office_address')}}</th>
                                         <th>{{trans('app.office_phone')}}</th>
                                         <th>{{trans('app.status')}}</th>
@@ -88,7 +88,7 @@
                                                     @endif
                                             </td>
                                             <td>
-                                                {{$data->office_code}}
+                                                {{$data->office_fb}} <br/> {{$data->office_website}}
                                             </td>
                                             <td>
                                                 {{$data->office_address}}
@@ -155,14 +155,7 @@
 
                                                                 {!! Form::model($data,['method'=>'PUT','route'=>[$page_route.'.'.'update',$data->id]]) !!}
                                                                 <div class="row">
-                                                                    <div class="form-group col-md-6 {{ ($errors->has('district_id'))?'has-error':'' }}">
-                                                                        <label>{{trans('Office Type')}}</label> <label
-                                                                                class="text text-danger"> *</label>
-                                                                        {{Form::select('district_id',$districtList->pluck('name_en','id'),Request::get('district_id'),['class'=>'form-control select2','style'=>'width: 100%;','placeholder'=>
-                                                                    'Select District'])}}
 
-                                                                        {!! $errors->first('district_id', '<span class="text text-danger">:message</span>') !!}
-                                                                    </div>
                                                                     <div class="form-group col-md-6 {{ ($errors->has('office_type_id'))?'has-error':'' }}">
                                                                         <label>{{trans('Office Type')}}</label> <label
                                                                                 class="text text-danger"> *</label>
@@ -171,6 +164,7 @@
 
                                                                         {!! $errors->first('office_type_id', '<span class="text text-danger">:message</span>') !!}
                                                                     </div>
+
                                                                     <div class="form-group col-md-6  {{ ($errors->has('office_name'))?'has-error':'' }}">
                                                                         <label>{{trans('app.name')}}</label> <label
                                                                                 class="text text-danger"> *</label>
@@ -178,13 +172,7 @@
                                                                         {!! Form::text('office_name',null,['class'=>'form-control','placeholder'=>'Office Name']) !!}
                                                                         {!! $errors->first('office_name', '<span class="text text-danger">:message</span>') !!}
                                                                     </div>
-                                                                    <div class="form-group col-md-6 {{ ($errors->has('office_code'))?'has-error':'' }}">
-                                                                        <label>{{trans('app.office_code')}}</label> <label
-                                                                                class="text text-danger"> *</label>
 
-                                                                        {!! Form::text('office_code',null,['class'=>'form-control','placeholder'=>'Office Code']) !!}
-                                                                        {!! $errors->first('office_code', '<span class="text text-danger">:message</span>') !!}
-                                                                    </div>
                                                                     <div class="form-group col-md-6 {{ ($errors->has('office_address'))?'has-error':'' }}">
                                                                         <label>{{trans('app.office_address')}}</label> <label
                                                                                 class="text text-danger"> *</label>
@@ -192,6 +180,7 @@
                                                                         {!! Form::text('office_address',null,['class'=>'form-control','placeholder'=>'Office Address']) !!}
                                                                         {!! $errors->first('office_address', '<span class="text text-danger">:message</span>') !!}
                                                                     </div>
+
                                                                     <div class="form-group col-md-6 {{ ($errors->has('office_phone'))?'has-error':'' }}">
                                                                         <label>{{trans('app.office_phone')}}</label> <label
                                                                                 class="text text-danger"> *</label>
@@ -199,6 +188,21 @@
                                                                         {!! Form::number('office_phone',null,['class'=>'form-control','placeholder'=>'Office Phone Number']) !!}
                                                                         {!! $errors->first('office_phone', '<span class="text text-danger">:message</span>') !!}
                                                                     </div>
+
+                                                                    <div class="form-group col-md-6 {{ ($errors->has('office_fb'))?'has-error':'' }}">
+                                                                        <label>{{trans('Facebook Link')}}</label>
+
+                                                                        {!! Form::text('office_fb',$data->office_fb,['class'=>'form-control','placeholder'=>'Facebook link']) !!}
+                                                                        {!! $errors->first('office_fb', '<span class="text text-danger">:message</span>') !!}
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-6 {{ ($errors->has('office_website'))?'has-error':'' }}">
+                                                                        <label>{{trans('Website Link')}}</label>
+
+                                                                        {!! Form::text('office_website',$data->office_website,['class'=>'form-control','placeholder'=>'Office website']) !!}
+                                                                        {!! $errors->first('office_website', '<span class="text text-danger">:message</span>') !!}
+                                                                    </div>
+
                                                                     <div class="form-group col-md-6">
                                                                         <label for="status">{{trans('app.status')}} </label><br>
                                                                         <div class="icheck-success d-inline">
@@ -268,14 +272,7 @@
 
                                                 {!! Form::open(['method'=>'post','url'=>$page_url]) !!}
                                                 <div class="row">
-                                                    <div class="form-group col-md-6 {{ ($errors->has('district_id'))?'has-error':'' }}">
-                                                        <label>{{trans('Office Type')}}</label> <label
-                                                                class="text text-danger"> *</label>
-                                                        {{Form::select('district_id',$districtList->pluck('name_en','id'),Request::get('district_id'),['class'=>'form-control select2','style'=>'width: 100%;','placeholder'=>
-                                                    'Select District'])}}
 
-                                                        {!! $errors->first('district_id', '<span class="text text-danger">:message</span>') !!}
-                                                    </div>
                                                     <div class="form-group col-md-6 {{ ($errors->has('office_type_id'))?'has-error':'' }}">
                                                         <label>{{trans('Office Type')}}</label> <label
                                                                 class="text text-danger"> *</label>
@@ -291,13 +288,7 @@
                                                         {!! Form::text('office_name',null,['class'=>'form-control','placeholder'=>'Office Name']) !!}
                                                         {!! $errors->first('office_name', '<span class="text text-danger">:message</span>') !!}
                                                     </div>
-                                                    <div class="form-group col-md-6 {{ ($errors->has('office_code'))?'has-error':'' }}">
-                                                        <label>{{trans('app.office_code')}}</label> <label
-                                                                class="text text-danger"> *</label>
 
-                                                        {!! Form::text('office_code',null,['class'=>'form-control','placeholder'=>'Office Code']) !!}
-                                                        {!! $errors->first('office_code', '<span class="text text-danger">:message</span>') !!}
-                                                    </div>
                                                     <div class="form-group col-md-6 {{ ($errors->has('office_address'))?'has-error':'' }}">
                                                         <label>{{trans('app.office_address')}}</label> <label
                                                                 class="text text-danger"> *</label>
@@ -305,12 +296,27 @@
                                                         {!! Form::text('office_address',null,['class'=>'form-control','placeholder'=>'Office Address']) !!}
                                                         {!! $errors->first('office_address', '<span class="text text-danger">:message</span>') !!}
                                                     </div>
+
                                                     <div class="form-group col-md-6 {{ ($errors->has('office_phone'))?'has-error':'' }}">
                                                         <label>{{trans('app.office_phone')}}</label> <label
                                                                 class="text text-danger"> *</label>
 
                                                         {!! Form::number('office_phone',null,['class'=>'form-control','placeholder'=>'Office Phone Number']) !!}
                                                         {!! $errors->first('office_phone', '<span class="text text-danger">:message</span>') !!}
+                                                    </div>
+
+                                                    <div class="form-group col-md-6 {{ ($errors->has('office_fb'))?'has-error':'' }}">
+                                                        <label>{{trans('Facebook Link')}}</label>
+
+                                                        {!! Form::text('office_fb',null,['class'=>'form-control','placeholder'=>'Facebook link']) !!}
+                                                        {!! $errors->first('office_fb', '<span class="text text-danger">:message</span>') !!}
+                                                    </div>
+
+                                                    <div class="form-group col-md-6 {{ ($errors->has('office_website'))?'has-error':'' }}">
+                                                        <label>{{trans('Website Link')}}</label>
+
+                                                        {!! Form::text('office_website',null,['class'=>'form-control','placeholder'=>'Office website']) !!}
+                                                        {!! $errors->first('office_website', '<span class="text text-danger">:message</span>') !!}
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="status">{{trans('app.status')}} </label><br>

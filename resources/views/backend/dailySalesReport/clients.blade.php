@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">
                                     {{ trans('app.dashboard') }}</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#">{{ $page_title }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{url('/dsr')}}">{{ $page_title }}</a></li>
                             <li class="breadcrumb-item">{{ trans('app.list') }}</li>
                         </ol>
                     </div><!-- /.col -->
@@ -33,7 +33,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header" style="text-align:right">
-                                <h3 class="card-title">{{ 'Sales Staff List' }}</h3>
+                                <h3 class="card-title">{{ 'Client List of ' }} {{$data['sales_person']->full_name}}</h3>
 
                                 <?php
                                 $permission = helperPermissionLink(url($page_url), url($page_url));
@@ -56,13 +56,13 @@
                                                 </a>
                                             </h4>
                                         </div>
-                                        <div id="search"
-                                             class="panel-collapse collapse @if ($request->office_id != null || $request->from_date != null || $request->to_date != null || $request->mobile != null)show @endif">
+                                        <div id="search" class="panel-collapse collapse @if ($request->office_id != null || $request->from_date != null || $request->to_date != null || $request->mobile != null)show @endif">
                                             <table class="table table-responsive p-0" width="100%">
                                                 <form action="{{ url($page_url) }}" autocomplete="off">
                                                     <tr>
                                                         <td>
                                                             {{ Form::select('office_id', $officeList->pluck('office_name', 'id'), Request::get('office_id'), ['class' => 'form-control select2', 'style' => 'width: 100%;', 'placeholder' => 'Select Office']) }}
+
                                                         </td>
 
                                                         <td>
@@ -108,31 +108,92 @@
                                         <thead>
                                         <tr>
                                             <th style="width: 10px">{{ trans('app.sn') }}</th>
+                                            <th style="width: 200px">{{ 'Field Visit Date' }}</th>
                                             <th style="width: 200px">{{ 'Name' }}</th>
-                                            <th style="width: 200px">{{ 'Contact No' }}</th>
+                                            <th>{{ 'Address' }}</th>
+                                            <th style="width: 200px">{{ 'Contact No.' }}</th>
+                                            <th style="width: 200px">{{ 'Next Date of Visit' }}</th>
+                                            <th>{{ trans('app.status') }}</th>
                                             <th style="width: 30px">{{ trans('app.action') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
-                                        @foreach ($results as $key=>$appUser)
+                                        @foreach ($results as $key=>$client)
+                                                <tr>
+                                                    <th scope=row>
 
-                                            <tr>
-                                                <th scope=row>
-                                                    {{ ($results->currentpage() - 1) * $results->perpage() + $key + 1 }}
-                                                </th>
-                                                <td>{{ $appUser->full_name }}</td>
-                                                <td>{{ $appUser->mobile }}</td>
-                                                <td>
-                                                    <a href="{{ url($page_route.'/'.$appUser->id.'/clients') }}"
-                                                       class="btn btn-secondary btn-xs" data-toggle="tooltip"
-                                                       data-placement="top" title="Details">
-                                                        <i class="fas fa-eye"></i>
-                                                    </a>
+                                                        {{ ($results->currentpage() - 1) * $results->perpage() + $key + 1 }}
 
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                    </th>
+                                                    <td>
+                                                        <i class="fa fa-calendar-alt"> </i>  {{ $client->date_of_visit }}
+
+                                                    </td>
+
+                                                    <td>
+                                                        {{ $client->name }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $client->address }}
+                                                    </td>
+
+                                                    <td>
+                                                        {{ $client->contact_no }}
+                                                    </td>
+
+                                                    <td>
+                                                        {{ $client->next_date_of_visit }}
+                                                    </td>
+
+                                                    <td>
+                                                        @if ($client->status_id == '1')
+                                                            <button class="btn btn-danger btn-xs" data-toggle="modal"
+                                                                    data-target="#updateStatusModal{{ $key }}"
+                                                                    data-placement="top"
+                                                                    title="Update Status">{{ customerStatus($client->status_id) }}</button>
+                                                        @elseif($client->status_id == '2')
+                                                            <button class="btn btn-secondary btn-xs" data-toggle="modal"
+                                                                    data-target="#updateStatusModal{{ $key }}"
+                                                                    data-placement="top"
+                                                                    title="Update Status">{{ customerStatus($client->status_id) }}</button>
+
+                                                        @elseif($client->status_id == '3')
+                                                            <button class="btn btn-success btn-xs" data-toggle="modal"
+                                                                    data-target="#updateStatusModal{{ $key }}"
+                                                                    data-placement="top"
+                                                                    title="Update Status">{{ customerStatus($client->status_id) }}</button>
+                                                        @elseif($client->status_id == '4')
+                                                            <button class="btn btn-warning btn-xs" data-toggle="modal"
+                                                                    data-target="#updateStatusModal{{ $key }}"
+                                                                    data-placement="top"
+                                                                    title="Update Status">{{ customerStatus($client->status_id) }}</button>
+                                                        @elseif($client->status_id == '5')
+                                                            <button
+                                                                    class="btn btn-primary btn-xs">{{ customerStatus($client->status_id) }}</button>
+                                                        @else
+                                                            <button class="btn btn-secondary btn-xs" data-toggle="modal"
+                                                                    data-target="#updateStatusModal{{ $key }}"
+                                                                    data-placement="top"
+                                                                    title="Update Status">{{ 'Initial' }}</button>
+                                                        @endif
+                                                    </td>
+
+                                                    <td>
+
+                                                        @if ($allowShow)
+                                                            <a href="{{ route($page_route . '.' . 'show', [$client->id]) }}"
+                                                               class="btn btn-secondary btn-xs" data-toggle="tooltip"
+                                                               data-placement="top" title="Details">
+                                                                <i class="fas fa-eye"></i>
+                                                            </a>
+                                                        @endif
+
+                                                    </td>
+                                                </tr>
+                                                <?php $count=$key;?>
+                                                @include('backend.modal.client_update_status_modal')
+                                            @endforeach
                                         </tbody>
                                     </table>
                                     <span class="float-right">{{ $results->appends(request()->except('page'))->links() }}
@@ -164,12 +225,12 @@
     <script>
         $('#example2').DataTable({
             scrollY: 300,
-            responsive: true,
+            responsive: true
             paging: false,
             "columnDefs": [{
                 "orderable": false,
                 "targets": [0]
-            }]
+            },
         });
     </script>
 @endsection

@@ -55,11 +55,23 @@
                                     {!! $errors->first('customer_source_id', '<span class="text-danger">:message</span>') !!}
                                 </div>
                                 <div class="form-group col-md-4 {{ ($errors->has('campaign_id'))?'has-error':'' }}"
-                                     id="campaignId" style="display: none">
+                                     id="champaign_list" style="display: none">
                                     <label>Campaign</label><label class="text-danger">*</label>
                                     {!! Form::select('campaign_id',$campaignList->pluck('campaign_name','id'),null,['style' =>'width:100%','class'=>'form-control select2','placeholder'=>'Please Select Campaign
                                     ']) !!}
                                     {!! $errors->first('campaign_id', '<span class="text-danger">:message</span>') !!}
+                                </div>
+
+                                <div class="form-group col-md-4 {{ ($errors->has('reference_source'))?'has-error':'' }}" id="reference-source" style="display: none;">
+                                    <label for="reference_source">Reference Source</label>
+                                    {{ Form::text('reference_source',null,['placeholder'=>'Reference Source','class' => 'form-control']) }}
+                                    {!! $errors->first('reference_source', '<span class="text-danger">:message</span>') !!}
+                                </div>
+
+                                <div class="form-group col-md-4 {{ ($errors->has('reference_phone_no'))?'has-error':'' }}" id="reference-phone" style="display: none;">
+                                    <label for="reference_phone_no">Reference Phone No</label>
+                                    {{ Form::text('reference_phone_no',null,['placeholder'=>'Reference Phone No','class' => 'form-control']) }}
+                                    {!! $errors->first('reference_phone_no', '<span class="text-danger">:message</span>') !!}
                                 </div>
 
                                 <div class="form-group col-md-4 {{ ($errors->has('customer_name'))?'has-error':'' }}">
@@ -67,7 +79,6 @@
                                     {{ Form::text('customer_name',null,['placeholder'=>'Customer Name','class' => 'form-control']) }}
                                     {!! $errors->first('customer_name', '<span class="text-danger">:message</span>') !!}
                                 </div>
-
 
                                 <div class="form-group col-md-4 {{ ($errors->has('address'))?'has-error':'' }}">
                                     <label for="feature"> Address</label>
@@ -96,74 +107,6 @@
 
                             </div>
 
-{{--                            <div id="product_form" style="display: none">--}}
-
-{{--                                <div class="row" id="panel-design">--}}
-{{--                                    <div class="form-group col-md-12">--}}
-{{--                                        <h4> {{trans('Product Purchase  Area')}}</h4>--}}
-{{--                                    </div>--}}
-{{--                                    <div id="form_repeater">--}}
-{{--                                        <div data-repeater-list="" class="col-md-12">--}}
-{{--                                            <div data-repeater-item class="form-group m-form__group row align-items-center">--}}
-{{--                                                <div class="form-group col-md-4">--}}
-{{--                                                    <label>Product</label> <label class="text-danger">*</label>--}}
-{{--                                                    <div class="select2-blue">--}}
-{{--                                                        <select class="form-control select2" multiple="multiple" data-placeholder="Select Products"  name="product_id[]"  style="width: 100%" autocomplete="off">--}}
-{{--                                                            @foreach($productList as $data)--}}
-{{--                                                                <option class='form control' value='{{ $data->id }}'  {{ old('product_id') == $data->id ? "selected" :""}} >--}}
-{{--                                                                    {{ $data->product_name  }}--}}
-{{--                                                                </option>--}}
-{{--                                                            @endforeach--}}
-{{--                                                        </select>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="form-group col-md-4">--}}
-{{--                                                    <label>Office</label> <label class="text-danger">*</label>--}}
-{{--                                                    <div class="select2-blue">--}}
-{{--                                                        <select class="form-control select2" multiple="multiple" data-placeholder="Select Office"  name="office_id[]"  style="width: 100%" autocomplete="off">--}}
-{{--                                                            @foreach($officeList as $data)--}}
-{{--                                                                <option class='form control' value='{{ $data->id }}'  {{ old('office_id') == $data->id ? "selected" :""}} >--}}
-{{--                                                                    {{ $data->office_name  }}--}}
-{{--                                                                </option>--}}
-{{--                                                            @endforeach--}}
-{{--                                                        </select>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="form-group col-md-4">--}}
-{{--                                                    <label for="feature">Purchase Date</label><label--}}
-{{--                                                            class="text-danger">*</label>--}}
-{{--                                                    {{ Form::text('purchase_date[]',null,['multiple' => true,'placeholder'=>'YYYY-MM-DD','class' => 'form-control purchaseDate','autocomplete'=>'off']) }}--}}
-
-{{--                                                    <div class="d-md-none m--margin-bottom-10"></div>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="form-group col-md-12">--}}
-{{--                                                    <label for="feature">Remarks</label>--}}
-{{--                                                    {{ Form::textarea('remarks',null,['placeholder'=>'Remarks','class' => 'form-control','rows'=>'4']) }}--}}
-{{--                                                </div>--}}
-{{--                                                <div class="col-md-12">--}}
-{{--                                                    <div data-repeater-delete=""--}}
-{{--                                                         class="btn-sm btn btn-danger float-right">--}}
-{{--                                                    <span>--}}
-{{--                                                        <i class="fa fa-trash"></i>--}}
-
-{{--                                                        <span>Delete</span>--}}
-
-{{--                                                    </span>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-12">--}}
-{{--                                            <div data-repeater-create="" class="btn-success btn btn-sm float-left">--}}
-{{--                                                    <span><i class="fa fa-plus"></i>--}}
-{{--                                                        <span>Add More</span>--}}
-{{--                                                    </span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                            </div>--}}
                             <div class="row">
 
                                 <div class="form-group col-md-4 {{ ($errors->has('followup_date'))?'has-error':'' }}"

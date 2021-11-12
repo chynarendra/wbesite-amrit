@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repository\appUserRepository\AppUserRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 use App\Repository\DailySalesReportRepository;
@@ -23,9 +24,14 @@ class DailySalesReportController extends BaseController
     private $clientDetail;
     private $appUser;
     private $dailySalesReport;
-    public function __construct(DailySalesReportRepository $dailySalesReportRepository, 
+    /**
+     * @var AppUserRepository
+     */
+    private $appUserRepository;
+
+    public function __construct(DailySalesReportRepository $dailySalesReportRepository,
     ResourceController $resource,CommonRepository $commonRepository,Office $office,
-    ClientDetail $clientDetail,DailySalesReport $dailySalesReport,AppUser $appUser){
+    ClientDetail $clientDetail,DailySalesReport $dailySalesReport,AppUser $appUser,AppUserRepository $appUserRepository){
         $this->dailySalesReportRepository=$dailySalesReportRepository;
         $this->resource=$resource;
         $this->commonRepository=$commonRepository;
@@ -33,17 +39,29 @@ class DailySalesReportController extends BaseController
         $this->dailySalesReport=$dailySalesReport;
         $this->clientDetail=$clientDetail;
         $this->appUser=$appUser;
+        $this->appUserRepository = $appUserRepository;
     }
 
     public function index(Request $request)
     {
-        $data['page_title'] = 'Daily Sales Report';
+        $data['page_title'] = 'Sales Staff';
         $data['page_url'] = '/dsr';
         $data['page_route'] = 'dsr';
         $data['request'] = $request;
-        $data['results']=$this->dailySalesReportRepository->getClients($request);
+        $data['results']=$this->dailySalesReportRepository->getAppUsers($request);
         $data['officeList'] = $this->commonRepository->allList($this->office, 'id','asc');
         return $this->resource->index($this->viewFile, $data);
+    }
+
+    public function clients(Request $request,$salesPersonId){
+        $data['page_title'] = 'Daily Sales Report';
+        $data['page_url'] = '/dsr/'.$salesPersonId.'/clients';
+        $data['page_route'] = 'dsr';
+        $data['request'] = $request;
+        $data['sales_person']=$this->appUserRepository->findUserById($salesPersonId);
+        $data['results']=$this->dailySalesReportRepository->getClientsBySalesPerson($request,$salesPersonId);
+        $data['officeList'] = $this->commonRepository->allList($this->office, 'id','asc');
+        return $this->resource->index('backend.dailySalesReport.clients', $data);
     }
 
     public function show($id)
@@ -51,10 +69,9 @@ class DailySalesReportController extends BaseController
         $data['page_title'] = 'Client Details';
         $data['page_url'] = 'dsr';
         $data['page_route'] = 'dsr';
-        $data['details'] = $this->commonRepository->findById($this->clientDetail ,$id);
-        $fieldVisitDetail=$this->commonRepository->findById($this->dailySalesReport,$data['details']->sales_report_id);
-        $data['fieldVisitDetail']=$fieldVisitDetail;
-        $data['appUserDetail']=$this->commonRepository->findById($this->appUser,$fieldVisitDetail->app_user_id);
+        $clientDetail=$this->commonRepository->findById($this->clientDetail ,$id);
+        $data['details'] =$clientDetail;
+        $data['appUserDetail']=$this->commonRepository->findById($this->appUser,$clientDetail->app_user_id);
 
         $response = $this->resource->show($this->clientDetail, $id, $data ,'backend.dailySalesReport.show');
         return $response;

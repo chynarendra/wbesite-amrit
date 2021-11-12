@@ -91,11 +91,24 @@ function noResultsButtonClicked() {
 $('#source_id').on('change', function () {
     var source_id = $(this).val();
     if(source_id == 6){
-        document.getElementById('campaignId').style.display = 'block';
+        document.getElementById('champaign_list').style.display = 'block';
     }else{
-        document.getElementById('campaignId').style.display = 'none';
+        document.getElementById('champaign_list').style.display = 'none';
     }
 })
+
+$('#source_id').on('change', function () {
+    var source_id = $(this).val();
+    if(source_id == 7){
+        document.getElementById('reference-source').style.display = 'block';
+        document.getElementById('reference-phone').style.display = 'block';
+    }else{
+        document.getElementById('reference-source').style.display = 'none';
+        document.getElementById('reference-phone').style.display = 'none';
+    }
+})
+
+
 
 
 

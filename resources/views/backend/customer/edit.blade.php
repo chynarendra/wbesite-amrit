@@ -53,11 +53,27 @@
                                     ']) !!}
                                     {!! $errors->first('customer_source_id', '<span class="text-danger">:message</span>') !!}
                                 </div>
-                                <div class="form-group col-md-4 {{ ($errors->has('campaign_id'))?'has-error':'' }}" id="champaign_list" style="display: none">
+
+                                <div class="form-group col-md-4 {{ ($errors->has('campaign_id'))?'has-error':'' }}"
+                                     id="champaign_list" <?php echo ($edits->campaign_id !=null)?'style="display: block;"':'style="display: none;"' ?>>
                                     <label>Campaign</label><label class="text-danger">*</label>
-                                    {!! Form::select('campaign_id',$campaignList->pluck('campaign_name','id'),null,['id' => 'campaignId','style' => 'width:100%','class'=>'form-control select2','placeholder'=>'Please Select Campaign
-                                    ','required']) !!}
+                                    {!! Form::select('campaign_id',$campaignList->pluck('campaign_name','id'),null,['style' =>'width:100%','class'=>'form-control select2','placeholder'=>'Please Select Campaign
+                                    ']) !!}
                                     {!! $errors->first('campaign_id', '<span class="text-danger">:message</span>') !!}
+                                </div>
+
+                                <div class="form-group col-md-4 {{ ($errors->has('reference_source'))?'has-error':'' }}" id="reference-source"
+                                     <?php echo ($edits->reference_source !=null)?'style="display: block;"':'style="display: none;"' ?>>
+                                    <label for="reference_source">Reference Source</label>
+                                    {{ Form::text('reference_source',null,['placeholder'=>'Reference Source','class' => 'form-control']) }}
+                                    {!! $errors->first('reference_source', '<span class="text-danger">:message</span>') !!}
+                                </div>
+
+                                <div class="form-group col-md-4 {{ ($errors->has('reference_phone_no'))?'has-error':'' }}" id="reference-phone"
+                                <?php echo ($edits->reference_phone_no !=null)?'style="display: block;"':'style="display: none;"' ?>>
+                                    <label for="reference_phone_no">Reference Phone No</label>
+                                    {{ Form::text('reference_phone_no',null,['placeholder'=>'Reference Phone No','class' => 'form-control']) }}
+                                    {!! $errors->first('reference_phone_no', '<span class="text-danger">:message</span>') !!}
                                 </div>
 
                                 <div class="form-group col-md-4 {{ ($errors->has('customer_name'))?'has-error':'' }}">
@@ -127,3 +143,5 @@
     </div>
 
 @endsection
+
+

@@ -10,6 +10,6 @@ class DailySalesReport extends Model
     use HasFactory;
 
     protected $fillable=[
-        'app_user_id','visited_by','visited_area','serial_number','field_visit_date'
+        'app_user_id','visited_by','visited_area','serial_number','followup_date','field_visit_date'
     ];
 }

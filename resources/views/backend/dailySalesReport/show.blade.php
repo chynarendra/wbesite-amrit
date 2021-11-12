@@ -35,7 +35,7 @@
                         <!-- Profile Image -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h4 class="profile-username text-center">{{'Visited By' }}</h3>
+                                <h4 class="profile-username text-center">{{'Visited By' }}</h4>
                             </div>
                             <div class="card-body box-profile">
                                 <div class="text-center">
@@ -89,19 +89,6 @@
 
                                 <hr>
 
-                                <strong><i class="fas fa-calendar mr-1"></i> Created Date</strong>
-
-                                <p class="text-muted">
-                                    {{ $appUserDetail->created_date }}
-                                    &nbsp;
-                                    <small class="badge badge-secondary"> <i class="far fa-clock"></i>
-                                        {{ Carbon\Carbon::parse($details->created_at)->diffForHumans() }}
-                                    </small>
-
-                                </p>
-
-                                <hr>
-
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -140,13 +127,8 @@
                                                 <tbody>
                                                     <tr>
                                                         <td colspan="2">
-
-                                                            <i class="fa fa-globe"> </i> <label>Visit Area
-                                                                : </label> {{ $fieldVisitDetail->visited_area }}
-                                                            <br />
-
                                                             <i class="fa fa-calendar"> </i> <label>Visited Date
-                                                                : </label> {{ $fieldVisitDetail->field_visit_date }}
+                                                                : </label> {{ $details->date_of_visit }}
 
                                                         </td>
                                                     </tr>

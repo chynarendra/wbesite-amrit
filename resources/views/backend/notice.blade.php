@@ -170,7 +170,7 @@
                                                             <i class="fas fa-pencil-alt"></i>
                                                         </button>
                                                     @endif
-                                                    @if($allowDelete && $data->notice_status == '0')
+                                                    @if($allowDelete)
                                                         <button type="button" class="btn btn-danger btn-xs"
                                                                 data-toggle="modal"
                                                                 data-target="#deleteModal{{$key}}"
