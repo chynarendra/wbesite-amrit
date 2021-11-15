@@ -141,6 +141,11 @@
                                                 @else
                                                     <a href="{{url('/appUser/approve/'.$appUser->id)}}" class="btn btn-danger btn-xs">{{'Unapproved'}}</a>
                                                 @endif
+                                                    <a href="{{url('/appUser/'.$appUser->id.'/leaves')}}"
+                                                       class="btn btn-primary btn-xs" style="margin-top: 5px;" data-toggle="tooltip"
+                                                       data-placement="top" title="Details">
+                                                        Leave/Holiday
+                                                    </a>
                                             </td>
 
                                             <td>

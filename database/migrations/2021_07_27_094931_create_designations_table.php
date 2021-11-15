@@ -17,6 +17,8 @@ class CreateDesignationsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('short_name');
+            $table->string('target_sales')->nullable();
+            $table->string('target_sales_amount')->nullable();
             $table->enum('status',['0','1'])->default('1');
             $table->timestamps();
             $table->softDeletes();

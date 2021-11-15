@@ -33,8 +33,6 @@
                         <div class="card">
                             <div class="card-header" style="text-align:right">
                                 <h3 class="card-title">{{$page_title}}</h3>
-
-
                                 <?php
 
                                 $permission = helperPermission();
@@ -68,6 +66,8 @@
                                         <th width="10px">{{trans('app.sn')}}</th>
                                         <th>{{trans('app.name')}}</th>
                                         <th>{{trans('app.short_name')}}</th>
+                                        <th>{{'Sales Target'}}</th>
+                                        <th>{{'Sales Target Amount'}}</th>
                                         <th>{{trans('app.status')}}</th>
                                         <th>{{trans('app.action')}}</th>
                                     </tr>
@@ -82,6 +82,8 @@
                                             <td>
                                                 {{$data->short_name}}
                                             </td>
+                                            <td>{{$data->target_sales}}</td>
+                                            <td>{{$data->target_sales_amount}}</td>
                                             <td>
                                                 @if($data->status == '1')
                                                     <button type="button" class="btn btn-success btn-xs"
@@ -122,8 +124,6 @@
                                         @include('backend.modal.status_modal')
                                         @include('backend.modal.delete_modal')
 
-
-
                                         <div class="modal fade" id="editModal{{$key}}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -150,6 +150,19 @@
                                                                     {!! Form::text('short_name',null,['class'=>'form-control','placeholder'=>'Designation Short  Name','autocomplete'=>'off']) !!}
                                                                     {!! $errors->first('short_name', '<small class="text text-danger">:message</small>') !!}
                                                                 </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="inputName">{{'Target Sales Amount'}}</label>
+                                                                    {!! Form::text('target_sales_amount',null,['class'=>'form-control','placeholder'=>'Target Sales Amount','autocomplete'=>'off']) !!}
+                                                                    {!! $errors->first('target_sales_amount', '<small class="text text-danger">:message</small>') !!}
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="inputName">{{'Target Sales'}}</label>
+                                                                    {!! Form::text('target_sales',null,['class'=>'form-control','placeholder'=>'Target Sales','autocomplete'=>'off']) !!}
+                                                                    {!! $errors->first('target_sales', '<small class="text text-danger">:message</small>') !!}
+                                                                </div>
+
                                                                 <div class="form-group">
                                                                     <label for="status">{{trans('app.status')}} </label><br>
                                                                     <div class="icheck-success d-inline">
@@ -226,6 +239,19 @@
                                                     {!! Form::text('short_name',null,['class'=>'form-control','placeholder'=>'Designation Short  Name','autocomplete'=>'off']) !!}
                                                     {!! $errors->first('short_name', '<small class="text text-danger">:message</small>') !!}
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputName">{{'Target Sales Amount'}}</label>
+                                                    {!! Form::text('target_sales_amount',null,['class'=>'form-control','placeholder'=>'Target Sales Amount','autocomplete'=>'off']) !!}
+                                                    {!! $errors->first('target_sales_amount', '<small class="text text-danger">:message</small>') !!}
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="inputName">{{'Target Sales'}}</label>
+                                                    {!! Form::text('target_sales',null,['class'=>'form-control','placeholder'=>'Target Sales','autocomplete'=>'off']) !!}
+                                                    {!! $errors->first('target_sales', '<small class="text text-danger">:message</small>') !!}
+                                                </div>
+
                                                 <div class="form-group">
                                                     <label for="status">{{trans('app.status')}} </label><br>
                                                     <div class="icheck-success d-inline">
@@ -247,7 +273,6 @@
                                                     </div>
 
                                                 </div>
-
 
                                                 <div class="modal-footer justify-content-center">
 

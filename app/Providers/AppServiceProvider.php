@@ -3,9 +3,13 @@
 namespace App\Providers;
 
 use App\Repository\appUserRepository\AppUserInterface;
+use App\Repository\appUserRepository\AppUserLeaveInterface;
+use App\Repository\appUserRepository\AppUserLeaveRepository;
 use App\Repository\appUserRepository\AppUserRepository;
 use App\Repository\dailySalesReport\DailySalesReportInterface;
 use App\Repository\dailySalesReport\DailySalesReportInterfaceRepository;
+use App\Repository\fiscalYear\FiscalYearInterface;
+use App\Repository\fiscalYear\FiscalYearRepository;
 use App\Repository\office\OfficeInterface;
 use App\Repository\office\OfficeRepositroy;
 use Illuminate\Pagination\Paginator;
@@ -24,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(DailySalesReportInterface::class,DailySalesReportInterfaceRepository::class);
         $this->app->bind(OfficeInterface::class,OfficeRepositroy::class);
         $this->app->bind(AppUserInterface::class,AppUserRepository::class);
+        $this->app->bind(AppUserLeaveInterface::class,AppUserLeaveRepository::class);
+        $this->app->bind(FiscalYearInterface::class,FiscalYearRepository::class);
     }
 
     /**

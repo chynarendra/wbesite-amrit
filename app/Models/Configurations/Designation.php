@@ -7,5 +7,5 @@ class Designation extends Model
 {
     protected $table = 'designations';
     protected $dates = ['deleted_at'];
-    protected $fillable=['name','short_name','status'];
+    protected $fillable=['name','short_name','target_sales','target_sales_amount','status'];
 }
