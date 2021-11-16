@@ -89,5 +89,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/dsr/changestatus','DailySalesReportController@statusChange')->name('dsr.changestatus');
 
     Route::get('appUser/{id}/leaves','AppUserLeaveController@index');
+    Route::post('appUser/{id}/leaves','AppUserLeaveController@store');
 
 });

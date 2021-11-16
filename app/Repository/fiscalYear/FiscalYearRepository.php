@@ -3,6 +3,7 @@
 namespace App\Repository\fiscalYear;
 
 use App\Models\Configurations\FiscalYear;
+use Illuminate\Support\Facades\DB;
 
 class FiscalYearRepository implements FiscalYearInterface
 {
@@ -19,11 +20,11 @@ class FiscalYearRepository implements FiscalYearInterface
     public function getCurrentFiscalYear()
     {
         $currentDate=date('Y-m-d');
-        $currentFy=$this->fiscalYear
-            ->where('start_date','<=',$currentDate)
-            ->where('end_date','>=',$currentDate)
+        $currentFy=DB::table('fiscal_years')
+//            ->where('start_date','<=',$currentDate)
+//            ->where('end_date','>=',$currentDate)
             ->where('status',1)
-            ->get();
+            ->first();
         return $currentFy;
     }
 }

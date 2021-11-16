@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
-<title>@yield('page_title',$data['page_title'])</title>
+<title>@yield('page_title','App User Leave/Holiday')</title>
 @section('content')
 
     <!-- Content Wrapper. Contains page content -->
@@ -9,14 +9,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">{{'App User Leaves / Holidays'}}</h1>
+                        <h1 class="m-0">{{'Leaves/Holidays'}}</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{url('dashboard')}}"> {{trans('app.dashboard')}}</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#">{{'App User Leaves / Holidays'}}</a></li>
-                            <li class="breadcrumb-item">{{trans('app.list')}}</li>
+                            <li class="breadcrumb-item">{{'Leaves/Holidays'}}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -33,14 +32,17 @@
                         <div class="card">
                             <div class="card-header" style="text-align:right">
                                 <h3 class="card-title">{{trans('app.list')}}</h3>
-                                <?php
-                                $permission = helperPermissionLink(url('appUser/leaves/'.$id), url('appUser/leaves/'.$id));
-                                $allowEdit = $permission['isEdit'];
-                                $allowDelete = $permission['isDelete'];
-                                $allowAdd = $permission['isAdd'];
-                                $allowShow = $permission['isShow'];
-                                ?>
+                                <a class="float-right boxTopButton"
+                                        data-toggle="modal"
+                                        data-target="#leaveAddModal"
+                                        data-placement="top" title="Add">
+                                    <i class="fa fa-plus-circle fa-2x" ></i>
+                                </a>
+
+                                <a href="{{url(('appUser/'.$id.'/leaves'))}}" class="float-right boxTopButton" data-toggle="tooltip" title="List"><i class="fa fa-list fa-2x" ></i></a>
+                                <a href="{{url(('appUser'))}}" class="float-right boxTopButton" data-toggle="tooltip" title="Go Back"><i class="fa fa-arrow-circle-left fa-2x" ></i></a>
                             </div>
+                            @include('backend.AppUserLeave.add_modal')
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-striped table-bordered table-hover">
@@ -62,15 +64,10 @@
                                             <td>{{$leave->month_end_date}}</td>
                                             <td>{{$leave->holiday}}</td>
                                             <td>{{$leave->leave}}</td>
-                                            <td>
-
-                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
-                                <span class="float-right">{{ $data['results']->appends(request()->except('page'))->links() }}
-                                </span>
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -88,5 +85,4 @@
     </div>
 
     <!-- /.content-wrapper -->
-
 @endsection

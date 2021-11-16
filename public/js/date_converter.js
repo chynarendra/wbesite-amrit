@@ -61,4 +61,15 @@ $("document").ready(function () {
         changeYear: true,
     });
 
+    $("#month_start_date").datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        changeYear: true,
+    });
+    $("#month_end_date").datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        changeYear: true,
+    });
+
 });

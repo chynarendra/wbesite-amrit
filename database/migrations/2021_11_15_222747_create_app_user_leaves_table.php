@@ -19,8 +19,6 @@ class CreateAppUserLeavesTable extends Migration
             $table->foreign('app_user_id')->references('id')->on('app_users')->onUpdate('cascade');
             $table->string('month_start_date');
             $table->string('month_end_date');
-            $table->string('holiday')->nullable();
-            $table->string('leave')->nullable();
             $table->timestamps();
         });
     }

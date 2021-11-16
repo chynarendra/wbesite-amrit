@@ -3,10 +3,13 @@
 namespace App\Repository;
 
 use App\Models\API\AppUser;
+use App\Models\ClientPurchaseProducts;
 use App\Models\DailySalesReport;
 use App\Models\User;
 use App\Models\ClientDetail;
+use App\Repository\appUserRepository\AppUserLeaveInterface;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DailySalesReportRepository
 {
@@ -17,12 +20,23 @@ class DailySalesReportRepository
      * @var DailySalesReport
      */
     private $dailySalesReport;
+    /**
+     * @var AppUserLeaveInterface
+     */
+    private $appUserLeaveInterface;
+    /**
+     * @var ClientPurchaseProducts
+     */
+    private $clientPurchaseProducts;
 
-    public function __construct(AppUser $appUsers, ClientDetail $clientDetail, DailySalesReport $dailySalesReport)
+    public function __construct(AppUser $appUsers, ClientDetail $clientDetail, DailySalesReport $dailySalesReport,
+                                AppUserLeaveInterface $appUserLeaveInterface,ClientPurchaseProducts $clientPurchaseProducts)
     {
         $this->appUsers = $appUsers;
         $this->clientDetail = $clientDetail;
         $this->dailySalesReport = $dailySalesReport;
+        $this->appUserLeaveInterface = $appUserLeaveInterface;
+        $this->clientPurchaseProducts = $clientPurchaseProducts;
     }
 
     public function getSalesPersons($request)
@@ -121,5 +135,44 @@ class DailySalesReportRepository
         $clients = $clients->orderBy('client_details.id', 'DESC')->paginate(100);
         return $clients;
     }
+
+    public function getClientsByAppUser($id,$monthStartDate,$monthEndDate)
+    {
+        $leaveDatesArr=$this->appUserLeaveInterface->getMonthLeaveDates($id,$monthStartDate,$monthEndDate);
+        $holidayDatesArr=$this->appUserLeaveInterface->getMonthHoildayDates($id,$monthStartDate,$monthEndDate);
+        $clients = $this->clientDetail
+            ->where('app_user_id', $id)
+            ->whereBetween('date_of_visit',[$monthStartDate,$monthEndDate])
+            ->whereNotIn('date_of_visit',$leaveDatesArr)
+            ->whereNotIn('date_of_visit',$holidayDatesArr)
+            ->orderBy('id','DESC')
+            ->get();
+        return $clients;
+    }
+
+    public function getClientsByAppUserWithStatus($id,$monthStartDate,$monthEndDate)
+    {
+        $leaveDatesArr=$this->appUserLeaveInterface->getMonthLeaveDates($id,$monthStartDate,$monthEndDate);
+        $holidayDatesArr=$this->appUserLeaveInterface->getMonthHoildayDates($id,$monthStartDate,$monthEndDate);
+        $clients = $this->clientDetail
+            ->select('status_id',DB::raw('count(*) as count'))
+            ->where('app_user_id', $id)
+            ->whereBetween('date_of_visit',[$monthStartDate,$monthEndDate])
+            ->whereNotIn('date_of_visit',$leaveDatesArr)
+            ->whereNotIn('date_of_visit',$holidayDatesArr)
+            ->groupBy('status_id')
+            ->orderBy('id','DESC')
+            ->get();
+        return $clients;
+    }
+
+    public function getClinetPurchaseProductsByAppUser($id,$startDate,$endDate){
+        $purchasedProducts=$this->clientPurchaseProducts
+            ->where('app_user_id',$id)
+            ->whereBetween('purchase_date',[$startDate,$endDate])
+            ->get();
+        return $purchasedProducts;
+    }
+
 
 }

@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AppUserLeave extends Model
+class MonthLeaves extends Model
 {
     use HasFactory;
-    protected $fillable=['app_user_id','month_start_date','month_end_date'];
+    protected $fillable=['id','app_user_leave_id','leave_type','leave_date'];
 }

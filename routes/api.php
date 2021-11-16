@@ -40,4 +40,4 @@ Route::get('client/{id}', 'API\DailySalesReportController@getClientDetail');
 Route::get('noticeList', 'API\NoticeApiController@getNoticeList');
 Route::get('noticeDetails/{id}', 'API\NoticeApiController@getNoticeDetails');
 Route::get('/office/sale/report','API\ReportController@officeWiseSaleProduct');
-Route::get('/user/performance/report/{id}','API\PerformanceController@index');
+Route::get('/user/performance/report/{id}','API\SalesReportController@index');
