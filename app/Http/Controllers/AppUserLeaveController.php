@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AppUserLeave;
+use App\Models\MonthLeaves;
 use App\Repository\appUserRepository\AppUserLeaveInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
@@ -38,7 +39,8 @@ class AppUserLeaveController extends Controller
     {
         //
         $leaves=$this->appUserLeaveInterface->getLeavesByUser($id);
-        return view('backend.AppUserLeave.index',compact('leaves','id'));
+        $appUserRepo=$this->appUserLeaveInterface;
+        return view('backend.AppUserLeave.index',compact('leaves','id','appUserRepo'));
     }
 
     /**
@@ -60,8 +62,34 @@ class AppUserLeaveController extends Controller
     public function store(Request $request)
     {
         try {
-            $data=$request->all();
-            $create = $this->appUserLeave->create($data);
+            $holidays=$request->holiday;
+            $leaves=$request->leave;
+            $appUserLeave['app_user_id']=$request->app_user_id;
+            $appUserLeave['month_start_date']=$request->month_start_date;
+            $appUserLeave['month_end_date']=$request->month_end_date;
+            $create = $this->appUserLeave->create($appUserLeave);
+
+            if($create){
+                if(isset($holidays) && sizeof($holidays) > 0){
+                    foreach ($holidays as $hDay){
+                        $monthLeaveData['app_user_leave_id']=$create->id;
+                        $monthLeaveData['leave_type']='holiday';
+                        $monthLeaveData['leave_date']=$hDay;
+                        MonthLeaves::create($monthLeaveData);
+                    }
+
+                }
+
+                if(isset($leaves) && sizeof($leaves) > 0){
+                    foreach ($leaves as $lDay){
+                        $monthHolidayData['app_user_leave_id']=$create->id;
+                        $monthLeaveData['leave_type']='leave';
+                        $monthLeaveData['leave_date']=$lDay;
+                        MonthLeaves::create($monthLeaveData);
+                    }
+
+                }
+            }
 
             session()->flash('success', Lang::get('app.insertMessage'));
             return back();

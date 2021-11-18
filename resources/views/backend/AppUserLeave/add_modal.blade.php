@@ -27,16 +27,35 @@
                         {!! $errors->first('month_end_date', '<span class="text-danger">:message</span>') !!}
                     </div>
 
+
                     <div class="form-group col-md-6 {{ ($errors->has('holiday'))?'has-error':'' }}">
-                        <label for="feature"> Holiday (In days)</label><label class="text-danger">*</label>
-                        {{ Form::number('holiday',null,['placeholder'=>'','class' => 'form-control','required']) }}
-                        {!! $errors->first('holiday', '<span class="text-danger">:message</span>') !!}
+                        <label for="feature"> Week Off Days</label><label class="text-danger">*</label>
+                        <div class="field_wrapper">
+                            <div class="flex-container">
+                                <div>
+                                    <input type="text" name="holiday[]" class="form-control" placeholder="week off day" id="holiday" required/>
+                                </div>
+                                <div>
+                                    <a href="javascript:void(0);" class="add_button" style="padding: 5px;" title="Add field"><i class="fa fa-plus-circle"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="form-group col-md-6 {{ ($errors->has('leave'))?'has-error':'' }}">
-                        <label for="feature"> Leave (In days)</label><label class="text-danger">*</label>
-                        {{ Form::number('leave',null,['placeholder'=>'','class' => 'form-control','required']) }}
-                        {!! $errors->first('leave', '<span class="text-danger">:message</span>') !!}
+                        <label for="feature"> Leave</label><label class="text-danger">*</label>
+                        <div class="field_wrapper_leave">
+                            <div class="flex-container">
+                                <div>
+                                    <input type="text" placeholder="week of date" name="leave[]" class="form-control" id="leave" required/>
+                                </div>
+                                <div>
+                                    <a href="javascript:void(0);" class="add_button_leave" style="padding: 5px;" title="Add field"><i class="fa fa-plus-circle"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>

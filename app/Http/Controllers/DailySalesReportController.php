@@ -87,7 +87,11 @@ class DailySalesReportController extends BaseController
                 $client->status_id = $request->status_id;
                 $update=$client->save();
 
-                if($update){                  
+                if($update){
+
+                    if($client->status_id==5){ // if status changed to installed
+                        return redirect(url('client/purchaseproduct/'.$client->app_user_id.'/'.$client->id));
+                    }
                     session()->flash('success','Status successfully changed!.');
                     return back();
                 }else{

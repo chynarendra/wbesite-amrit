@@ -51,7 +51,7 @@
                                         <th style="width: 10px">{{trans('app.sn')}}</th>
                                         <th>Month Start Date</th>
                                         <th>Month End Date</th>
-                                        <th>Holiday</th>
+                                        <th>Week Off Days</th>
                                         <th>Leave</th>
                                         <th style="width: 160px">{{trans('app.action')}}</th>
                                     </tr>
@@ -62,8 +62,32 @@
                                             <th scope=row>{{$key++}}</th>
                                             <td>{{$leave->month_start_date}}</td>
                                             <td>{{$leave->month_end_date}}</td>
-                                            <td>{{$leave->holiday}}</td>
-                                            <td>{{$leave->leave}}</td>
+                                            <td>
+                                                <?php
+                                                $holidays=$appUserRepo->getMonthHoildayDates($id,$leave->month_start_date,$leave->month_end_date)
+                                                ?>
+                                                @if(sizeof($holidays) > 0)
+                                                    @foreach($holidays as $holiday)
+                                                        {{$holiday->leave_date}} <br/>
+                                                    @endforeach
+
+                                                @endif
+                                            </td>
+
+                                            <td>
+                                                <?php
+                                                $leaves=$appUserRepo->getMonthLeaveDates($id,$leave->month_start_date,$leave->month_end_date)
+                                                ?>
+                                                @if(sizeof($leaves) > 0)
+                                                @foreach($leaves as $leave)
+                                                        {{$leave->leave_date}} <br/>
+                                                    @endforeach
+
+                                                    @endif
+
+                                            </td>
+                                            <td></td>
+
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -85,4 +109,8 @@
     </div>
 
     <!-- /.content-wrapper -->
+@endsection
+@section('js')
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"/>
+
 @endsection

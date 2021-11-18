@@ -6,6 +6,8 @@ use App\Repository\appUserRepository\AppUserInterface;
 use App\Repository\appUserRepository\AppUserLeaveInterface;
 use App\Repository\appUserRepository\AppUserLeaveRepository;
 use App\Repository\appUserRepository\AppUserRepository;
+use App\Repository\clientPurchaseProduct\ClientPurchaseProductInterface;
+use App\Repository\clientPurchaseProduct\ClientPurchaseProductRepository;
 use App\Repository\dailySalesReport\DailySalesReportInterface;
 use App\Repository\dailySalesReport\DailySalesReportInterfaceRepository;
 use App\Repository\fiscalYear\FiscalYearInterface;
@@ -30,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AppUserInterface::class,AppUserRepository::class);
         $this->app->bind(AppUserLeaveInterface::class,AppUserLeaveRepository::class);
         $this->app->bind(FiscalYearInterface::class,FiscalYearRepository::class);
+        $this->app->bind(ClientPurchaseProductInterface::class,ClientPurchaseProductRepository::class);
     }
 
     /**

@@ -38,4 +38,6 @@
     <script src="{{url('js/date_converter.js')}}"></script>
     <script src="{{url('js/custom_app.js')}}"></script>
 
+
+
 </footer>

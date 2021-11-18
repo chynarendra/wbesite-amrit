@@ -34,8 +34,7 @@ class AppUserRepository implements AppUserInterface
 
    public function findUserById($id)
    {
-       $appUser=AppUser::
-       join('office','office.id','app_users.office_id')
+       $appUser=AppUser::join('office','office.id','app_users.office_id')
            ->join('designations','designations.id','app_users.designation_id')
            ->select('app_users.*','office.office_name as office_name','designations.name as designation_name')
            ->where('app_users.id',$id)

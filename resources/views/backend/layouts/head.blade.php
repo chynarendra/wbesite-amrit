@@ -29,5 +29,7 @@
     <link rel="stylesheet" href="{{url('css/style.css')}}">
     <link rel="stylesheet" href="{{url('plugins/summernote/summernote-bs4.css')}}">
 
+    <link rel="stylesheet" href="{{url('multiDateSelect/css/mobiscroll.jquery.min.css')}}">
+
 
 </head>
