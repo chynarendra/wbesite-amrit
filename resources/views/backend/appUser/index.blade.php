@@ -139,7 +139,7 @@
                                                 @if($appUser->status == '1')
                                                     <a href="{{url('/appUser/approve/'.$appUser->id)}}" class="btn btn-success btn-xs">{{'Approved'}}</a>
                                                 @else
-                                                    <a href="{{url('/appUser/approve/'.$appUser->id)}}" class="btn btn-danger btn-xs">{{'Unapproved'}}</a>
+                                                    <a href="{{url('/appUser/approve/'.$appUser->id)}}" class="btn btn-danger btn-xs">{{'Disable'}}</a>
                                                 @endif
                                                     <a href="{{url('/appUser/'.$appUser->id.'/leaves')}}"
                                                        class="btn btn-primary btn-xs" style="margin-top: 5px;" data-toggle="tooltip"

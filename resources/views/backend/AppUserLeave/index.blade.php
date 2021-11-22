@@ -33,17 +33,19 @@
                             <div class="card-header" style="text-align:right">
                                 <h3 class="card-title">{{trans('app.list')}}</h3>
                                 <a class="float-right boxTopButton"
-                                        data-toggle="modal"
-                                        data-target="#leaveAddModal"
-                                        data-placement="top" title="Add">
-                                    <i class="fa fa-plus-circle fa-2x" ></i>
+                                   data-toggle="modal"
+                                   data-target="#leaveAddModal"
+                                   data-placement="top" title="Add">
+                                    <i class="fa fa-plus-circle fa-2x"></i>
                                 </a>
 
-                                <a href="{{url(('appUser/'.$id.'/leaves'))}}" class="float-right boxTopButton" data-toggle="tooltip" title="List"><i class="fa fa-list fa-2x" ></i></a>
-                                <a href="{{url(('appUser'))}}" class="float-right boxTopButton" data-toggle="tooltip" title="Go Back"><i class="fa fa-arrow-circle-left fa-2x" ></i></a>
+                                <a href="{{url(('appUser/'.$id.'/leaves'))}}" class="float-right boxTopButton"
+                                   data-toggle="tooltip" title="List"><i class="fa fa-list fa-2x"></i></a>
+                                <a href="{{url(('appUser'))}}" class="float-right boxTopButton" data-toggle="tooltip"
+                                   title="Go Back"><i class="fa fa-arrow-circle-left fa-2x"></i></a>
                             </div>
-                            @include('backend.AppUserLeave.add_modal')
-                            <!-- /.card-header -->
+                        @include('backend.AppUserLeave.add_modal')
+                        <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-striped table-bordered table-hover">
                                     <thead>
@@ -58,13 +60,14 @@
                                     </thead>
                                     <tbody>
                                     @foreach($leaves as $key=>$leave)
+
                                         <tr>
                                             <th scope=row>{{$key++}}</th>
                                             <td>{{$leave->month_start_date}}</td>
                                             <td>{{$leave->month_end_date}}</td>
                                             <td>
                                                 <?php
-                                                $holidays=$appUserRepo->getMonthHoildayDates($id,$leave->month_start_date,$leave->month_end_date)
+                                                $holidays = $appUserRepo->getMonthHoildayDates($id, $leave->month_start_date, $leave->month_end_date)
                                                 ?>
                                                 @if(sizeof($holidays) > 0)
                                                     @foreach($holidays as $holiday)
@@ -76,17 +79,25 @@
 
                                             <td>
                                                 <?php
-                                                $leaves=$appUserRepo->getMonthLeaveDates($id,$leave->month_start_date,$leave->month_end_date)
+                                                $leavesDates = $appUserRepo->getMonthLeaveDates($id, $leave->month_start_date, $leave->month_end_date)
                                                 ?>
-                                                @if(sizeof($leaves) > 0)
-                                                @foreach($leaves as $leave)
-                                                        {{$leave->leave_date}} <br/>
+                                                @if(sizeof($leavesDates) > 0)
+                                                    @foreach($leavesDates as $leaveDate)
+                                                        {{$leaveDate->leave_date}} <br/>
                                                     @endforeach
 
-                                                    @endif
+                                                @endif
 
                                             </td>
-                                            <td></td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger btn-xs"
+                                                        data-toggle="modal"
+                                                        data-target="#deleteModal{{$key}}"
+                                                        data-placement="top" title="Delete">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                                @include('backend.AppUserLeave.delete_modal')
+                                            </td>
 
                                         </tr>
                                     @endforeach

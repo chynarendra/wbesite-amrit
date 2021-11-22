@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Logs\ActionLogs;
+use App\Models\MonthLeaves;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -404,6 +405,32 @@ class ResourceController extends Controller
             $value = $model->find($id);
             if ($value) {
                 $this->createLog($value->id, $logMenu, '4');
+                $value->delete();
+                @unlink(storage_path() . '/app/public/' . $filePath . '/' . $file);
+            }else {
+                session()->flash('error', Lang::get('app.dataNotFoundMessage'));
+            }
+            session()->flash('success', Lang::get('app.deleteMessage'));
+            return back();
+        } catch (\Exception $e) {
+            $e->getMessage();
+            session()->flash('error', 'Exception : ' . $e);
+            return back();
+        }
+    }
+
+    public function destroyLeave($model, $id, $logMenu = null, $file = null, $filePath = null)
+    {
+        try {
+            $value = $model->find($id);
+            if ($value) {
+                $this->createLog($value->id, $logMenu, '4');
+                $leaveDates=MonthLeaves::where('app_user_leave_id',$id)->get();
+                if(sizeof($leaveDates) > 0){
+                    foreach ($leaveDates as $date){
+                        $date->delete();
+                    }
+                }
                 $value->delete();
                 @unlink(storage_path() . '/app/public/' . $filePath . '/' . $file);
             }else {

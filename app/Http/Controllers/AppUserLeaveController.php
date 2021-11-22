@@ -143,6 +143,7 @@ class AppUserLeaveController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = $this->resourceController->destroyLeave($this->appUserLeave, $id, $this->logMenu);
+        return $response;
     }
 }

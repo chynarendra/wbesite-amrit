@@ -90,6 +90,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('appUser/{id}/leaves','AppUserLeaveController@index');
     Route::post('appUser/{id}/leaves','AppUserLeaveController@store');
+    Route::delete('appUser/leave/{id}','AppUserLeaveController@destroy')->name('leave.destroy');
+
 
     Route::get('client/purchaseproduct/{appUserId}/{id}','ClientPurchaseProductController@index')->name('clientPurchaseProduct.index');
     Route::post('client/purchaseproduct/store/{appUserId}/{id}','ClientPurchaseProductController@store');

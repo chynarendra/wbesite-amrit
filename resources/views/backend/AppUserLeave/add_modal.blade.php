@@ -31,9 +31,9 @@
                     <div class="form-group col-md-6 {{ ($errors->has('holiday'))?'has-error':'' }}">
                         <label for="feature"> Week Off Days</label><label class="text-danger">*</label>
                         <div class="field_wrapper">
-                            <div class="flex-container">
+                            <div class="flex-container" id="weekOffDayDiv">
                                 <div>
-                                    <input type="text" name="holiday[]" class="form-control" placeholder="week off day" id="holiday" required/>
+                                    <input type="text" name="holiday[]" class="form-control holiday" placeholder="week off day" id="holiday" required/>
                                 </div>
                                 <div>
                                     <a href="javascript:void(0);" class="add_button" style="padding: 5px;" title="Add field"><i class="fa fa-plus-circle"></i></a>
