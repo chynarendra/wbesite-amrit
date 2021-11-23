@@ -376,6 +376,16 @@ class MenusTableSeeder extends Seeder
                 'action_module_status' => '1',
             ],
 
+            [
+                'parent_id' => '30',
+                'menu_name' => 'Sales Report',
+                'menu_link' => 'report/sales',
+                'menu_controller' => 'SalesReportController',
+                'menu_icon' => 'fas fa-poll',
+                'menu_status' => '1',
+                'menu_order' => '3',
+                'action_module_status' => '1',
+            ],
 
         ];
         DB::table('menus')->insert($rows);

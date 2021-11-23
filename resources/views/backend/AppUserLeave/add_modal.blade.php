@@ -48,7 +48,7 @@
                         <div class="field_wrapper_leave">
                             <div class="flex-container">
                                 <div>
-                                    <input type="text" placeholder="week of date" name="leave[]" class="form-control" id="leave" required/>
+                                    <input type="text" placeholder="Leaves" name="leave[]" class="form-control" id="leave" required/>
                                 </div>
                                 <div>
                                     <a href="javascript:void(0);" class="add_button_leave" style="padding: 5px;" title="Add field"><i class="fa fa-plus-circle"></i></a>

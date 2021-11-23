@@ -42,4 +42,24 @@ class AppUserRepository implements AppUserInterface
            ->first();
        return $appUser;
    }
+
+   public function getAllUsers($request)
+   {
+       $appUser=AppUser::join('office','office.id','app_users.office_id')
+           ->join('designations','designations.id','app_users.designation_id')
+           ->select('app_users.*','office.office_name as office_name','designations.name as designation_name');
+
+       if($request->office_id !=null){
+           $appUser=$appUser->where('app_users.office_id',$request->office_id);
+       }
+
+       if($request->designation_id !=null){
+           $appUser=$appUser->where('app_users.designation_id',$request->designation_id);
+       }
+
+       $appUser=$appUser
+           ->where('app_users.status','=','1')
+           ->get();
+       return $appUser;
+   }
 }

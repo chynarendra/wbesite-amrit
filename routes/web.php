@@ -77,6 +77,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('report')->group(function () {
         Route::resource('/officeWiseReport', 'Report\OfficeWiseReportController');
         Route::resource('/productWiseSellReport', 'Report\ProductWiseReportController');
+        Route::get('/sales', 'Report\SalesReportController@index');
     });
     //mobile app user
     Route::get('/appUser', 'AppUserController@index');
