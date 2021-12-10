@@ -46,11 +46,11 @@ class NoticeController extends BaseController
         $data['page_title'] = 'Notice';
         $data['page_url'] = '/notice';
         $data['page_route'] = 'notice';
-        if($request->all() !=null){
-            $data['results'] = $this->searchDataRepository->getAllSearchData($this->model, $this->order_column_name, $this->orderBy, $this->paginateNo,'notice',$request);
-            $data['totalResult'] = $this->searchDataRepository->getSearchDataCount($this->model,'notice',$request);
-        }else{
-            $data['results'] = $this->commonRepository->getAllData($this->model, $this->order_column_name, $this->orderBy, $this->paginateNo,'','1','created_at');
+        if ($request->all() != null) {
+            $data['results'] = $this->searchDataRepository->getAllSearchData($this->model, $this->order_column_name, $this->orderBy, $this->paginateNo, 'notice', $request);
+            $data['totalResult'] = $this->searchDataRepository->getSearchDataCount($this->model, 'notice', $request);
+        } else {
+            $data['results'] = $this->commonRepository->getAllData($this->model, $this->order_column_name, $this->orderBy, $this->paginateNo, '', '1', 'created_at');
         }
         $data['request'] = $request;
         return $this->resource->index($this->viewFile, $data);
@@ -64,8 +64,24 @@ class NoticeController extends BaseController
      */
     public function store(NoticeRequest $request)
     {
-        $response = $this->resource->store($this->model, $request->all(), $this->logMenu);
-        return $response;
+        try {
+            $data=$request->all();
+            if (isset($data))
+                $create = $model->create($data);
+            if ($create)
+
+                $res=send_notification_FCM($create->notice_title);
+
+                //create action log
+                $this->createLog($create->id, $logMenu, 1, '');
+            session()->flash('success', Lang::get('app.insertMessage'));
+            return back();
+        } catch (\Exception $e) {
+            $e->getMessage();
+            session()->flash('error', 'Exception : ' . $e);
+            return back();
+        }
+
     }
 
     /**
@@ -94,26 +110,27 @@ class NoticeController extends BaseController
         return $response;
     }
 
-    public function statusChange(Request $request,$id){
-        try{
+    public function statusChange(Request $request, $id)
+    {
+        try {
             $data = $request->all();
             $data['notice_publish_by'] = Auth::user()->id;
             $data['notice_publish_date'] = date('Y-m-d');
-            $notice = $this->commonRepository->findById($this->model ,$id);
+            $notice = $this->commonRepository->findById($this->model, $id);
 
-            if($notice){
+            if ($notice) {
                 $notice->notice_status = $request->notice_status;
                 $notice->save();
-                session()->flash('success','Status successfully changed!.');
+                session()->flash('success', 'Status successfully changed!.');
                 return back();
-            }else{
-                session()->flash('error','Status could not be changed!');
+            } else {
+                session()->flash('error', 'Status could not be changed!');
                 return back();
             }
 
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
             $e->getMessage();
-            session()->flash('error','Exception : '.$e);
+            session()->flash('error', 'Exception : ' . $e);
             return back();
         }
     }

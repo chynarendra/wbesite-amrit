@@ -12,6 +12,8 @@ use App\Repository\dailySalesReport\DailySalesReportInterface;
 use App\Repository\dailySalesReport\DailySalesReportInterfaceRepository;
 use App\Repository\fiscalYear\FiscalYearInterface;
 use App\Repository\fiscalYear\FiscalYearRepository;
+use App\Repository\leaves\AppUserLeavesInterface;
+use App\Repository\leaves\AppUserLeavesRepository;
 use App\Repository\office\OfficeInterface;
 use App\Repository\office\OfficeRepositroy;
 use Illuminate\Pagination\Paginator;
@@ -33,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AppUserLeaveInterface::class,AppUserLeaveRepository::class);
         $this->app->bind(FiscalYearInterface::class,FiscalYearRepository::class);
         $this->app->bind(ClientPurchaseProductInterface::class,ClientPurchaseProductRepository::class);
+        $this->app->bind(AppUserLeavesInterface::class,AppUserLeavesRepository::class);
     }
 
     /**

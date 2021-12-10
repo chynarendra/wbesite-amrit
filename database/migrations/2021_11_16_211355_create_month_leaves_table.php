@@ -15,10 +15,11 @@ class CreateMonthLeavesTable extends Migration
     {
         Schema::create('month_leaves', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('app_user_leave_id')->unsigned()->nullable();
-            $table->foreign('app_user_leave_id')->references('id')->on('app_user_leaves')->onUpdate('cascade');
-            $table->enum('leave_type',['leave','holiday'])->default('leave');
+            $table->bigInteger('app_user_id')->unsigned()->nullable();
+            $table->foreign('app_user_id')->references('id')->on('app_users')->onUpdate('cascade');
+            $table->enum('status',['Approved','Cancelled','Pending'])->default('Pending');
             $table->string('leave_date');
+            $table->text('reason');
             $table->timestamps();
         });
     }

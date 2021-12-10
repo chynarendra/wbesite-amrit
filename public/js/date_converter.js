@@ -14,6 +14,24 @@ $("document").ready(function () {
         maxDate:'0'
     });
 
+    $("#leave_from_date").datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        changeYear: true,
+    });
+
+    $("#leave_to_date").datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        changeYear: true,
+    });
+
+    $("#leave_date").datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        changeYear: true,
+    });
+
     $(".startDate").datepicker({
         dateFormat: 'yy-mm-dd',
         changeMonth: true,

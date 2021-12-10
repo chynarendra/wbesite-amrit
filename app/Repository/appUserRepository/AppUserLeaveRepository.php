@@ -3,6 +3,7 @@
 namespace App\Repository\appUserRepository;
 
 use App\Models\AppUserLeave;
+use App\Models\Holiday;
 use App\Models\MonthLeaves;
 use App\Repository\fiscalYear\FiscalYearInterface;
 use App\Repository\fiscalYear\FiscalYearRepository;
@@ -51,12 +52,13 @@ class AppUserLeaveRepository implements AppUserLeaveInterface
     public function getMonthLeaveDates($id, $monthStartDate, $monthEndDate)
     {
         $leaves=$this->monthLeaves
-            ->join('app_user_leaves','app_user_leaves.id','month_leaves.app_user_leave_id')
-            ->select('month_leaves.leave_date')
-            ->where('app_user_leaves.app_user_id',$id)
-            ->where('app_user_leaves.month_start_date',$monthStartDate)
-            ->where('app_user_leaves.month_end_date',$monthEndDate)
-            ->where('month_leaves.leave_type','leave')
+            ->select('leave_date')
+            ->whereNotIn('leave_date',function ($query){
+                $query->select('holiday_date')->from('holidays');
+            })
+            ->where('app_user_id',$id)
+            ->whereBetween('leave_date',[$monthStartDate,$monthEndDate])
+            ->where('status','Approved')
             ->get();
 
         $dataArr=[];
@@ -70,18 +72,15 @@ class AppUserLeaveRepository implements AppUserLeaveInterface
 
     public function getMonthHoildayDates($id, $monthStartDate, $monthEndDate)
     {
-        $leaves=$this->monthLeaves->join('app_user_leaves','app_user_leaves.id','month_leaves.app_user_leave_id')
-            ->select('month_leaves.leave_date')
-            ->where('app_user_leaves.app_user_id',$id)
-            ->where('app_user_leaves.month_start_date',$monthStartDate)
-            ->where('app_user_leaves.month_end_date',$monthEndDate)
-            ->where('month_leaves.leave_type','holiday')
+        $holidays=Holiday::
+        select('holiday_date as leave_date')
+            ->whereBetween('holiday_date',[$monthStartDate,$monthEndDate])
             ->get();
 
         $dataArr=[];
-        if (sizeof($leaves) > 0){
-            foreach ($leaves as $leave){
-                $dataArr[]=$leave;
+        if (sizeof($holidays) > 0){
+            foreach ($holidays as $holiday){
+                $dataArr[]=$holiday;
             }
         }
         return $dataArr;

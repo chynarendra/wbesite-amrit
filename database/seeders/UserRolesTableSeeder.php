@@ -614,6 +614,36 @@ class UserRolesTableSeeder extends Seeder
                 'allow_show' => 1,
             ],
 
+            [
+                'user_type_id' => 1,
+                'menu_id' => 36,
+                'allow_view' => 1,
+                'allow_add' => 1,
+                'allow_edit' => 1,
+                'allow_delete' => 1,
+                'allow_show' => 1,
+            ],
+
+            [
+                'user_type_id' => 1,
+                'menu_id' => 37,
+                'allow_view' => 1,
+                'allow_add' => 1,
+                'allow_edit' => 1,
+                'allow_delete' => 1,
+                'allow_show' => 1,
+            ],
+
+            [
+                'user_type_id' => 1,
+                'menu_id' => 38,
+                'allow_view' => 1,
+                'allow_add' => 1,
+                'allow_edit' => 1,
+                'allow_delete' => 1,
+                'allow_show' => 1,
+            ],
+
         ];
 
         DB::table('user_roles')->insert($rows);

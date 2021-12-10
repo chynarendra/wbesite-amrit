@@ -131,7 +131,13 @@
                                                 {{$appUser->office->office_name}}
                                                 @endif
                                             </td>
-                                            <td>{{$appUser->designation->name}}</td>
+                                            <td>
+                                                @if($appUser->designation_id !=null)
+                                                    <?php
+                                                    ?>
+                                                    {{$appUser->designation->designation_name}}
+                                                @endif
+                                            </td>
                                             <td>
                                                 {{$appUser->register_date}}
                                             </td>
@@ -141,11 +147,7 @@
                                                 @else
                                                     <a href="{{url('/appUser/approve/'.$appUser->id)}}" class="btn btn-danger btn-xs">{{'Disable'}}</a>
                                                 @endif
-                                                    <a href="{{url('/appUser/'.$appUser->id.'/leaves')}}"
-                                                       class="btn btn-primary btn-xs" style="margin-top: 5px;" data-toggle="tooltip"
-                                                       data-placement="top" title="Details">
-                                                        Leave/Holiday
-                                                    </a>
+
                                             </td>
 
                                             <td>

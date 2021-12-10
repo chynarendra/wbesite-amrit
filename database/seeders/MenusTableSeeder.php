@@ -322,7 +322,7 @@ class MenusTableSeeder extends Seeder
                 'menu_controller' => '',
                 'menu_icon' => 'fas fa-chart-bar',
                 'menu_status' => '1',
-                'menu_order' => '7',
+                'menu_order' => '8',
                 'action_module_status' => '1',
             ],
             [
@@ -384,6 +384,28 @@ class MenusTableSeeder extends Seeder
                 'menu_icon' => 'fas fa-poll',
                 'menu_status' => '1',
                 'menu_order' => '3',
+                'action_module_status' => '1',
+            ],
+
+            [
+                'parent_id' => '10',
+                'menu_name' => 'Holiday',
+                'menu_link' => 'systemSetting/holiday',
+                'menu_controller' => 'HolidayController',
+                'menu_icon' => 'fas fa-calendar',
+                'menu_status' => '1',
+                'menu_order' => '9',
+                'action_module_status' => '1',
+            ],
+
+            [
+                'parent_id' => '0',
+                'menu_name' => 'Leaves',
+                'menu_link' => 'leaves',
+                'menu_controller' => 'LeaveController',
+                'menu_icon' => 'fas fa-list',
+                'menu_status' => '1',
+                'menu_order' => '9',
                 'action_module_status' => '1',
             ],
 

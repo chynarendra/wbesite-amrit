@@ -58,7 +58,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/paymentMethod/status/{id}', 'Configurations\PaymentMethodController@status');
         Route::resource('/fiscalYear', 'Configurations\FiscalYearController');
         Route::post('/fiscalYear/status/{id}', 'Configurations\FiscalYearController@status');
+        Route::resource('/holiday','Configurations\HolidayController');
     });
+
     Route::resource('/campaign', 'CampaignController');
     Route::resource('/product', 'ProductController');
     Route::resource('/customer', 'CustomerController');
@@ -99,5 +101,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('client/{clientId}/purchaseproduct/edit/{id}','ClientPurchaseProductController@edit')->name('clientPurchaseProduct.edit');
     Route::put('client/{appUserId}/{clientId}/purchaseproduct/update/{id}','ClientPurchaseProductController@update')->name('clientPurchaseProduct.update');
     Route::delete('client/purchaseproduct/{id}','ClientPurchaseProductController@destroy')->name('clientPurchaseProduct.delete');
+
+    Route::resource('leaves','LeaveController');
+    Route::post('leaves/status','LeaveController@statusUpdate');
 
 });

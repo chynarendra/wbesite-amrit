@@ -31,7 +31,7 @@ class AppUserController extends BaseController
     private $commonRepository;
     private $order_column_name = 'id';
     private $orderBy = 'desc';
-    private $paginateNo = 10;
+    private $paginateNo = 50;
     private $searchDataRepository;
     private $designation;
     /**
