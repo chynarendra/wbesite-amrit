@@ -62,4 +62,14 @@ class AppUserRepository implements AppUserInterface
            ->get();
        return $appUser;
    }
+
+   public function getUsersFCMToken(){
+       $appUserArr=[];
+       $appUser=AppUser::select('fcm_token')->whereNotNull('fcm_token')->get();
+
+       foreach ($appUser as $user){
+           $appUserArr[]=$user->fcm_token;
+       }
+       return $appUserArr;
+   }
 }

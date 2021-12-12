@@ -133,6 +133,7 @@ class RegisterApiController extends Controller
             'designation_id' => (int)$request->designation_id,
             'password' => bcrypt($request->password),
             'status' => '0',
+            'fcm_token' => $request->fcm_token,
             'register_date' => Carbon::now()
         ];
         $user = AppUser::create($row);

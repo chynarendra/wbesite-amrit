@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ env('APP_NAME') }} | Log in </title>
-    <link rel="shortcut icon" href="{{ asset('images/logo.jpg') }}">
+    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
 
     <!-- Google Font: Source Sans Pro -->
    {{-- <link rel="stylesheet"

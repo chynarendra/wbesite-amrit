@@ -26,6 +26,7 @@ class CreateAppUsersTable extends Migration
             $table->string('image')->nullable();
             $table->enum('status',['0','1'])->default('1');
             $table->enum('block_status',['0','1'])->default('0');
+            $table->text('fcm_token')->nullable();
             $table->date('register_date')->nullable();
             $table->bigInteger('approved_by')->unsigned()->nullable();
             $table->foreign('approved_by')->references('id')->on('users')->onUpdate('cascade');

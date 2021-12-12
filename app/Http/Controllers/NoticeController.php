@@ -8,6 +8,7 @@ use App\Http\Requests\NoticeRequest;
 use App\Models\Configurations\City;
 use App\Models\Notice;
 use App\Repository\CommonRepository;
+use App\Repository\PushNotificationRepository;
 use App\Repository\SearchDataRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -25,8 +26,13 @@ class NoticeController extends BaseController
     private $orderBy = 'desc';
     private $paginateNo = 10;
     private $searchDataRepository;
+    /**
+     * @var PushNotificationRepository
+     */
+    private $pushNotificationRepository;
 
-    public function __construct(Notice $model, City $parentModel, ResourceController $resource, CommonRepository $commonRepository, SearchDataRepository $searchDataRepository)
+    public function __construct(Notice $model, City $parentModel, ResourceController $resource, CommonRepository $commonRepository,
+                                SearchDataRepository $searchDataRepository, PushNotificationRepository $pushNotificationRepository)
     {
         parent::__construct();
         $this->model = $model;
@@ -34,6 +40,7 @@ class NoticeController extends BaseController
         $this->resource = $resource;
         $this->commonRepository = $commonRepository;
         $this->searchDataRepository = $searchDataRepository;
+        $this->pushNotificationRepository = $pushNotificationRepository;
     }
 
     /**
@@ -65,16 +72,17 @@ class NoticeController extends BaseController
     public function store(NoticeRequest $request)
     {
         try {
-            $data=$request->all();
-            if (isset($data))
-                $create = $model->create($data);
-            if ($create)
-
-                $res=send_notification_FCM($create->notice_title);
-
+            $data = $request->all();
+            $create = $this->model->create($data);
+            if ($create) {
+                if ($create->notice_status == "1") {
+                    $res = $this->pushNotificationRepository->send_notification_FCM($create->notice_title);
+                }
                 //create action log
-                $this->createLog($create->id, $logMenu, 1, '');
-            session()->flash('success', Lang::get('app.insertMessage'));
+                $this->createLog($create->id, $this->logMenu, 1, '');
+                session()->flash('success', Lang::get('app.insertMessage'));
+            }
+
             return back();
         } catch (\Exception $e) {
             $e->getMessage();

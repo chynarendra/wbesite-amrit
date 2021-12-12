@@ -35,5 +35,7 @@ function send_notification_FCM($title) {
     $result = curl_exec($ch);
     curl_close($ch);
 
+    dd($result);
+
     return $result;
 }
