@@ -279,6 +279,7 @@ class DailySalesReportController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'status_id' => 'required',
+                'date_of_visit' => 'required',
                 'next_date_of_visit' => 'required'
             ]);
             if ($validator->fails()) {
@@ -294,6 +295,7 @@ class DailySalesReportController extends Controller
                 'tds' => $request->tds,
                 'status_id' => $request->status_id,
                 'remarks' => $request->remarks,
+                'date_of_visit' => $request->date_of_visit,
                 'next_date_of_visit' => $request->next_date_of_visit,
             ];
             $clientUpdate=$clientDetail->fill($row)->save();

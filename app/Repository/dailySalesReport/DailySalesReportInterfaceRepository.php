@@ -65,7 +65,7 @@ class DailySalesReportInterfaceRepository implements DailySalesReportInterface
                 }
 
             }
-            if($request->status_id !=null){
+            if($request->status_id !=null && $request->status_id !=0){
                 $clientDetail=$clientDetail->where('client_details.status_id',$request->status_id);
             }
             if($request->address !=null){

@@ -31,6 +31,7 @@ class CreateAppUsersTable extends Migration
             $table->bigInteger('approved_by')->unsigned()->nullable();
             $table->foreign('approved_by')->references('id')->on('users')->onUpdate('cascade');
             $table->date('approved_date')->nullable();
+            $table->string('fcm_token')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->foreign('updated_by')->references('id')->on('users');
             $table->unsignedBigInteger('deleted_by')->nullable();
