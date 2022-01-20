@@ -105,6 +105,7 @@ class SalesReportController extends Controller
         }
 
         $averageDaysOfVisit=($oldClientCount+$newClientCount)/$totalWorkDays;
+        $reportArr['total_visit']=$oldClientCount+$newClientCount;
         $salesData=$this->getSalesData($appUserId,$monthStartDate,$monthEndDate);
         $monthFormattedStartDate=\Carbon\Carbon::parse($monthStartDate)->format('d M Y');
         $monthFormattedEndDate=\Carbon\Carbon::parse($monthEndDate)->format('d M Y');

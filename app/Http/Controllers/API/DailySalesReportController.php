@@ -114,6 +114,30 @@ class DailySalesReportController extends Controller
         return response()->json($responseBase);
     }
 
+    // get followup client lists
+    public function getMissedFollowupClientsData($id,Request $request){
+        $responseBase = new ApiResponse();
+        $clientData=$this->dailySalesReportInterfaceRepository->getMissedFollowupClientDataByAppUser($id,$request);
+        if(sizeof($clientData) >0){
+            foreach ($clientData as $client){
+                $client->name= $client->name ==null?'':$client->name;
+                $client->address= $client->address ==null?'':$client->address;
+                $client->contact_no= $client->contact_no ==null?'':$client->contact_no;
+                $client->no= $client->no ==null?'':$client->no;
+                $client->tds= $client->tds ==null?'':$client->tds;
+                $client->remarks= $client->remarks ==null?'':$client->remarks;
+                $client->status_id= $client->status_id ==null?'':$client->status_id;
+                $client->next_date_of_visit= $client->next_date_of_visit ==null?'':$client->next_date_of_visit;
+                $client->date_of_visit= $client->date_of_visit ==null?'':$client->date_of_visit;
+            }
+        }
+
+        $responseBase->success = true;
+        $responseBase->status_code = 200;
+        $responseBase->data = $clientData;
+        return response()->json($responseBase);
+    }
+
     public function getClientDetail($id){
 
         $responseBase = new ApiResponse();

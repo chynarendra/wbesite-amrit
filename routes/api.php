@@ -32,6 +32,7 @@ Route::post('client/store', 'API\DailySalesReportController@storeClientDetail');
 Route::post('client/update/{id}', 'API\DailySalesReportController@updateClientDetail');
 Route::get('sales/clients/{id}', 'API\DailySalesReportController@getClientsData');
 Route::get('sales/followupclients/{id}', 'API\DailySalesReportController@getFollowupClientsData');
+Route::get('sales/missed/followupclients/{id}', 'API\DailySalesReportController@getMissedFollowupClientsData');
 
 Route::get('/user/sales/persons/{id}/{pageSize}', 'API\DailySalesReportController@getLatestSalesPersonDetail');
 Route::get('sales/person/{id}', 'API\DailySalesReportController@getSalesPersonDetail');
@@ -41,3 +42,5 @@ Route::get('noticeList', 'API\NoticeApiController@getNoticeList');
 Route::get('noticeDetails/{id}', 'API\NoticeApiController@getNoticeDetails');
 Route::get('/office/sale/report','API\ReportController@officeWiseSaleProduct');
 Route::get('/user/performance/report/{id}','API\SalesReportController@index');
+Route::get('/user/leaves/{id}','API\LeaveController@getCurrentMonthLeaves');
+Route::post('/user/leaves/store','API\LeaveController@storeLeave');

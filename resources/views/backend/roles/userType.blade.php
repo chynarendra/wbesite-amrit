@@ -57,6 +57,7 @@
                                        data-target="#addModal"
                                        title="Add New">
                                         <i class="fa fa-plus-circle fa-2x"></i></a>
+                                    @include('backend.roles.modals.add')
                                 @endif
 
                             </div>
@@ -99,7 +100,10 @@
                                                             title="Click here update  status">
                                                         {{trans('app.inactive')}}
                                                     </button>
+
                                                 @endif
+
+                                                    @include('backend.roles.modals.statusModal')
                                             </td>
                                             <td>
                                                 @if($allowEdit)
@@ -109,6 +113,8 @@
                                                             data-placement="top" title="Edit">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </button>
+
+                                                    @include('backend.roles.modals.edit')
                                                 @endif
                                                 @if($allowDelete)
                                                     <button type="button" class="btn btn-danger btn-xs"
@@ -117,6 +123,7 @@
                                                             data-placement="top" title="Delete">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
+                                                        @include('backend.roles.modals.delete')
                                                 @endif
 
                                             </td>
@@ -131,208 +138,6 @@
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
-
-                        <div class="modal fade" id="statusModal{{$key}}">
-                            <div class="modal-dialog modal-sm modal-dialog-centered">
-                                <div class="modal-content text-center">
-                                    <div class="modal-header btn-secondary">
-                                        <h4 class="modal-title"></h4>
-                                        <button type="button" class="close"
-                                                data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" data-toggle="tooltip" title="Close">&times;</span>
-                                        </button>
-                                    </div>
-                                    {!! Form::open(['method' => 'POST', 'class'=>'inline', 'url'=>['roles/type/status/'.$data->id]]) !!}
-                                    <div class="modal-body">
-                                        @if($data->status == 1)
-
-                                            <p>Are you sure you want to inactive?</p>
-                                        @else
-                                            <p>Are you sure you want to active?</p>
-                                        @endif
-                                    </div>
-                                    <div class="modal-footer justify-content-center">
-                                        <button type="submit" class="btn btn-primary">
-                                            Yes
-                                        </button> &nbsp; &nbsp;
-                                        <button type="button" class="btn btn-default"
-                                                data-dismiss="modal">No
-                                        </button>
-                                    </div>
-                                    {!! Form::close() !!}
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                        </div>
-
-
-                        <div class="modal fade" id="editModal{{$key}}">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header btn-secondary">
-                                        <h4 class="modal-title">{{trans('app.edit')}}</h4>
-                                        <button type="button" class="close"
-                                                data-dismiss="modal"
-                                                aria-label="Close">
-                                            <span aria-hidden="true" data-toggle="tooltip" title="Close">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-
-                                                {!! Form::model($data,['method'=>'PUT','route'=>['type.update',$data->id]]) !!}
-                                                <div class="form-group">
-                                                    <label for="inputName">{{trans('app.name')}}</label>
-                                                    {!! Form::text('type_name',null,['class'=>'form-control','placeholder'=>'Enter User Type  Name','autocomplete'=>'off']) !!}
-                                                    {!! $errors->first('type_name', '<small class="text text-danger">:message</small>') !!}
-                                                </div>
-                                                <div class="form-group {{ ($errors->has('details'))?'has-error':'' }}">
-                                                    <label for="inputDescription">{{trans('app.details')}}</label>
-                                                    {!! Form::textarea('details',null,['class'=>'form-control','placeholder'=>'Enter User Type Description','rows'=>'4','autocomplete'=>'off']) !!}
-                                                    {!! $errors->first('details', '<span class="label label-danger">:message</span>') !!}
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="status">{{trans('app.status')}} </label><br>
-                                                    <div class="icheck-success d-inline">
-                                                        <input type="radio" id="readio1"
-                                                               name="status" value="1"
-                                                               @if($data->status=='1') checked @endif>
-                                                        <label for="readio1">
-                                                            {{trans('app.active')}}
-                                                        </label>
-                                                    </div>
-                                                    &nbsp; &nbsp;
-                                                    <div class="icheck-success d-inline">
-                                                        <input type="radio" id="readio2"
-                                                               name="status"
-                                                               value="0"   @if($data->status=='0') checked @endif>
-                                                        <label for="readio2">
-                                                            {{trans('app.inactive')}}
-                                                        </label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="modal-footer justify-content-center">
-
-                                                    <button type="submit"
-                                                            class="btn btn-success">{{trans('app.update')}}</button>
-                                                    &nbsp; &nbsp; &nbsp; &nbsp;
-                                                    <button type="button"
-                                                            class="btn btn-danger"
-                                                            data-dismiss="modal">
-                                                        {{trans('app.cancel')}}
-                                                    </button>
-                                                </div>
-                                                {!! Form::close() !!}
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal fade" id="deleteModal{{$key}}">
-                            <div class="modal-dialog modal-sm modal-dialog-centered">
-                                <div class="modal-content text-center">
-                                    <div class="modal-header btn-secondary">
-                                        <h4 class="modal-title"></h4>
-                                        <button type="button" class="close"
-                                                data-dismiss="modal"
-                                                aria-label="Close">
-                                            <span aria-hidden="true" data-toggle="tooltip" title="Close">&times;</span>
-                                        </button>
-                                    </div>
-                                    {!! Form::open(['method' => 'DELETE', 'class'=>'inline', 'route'=>['type.destroy',
-                           $data->id]]) !!}
-                                    <div class="modal-body">
-                                        <p>Are you sure you want to delete?</p>
-                                    </div>
-                                    <div class="modal-footer justify-content-center">
-                                        <button type="submit"
-                                                class="btn btn-primary">Yes
-                                        </button> &nbsp; &nbsp;
-                                        <button type="button"
-                                                class="btn btn-default"
-                                                data-dismiss="modal">No
-                                        </button>
-                                    </div>
-                                    {!! Form::close() !!}
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                        </div>
-
-
-                        <div class="modal fade" id="addModal">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background: #6c757d">
-                                        <h4 class="modal-title">{{trans('app.add')}}</h4>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
-                                            <span aria-hidden="true" data-toggle="tooltip" title="Close">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-
-                                                {!! Form::open(['method'=>'post','url'=>'roles/type']) !!}
-                                                <div class="form-group">
-                                                    <label for="inputName">{{trans('app.name')}}</label>
-                                                    {!! Form::text('type_name',null,['class'=>'form-control','placeholder'=>'Enter User Type  Name','autocomplete'=>'off']) !!}
-                                                    {!! $errors->first('type_name', '<small class="text text-danger">:message</small>') !!}
-                                                </div>
-                                                <div class="form-group {{ ($errors->has('details'))?'has-error':'' }}">
-                                                    <label for="inputDescription">{{trans('app.details')}}</label>
-                                                    {!! Form::textarea('details',null,['class'=>'form-control','placeholder'=>'Enter User Type Description','rows'=>'4','autocomplete'=>'off']) !!}
-                                                    {!! $errors->first('details', '<span class="label label-danger">:message</span>') !!}
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="status">{{trans('app.status')}} </label><br>
-                                                    <div class="icheck-success d-inline">
-                                                        <input type="radio" id="readio3"
-                                                               name="status" value="1"
-                                                               checked>
-                                                        <label for="readio3">
-                                                            {{trans('app.active')}}
-                                                        </label>
-                                                    </div>
-                                                    &nbsp; &nbsp;
-                                                    <div class="icheck-success d-inline">
-                                                        <input type="radio" id="readio4"
-                                                               name="status"
-                                                               value="0">
-                                                        <label for="readio4">
-                                                            {{trans('app.inactive')}}
-                                                        </label>
-                                                    </div>
-
-                                                </div>
-
-
-                                                <div class="modal-footer justify-content-center">
-
-                                                    <button type="submit"
-                                                            class="btn btn-primary">{{trans('app.save')}}</button>
-                                                    &nbsp; &nbsp;
-                                                    <button type="button" class="btn btn-danger"
-                                                            data-dismiss="modal">
-                                                        {{trans('app.cancel')}}
-                                                    </button>
-                                                </div>
-                                                {!! Form::close() !!}
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>
 
                         <!-- /.col -->
                     </div>

@@ -129,6 +129,7 @@
                                             <th colspan="6" class="text-center">{{trans('Number Of Visit')}}</th>
                                             <th rowspan="2">{{trans('Week Off Days')}}</th>
                                             <th rowspan="2">{{trans('Leave Days')}}</th>
+                                            <th rowspan="2">{{trans('Total Visit')}}</th>
                                             <th rowspan="2">{{trans('Average Daily Visit')}}</th>
                                             <th rowspan="2">{{trans('Sales')}}</th>
 
@@ -180,6 +181,7 @@
                                                 <td>{{$data['Confirmed']}}</td>
                                                 <td>{{$data['Holiday']}}</td>
                                                 <td>{{$data['Leave']}}</td>
+                                                <td>{{$data['total_visit']}}</td>
                                                 <td>{{$data['daily_average_visit']}}</td>
                                                 <td>{{$data['Installed']}}</td>
                                             </tr>

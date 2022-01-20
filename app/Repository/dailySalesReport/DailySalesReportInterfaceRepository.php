@@ -108,6 +108,33 @@ class DailySalesReportInterfaceRepository implements DailySalesReportInterface
         return $clientDetail;
     }
 
+    public function getMissedFollowupClientDataByAppUser($id,$request)
+    {
+        $clientDetail=$this->clientDetail
+            ->join('customer_status','customer_status.id','client_details.status_id')
+            ->select(
+                'client_details.id',
+                'client_details.app_user_id',
+                'client_details.name',
+                'client_details.address',
+                'client_details.contact_no',
+                'client_details.no',
+                'client_details.tds',
+                'client_details.remarks',
+                'client_details.status_id',
+                'client_details.next_date_of_visit',
+                'client_details.date_of_visit',
+                'customer_status.name as status'
+            );
+
+        $clientDetail=$clientDetail->where('app_user_id',$id)
+            ->whereIn('client_details.status_id',[1,2])
+            ->where('client_details.next_date_of_visit','<',date('Y-m-d'))
+            ->orderBy('id','DESC')
+            ->paginate(10);
+        return $clientDetail;
+    }
+
     public function getClientDetail($id){
         $data=$this->clientDetail
             ->join('customer_status','customer_status.id','client_details.status_id')

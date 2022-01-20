@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Report;
 
 use App\Http\Controllers\ResourceController;
+use App\Models\ClientPurchaseProducts;
 use App\Models\Configurations\FiscalYear;
 use App\Models\Configurations\Office;
 use App\Http\Controllers\BaseController;
@@ -27,7 +28,7 @@ class ProductWiseReportController extends BaseController
     private $fiscalYear;
     private $office;
 
-    public function __construct(CustomerPurchaseProduct $model,Office $office,Product $product, SearchDataRepository $searchDataRepository,
+    public function __construct(ClientPurchaseProducts $model,Office $office,Product $product, SearchDataRepository $searchDataRepository,
                                 FiscalYear $fiscalYear, CommonRepository $commonRepository, ResourceController $resource)
     {
         parent::__construct();

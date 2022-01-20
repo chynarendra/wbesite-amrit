@@ -57,7 +57,6 @@ class AppUserLeavesRepository implements AppUserLeavesInterface
             ->whereBetween('leave_date',[$currentFiscalYear->start_date,$currentFiscalYear->end_date])
             ->where('app_user_id',$id)
             ->where('status','Approved')
-            ->where('leave_type','holiday')
             ->get();
         return $leaves;
     }
@@ -66,17 +65,16 @@ class AppUserLeavesRepository implements AppUserLeavesInterface
     public function currentMonthLeavesByUser($id,$monthStartDate,$monthEndDate)
     {
         $leaves=$this->leaves
-            ->select('id','app_user_id','leave_type','reason','leave_date','status')
+            ->select('id','app_user_id','reason','leave_date','status')
             ->whereBetween('leave_date',[$monthStartDate,$monthEndDate])
             ->where('app_user_id',$id)
-            ->where('leave_type','leave')
             ->get();
         return $leaves;
     }
 
     public function leavesByMonth($startDate,$endDate)
     {
-        $leaves=$this->leaves->whereBetween('leave_date',[$startDate,$endDate])->where('leave_type','leave')->get();
+        $leaves=$this->leaves->whereBetween('leave_date',[$startDate,$endDate])->get();
         return $leaves;
     }
 

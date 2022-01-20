@@ -4,14 +4,12 @@ $("document").ready(function () {
         dateFormat: 'yy-mm-dd',
         changeMonth: true,
         changeYear: true,
-        maxDate:'0'
     });
 
     $("#to_date").datepicker({
         dateFormat: 'yy-mm-dd',
         changeMonth: true,
         changeYear: true,
-        maxDate:'0'
     });
 
     $("#leave_from_date").datepicker({
@@ -48,14 +46,12 @@ $("document").ready(function () {
         dateFormat: 'yy-mm-dd',
         changeMonth: true,
         changeYear: true,
-        minDate:0,
     });
     $(".followDate").datepicker({
         autoClose:true,
         dateFormat: 'yy-mm-dd',
         changeMonth: true,
         changeYear: true,
-        minDate:0,
     });
     $("#eng_date").datepicker({
         dateFormat: 'yy-mm-dd',
@@ -66,7 +62,6 @@ $("document").ready(function () {
         dateFormat: 'yy-mm-dd',
         changeMonth: true,
         changeYear: true,
-        maxDate:'0'
     });
     $("#start_eng_date").datepicker({
         dateFormat: 'yy-mm-dd',
