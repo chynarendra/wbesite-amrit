@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         //check foreign  key
 
-            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         $this->call(UserTypesTableSeeder::class);
         $this->call(UserRolesTableSeeder::class);
@@ -29,15 +29,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DistrictTableSeeder::class);
         $this->call(OfficeTypeTableSeeder::class);
         $this->call(OfficeTableSeeder::class);
-        $this->call(CityTableSeeder::class);
-        $this->call(CampaignTableSeeder::class);
         $this->call(DesignationTableSeeder::class);
-        $this->call(ProductCategoryTableSeeder::class);
-        $this->call(PaymentMethodTableSeeder::class);
-        $this->call(SourceQueryTableSeeder::class);
         $this->call(FiscalYearsTableSeeder::class);
-        $this->call(CustomerStatusTableSeeder::class);
-        $this->call(ProductTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

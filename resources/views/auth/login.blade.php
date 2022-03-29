@@ -24,6 +24,7 @@
             {{ $errors->first('login_user_name') }}
         </div>
     @endif
+
     {!! Form::open(['method'=>'post','route'=>'login']) !!}
 
     <div class="input-group mb-3">

@@ -17,7 +17,7 @@ class SystemSettingTableSeeder extends Seeder
         DB::table('system_settings')->truncate();
         $rows = [
             [
-                'app_name' => 'Mahendra Purifier',
+                'app_name' => 'Log In',
                 'mail_driver' => 'smtp',
                 'mail_host_name' => 'smtp.mailtrap.io',
                 'mail_port' => '2525',

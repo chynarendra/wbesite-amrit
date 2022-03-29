@@ -1,7 +1,7 @@
 <footer class="main-footer">
     <strong>Copyright &copy; <?php echo date('Y');?> <a href="{{url('/dashboard')}}">@if(systemSetting()->app_name){{systemSetting()->app_name}} @else {{ env('APP_NAME') }}  @endif </a>All rights reserved</strong>
     <div class="float-right d-none d-sm-inline-block">
-        <b>Developed By: </b> Charles
+        <b>Developed By: </b> Narendra
     </div>
 @yield('js')
 
@@ -38,6 +38,6 @@
     <script src="{{url('js/date_converter.js')}}"></script>
     <script src="{{url('js/custom_app.js')}}"></script>
 
-
+    <script src="{{asset('/plugins/nepali-datepicker/nepali.datepicker.v3.7.min.js')}}" type="text/javascript"></script>
 
 </footer>

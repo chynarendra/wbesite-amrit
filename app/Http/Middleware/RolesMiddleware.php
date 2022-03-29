@@ -30,13 +30,11 @@ class RolesMiddleware
         $controller_name = isset($controllers[0]) ? $controllers[0] : '';
         $method_name = isset($controllers[1]) ? $controllers[1] : '';
 
-
         /*
          *List of controller where permissions are not necessary
          */
 
         $publicController = ['HomeController'];
-
 
         /*
          * checks the controller in array where permission are not allowed
@@ -75,7 +73,6 @@ class RolesMiddleware
                     $isEdit = $sqlValue->allow_edit;
                     $isDelete = $sqlValue->allow_delete;
                     $isShow = $sqlValue->allow_show;
-
 
                     switch ($method_name) {
                         case  'index':

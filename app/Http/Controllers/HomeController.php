@@ -2,46 +2,27 @@
 
 namespace App\Http\Controllers;
 use App\Models\Configurations\CustomerStatus;
-use App\Models\Customer;
-use App\Models\CustomerQuery;
-use App\Models\CustomerStatusHistory;
-use App\Models\Product;
 use App\Models\User;
-use App\Repository\ChartRepository;
 use App\Repository\CommonRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends BaseController
 {
-    private $customer;
     private $userModel;
-    private $product;
     private $commonRepository;
-    private $customerQuery;
-    private $chartRepository;
-    private $customerStatusHistory;
-    private $customerStatus;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(User $userModel, Customer $customer , Product $product,
-                                CommonRepository $commonRepository,CustomerQuery $customerQuery,
-                                ChartRepository $chartRepository, CustomerStatus $customerStatus, CustomerStatusHistory $customerStatusHistory)
+    public function __construct(User $userModel,
+                                CommonRepository $commonRepository)
     {
         $this->middleware('auth');
         parent::__construct();
-        $this->customer    = $customer;
         $this->userModel    = $userModel;
-        $this->product    = $product;
         $this->commonRepository    = $commonRepository;
-        $this->commonRepository    = $commonRepository;
-        $this->customerQuery    = $customerQuery;
-        $this->chartRepository    = $chartRepository;
-        $this->customerStatus    = $customerStatus;
-        $this->customerStatusHistory    = $customerStatusHistory;
     }
 
     /**
@@ -52,11 +33,6 @@ class HomeController extends BaseController
     public function index(Request $request)
     {
         $total_user = $this->commonRepository->getTotalData($this->userModel,'true');
-        $total_customer = $this->commonRepository->getTotalData($this->customer,'','1','created_date');
-        $total_product = $this->commonRepository->getTotalData($this->product,'','1','created_at');
-        $total_customer_query = $this->commonRepository->getTotalData($this->customerQuery,'','1','created_at');
-        $today_follow_up_customer = $this->commonRepository->customerFollowupCount($this->customer,$request,'1');
-
         // high chart
         $customerStatus = CustomerStatus::all();
         $monthNames = englishMonthNames();
@@ -69,7 +45,6 @@ class HomeController extends BaseController
 
             $data = [];
             for ($i = 1; $i <= 12; $i++) {
-                $res_total = $this->chartRepository->getMothWiseCustomerStatus($i, $customerStatusId);
                 $data[] = isset($res_total[0]->totals) ? $res_total[0]->totals : 0;
 
             }
@@ -87,10 +62,8 @@ class HomeController extends BaseController
         ]';
 
         $page_title ='Dashboard';
-        return view('backend.dashboard',compact('total_user','page_title','total_product','total_customer_query',
-            'total_customer','customer_month_wise_js_series_data','monthNames','today_follow_up_customer'));
+        return view('backend.dashboard',compact('total_user','page_title','customer_month_wise_js_series_data','monthNames'));
     }
-
 
     /* get auth login user activity */
     public function myActivity(Request $request, $id = null)

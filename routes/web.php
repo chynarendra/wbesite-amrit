@@ -36,10 +36,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('systemSetting')->group(function () {
         Route::resource('/appSetting', 'SystemSetting\AppSettingController');
         Route::resource('/mailSetting', 'SystemSetting\EmailSettingController');
-        Route::resource('/smsSetting', 'SystemSetting\SmsSettingController');
-        Route::resource('/otpSetting', 'SystemSetting\OtpSettingController');
+//        Route::resource('/smsSetting', 'SystemSetting\SmsSettingController');
+//        Route::resource('/otpSetting', 'SystemSetting\OtpSettingController');
         Route::resource('/loginSetting', 'SystemSetting\LoginSettingController');
-        Route::resource('/registerSetting', 'SystemSetting\RegisterSettingController');
+//        Route::resource('/registerSetting', 'SystemSetting\RegisterSettingController');
         Route::post('/uploadSystemSettingFile/{id}', 'SystemSetting\AppSettingController@uploadFile');
         Route::post('/updateStatus/{id}', 'SystemSetting\LoginSettingController@updateStatus');
         Route::resource('/officeType', 'Configurations\OfficeTypeController');
@@ -50,59 +50,27 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/city/status/{id}', 'Configurations\CityController@status');
         Route::resource('/designation', 'Configurations\DesignationController');
         Route::post('/designation/status/{id}', 'Configurations\DesignationController@status');
-        Route::resource('/productCategory', 'Configurations\ProductCategoryController');
-        Route::post('/productCategory/status/{id}', 'Configurations\ProductCategoryController@status');
-        Route::resource('/sourceQuery', 'Configurations\SourceQueryController');
-        Route::post('/sourceQuery/status/{id}', 'Configurations\SourceQueryController@status');
-        Route::resource('/paymentMethod', 'Configurations\PaymentMethodController');
-        Route::post('/paymentMethod/status/{id}', 'Configurations\PaymentMethodController@status');
         Route::resource('/fiscalYear', 'Configurations\FiscalYearController');
         Route::post('/fiscalYear/status/{id}', 'Configurations\FiscalYearController@status');
-        Route::resource('/holiday','Configurations\HolidayController');
+    });
+    Route::prefix('/general/info')->group(function (){
+        Route::get('/','GeneralInformationController@index');
+        Route::get('/create','GeneralInformationController@create');
+        Route::post('/store','GeneralInformationController@store');
+        Route::get('/edit/{id}','GeneralInformationController@edit');
+        Route::put('/update/{id}','GeneralInformationController@update');
+        Route::delete('/destroy/{id}','GeneralInformationController@destroy');
+        Route::get('/{id}','GeneralInformationController@show');
     });
 
-    Route::resource('/campaign', 'CampaignController');
-    Route::resource('/product', 'ProductController');
-    Route::resource('/customer', 'CustomerController');
-    Route::post('/customerUpdateStatus', 'CustomerController@statusChange');
-    Route::get('/customer/purchaseproduct/{id}','PurchaseProductController@index')->name('purchaseProduct.index');
-    Route::post('/customer/purchaseproduct/store/{id}','PurchaseProductController@store')->name('purchaseProduct.store');
-    Route::get('/customer/purchaseproduct/edit/{cusId}/{id}','PurchaseProductController@edit')->name('purchaseProduct.edit');
-    Route::put('/customer/purchaseproduct/update/{cusId}/{id}','PurchaseProductController@update')->name('purchaseProduct.update');
-    Route::delete('/customer/purchaseproduct/delete/{cusId}','PurchaseProductController@destroy')->name('purchaseProduct.delete');
-    Route::resource('/query', 'CustomerQueryController');
-    Route::resource('/payment', 'PaymentController');
-    Route::resource('/followup', 'CustomerFollowupController');
-    Route::resource('/notice', 'NoticeController');
-    Route::post('/notice/status/{id}', 'NoticeController@statusChange');
-
-    Route::prefix('report')->group(function () {
-        Route::resource('/officeWiseReport', 'Report\OfficeWiseReportController');
-        Route::resource('/productWiseSellReport', 'Report\ProductWiseReportController');
-        Route::get('/sales', 'Report\SalesReportController@index');
+    Route::prefix('/general/dispatch')->group(function (){
+        Route::get('/','GeneralDispatchController@index');
+        Route::get('/create','GeneralDispatchController@create');
+        Route::post('/store','GeneralDispatchController@store');
+        Route::get('/edit/{id}','GeneralDispatchController@edit');
+        Route::put('/update/{id}','GeneralDispatchController@update');
+        Route::delete('/destroy/{id}','GeneralDispatchController@destroy');
+        Route::get('/{id}','GeneralDispatchController@show');
     });
-    //mobile app user
-    Route::get('/appUser', 'AppUserController@index');
-    Route::get('/appUser/{id}', 'AppUserController@show')->name('appUser.show');
-    Route::delete('/appUser/{id}', 'AppUserController@destroy')->name('appUser.destroy');
-    Route::get('/appUser/approve/{id}', 'AppUserController@approvedUser');
-    Route::get('/dsr','DailySalesReportController@index')->name('dsr');
-    Route::get('/dsr/{id}/clients','DailySalesReportController@clients')->name('dsr.clients');
-    Route::get('/dsr/{id}','DailySalesReportController@show')->name('dsr.show');
-    Route::post('/dsr/changestatus','DailySalesReportController@statusChange')->name('dsr.changestatus');
-
-    Route::get('appUser/{id}/leaves','AppUserLeaveController@index');
-    Route::post('appUser/{id}/leaves','AppUserLeaveController@store');
-    Route::delete('appUser/leave/{id}','AppUserLeaveController@destroy')->name('leave.destroy');
-
-
-    Route::get('client/purchaseproduct/{appUserId}/{id}','ClientPurchaseProductController@index')->name('clientPurchaseProduct.index');
-    Route::post('client/purchaseproduct/store/{appUserId}/{id}','ClientPurchaseProductController@store');
-    Route::get('client/{clientId}/purchaseproduct/edit/{id}','ClientPurchaseProductController@edit')->name('clientPurchaseProduct.edit');
-    Route::put('client/{appUserId}/{clientId}/purchaseproduct/update/{id}','ClientPurchaseProductController@update')->name('clientPurchaseProduct.update');
-    Route::delete('client/purchaseproduct/{id}','ClientPurchaseProductController@destroy')->name('clientPurchaseProduct.delete');
-
-    Route::resource('leaves','LeaveController');
-    Route::post('leaves/status','LeaveController@statusUpdate');
 
 });

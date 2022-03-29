@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ env('APP_NAME') }} | Log in </title>
-    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
+    <link rel="shortcut icon" href="">
 
     <!-- Google Font: Source Sans Pro -->
    {{-- <link rel="stylesheet"
@@ -22,12 +22,7 @@
 <div class="login-box">
     <!-- /.login-logo -->
     <div class="card card-outline card-primary">
-       {{-- <div class="card-header text-center">
-            <a href="{{route('login')}}" style="color: #17a2b8"
-               class="h3">@if(isset(systemSetting()->app_name)){{systemSetting()->app_name}} @else {{ env('APP_NAME') }}  @endif</a>
-        </div>--}}
         <div class="card-header text-center">
-            <img src="{{asset('images/logo.png')}}" width="35%" height="35%">
             <h4 class="loginSystem"><b>@if(isset(systemSetting()->app_name)){{systemSetting()->app_name}} @else {{ env('APP_NAME') }}  @endif</b></h4>
         </div>
         <div class="card-body">

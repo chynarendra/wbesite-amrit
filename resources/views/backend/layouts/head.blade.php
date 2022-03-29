@@ -28,5 +28,6 @@
     <link rel="stylesheet" href="{{url('plugins/select2/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{url('css/style.css')}}">
     <link rel="stylesheet" href="{{url('plugins/summernote/summernote-bs4.css')}}">
+    <link href="{{url('/plugins/nepali-datepicker/nepali.datepicker.v3.7.min.css')}}" rel="stylesheet" type="text/css"/>
 
 </head>

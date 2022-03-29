@@ -136,8 +136,6 @@
                                         @include('backend.modal.status_modal')
                                         @include('backend.modal.delete_modal')
 
-
-
                                         <div class="modal fade" id="editModal{{$key}}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
