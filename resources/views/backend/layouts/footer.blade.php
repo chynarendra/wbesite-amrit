@@ -1,12 +1,13 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; <?php echo date('Y');?> <a href="{{url('/dashboard')}}">@if(systemSetting()->app_name){{systemSetting()->app_name}} @else {{ env('APP_NAME') }}  @endif </a>All rights reserved</strong>
+    <strong>Copyright &copy; <?php echo date('Y');?> <a
+                href="{{url('/dashboard')}}">@if(systemSetting()->app_name){{systemSetting()->app_name}} @else {{ env('APP_NAME') }}  @endif </a>All
+        rights reserved</strong>
     <div class="float-right d-none d-sm-inline-block">
         <b>Developed By: </b> Narendra
     </div>
 @yield('js')
 
-
-    <!-- jQuery -->
+<!-- jQuery -->
     <script src="{{url('plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{url('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -30,14 +31,44 @@
     <!-- Select2 -->
     <script src={{url("plugins/select2/js/select2.full.js")}}></script>
     <!-- English Datepicker -->
-    <script type="text/javascript"
-            src="{{asset('plugins/english-datepicker/english-datepicker.min.js')}}"></script>
+
     <script src={{url("plugins/bootstrap-toggle/js/bootstrap-toggle.js")}}></script>
     <!-- summernote -->
     <script src="{{url('plugins/summernote/summernote-bs4.min.js')}}"></script>
     <script src="{{url('js/date_converter.js')}}"></script>
     <script src="{{url('js/custom_app.js')}}"></script>
 
-    <script src="{{asset('/plugins/nepali-datepicker/nepali.datepicker.v3.7.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('nepaliCalendar/js/nepali.datepicker.v3.7.min.js')}}" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var refDateField= document.getElementById("refDateNp");
+            var regDateField = document.getElementById("regDateNp");
+            refDateField.nepaliDatePicker();
+            regDateField.nepaliDatePicker();
+        };
+    </script>
+
+    <script>
+        $('#refDateEng').click(function () {
+            var mainInput = $('#refDateNp').val();
+            var dateObj = NepaliFunctions.ConvertToDateObject(mainInput, "YYYY-MM-DD");
+            var npDateObj = NepaliFunctions.BS2AD(dateObj);
+            var adDate = NepaliFunctions.ConvertDateFormat(npDateObj, "YYYY-MM-DD")
+            $('#refDateEng').val(adDate);
+
+        });
+    </script>
+
+    <script>
+        $('#regDateEng').click(function () {
+            var mainInput =$('#regDateNp').val();
+            var dateObj =NepaliFunctions.ConvertToDateObject(mainInput, "YYYY-MM-DD");
+            var npDateObj=NepaliFunctions.BS2AD(dateObj);
+            var adDate=NepaliFunctions.ConvertDateFormat(npDateObj, "YYYY-MM-DD")
+            $('#regDateEng').val(adDate);
+
+        });
+    </script>
 
 </footer>

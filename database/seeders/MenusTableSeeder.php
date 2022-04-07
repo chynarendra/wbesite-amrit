@@ -238,9 +238,31 @@ class MenusTableSeeder extends Seeder
                 'menu_name' => 'General Dispatch',
                 'menu_link' => '/general/dispatch',
                 'menu_controller' => 'GeneralDispatchController',
-                'menu_icon' => 'fas fa-list',
+                'menu_icon' => 'fa fa-list',
                 'menu_status' => '1',
                 'menu_order' => '8',
+                'action_module_status' => '1',
+            ],
+
+            [
+                'parent_id' => '0',
+                'menu_name' => 'Report',
+                'menu_link' => '/report/general/dispatch',
+                'menu_controller' => 'ReportController',
+                'menu_icon' => 'far fa-registered',
+                'menu_status' => '1',
+                'menu_order' => '9',
+                'action_module_status' => '1',
+            ],
+
+            [
+                'parent_id' => '23',
+                'menu_name' => 'Information Dispatch',
+                'menu_link' => '/report/general/dispatch',
+                'menu_controller' => 'ReportController',
+                'menu_icon' => 'fas fa-file',
+                'menu_status' => '1',
+                'menu_order' => '10',
                 'action_module_status' => '1',
             ],
         ];

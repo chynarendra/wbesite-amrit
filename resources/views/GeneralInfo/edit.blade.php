@@ -54,16 +54,8 @@
                             <div class="card-body">
                                 {!! Form::model($data,['method'=>'PUT','url'=>['/general/info/update/'.$data->id]]) !!}
                                 <div class="row col-md-12">
-                                    <div class="col-md-3">
-                                        <div class="form-group {{ ($errors->has('FISCAL_YR'))?'has-error':'' }}">
-                                            <label>Fiscal Year</label>
-                                            <label class="text text-danger">*</label>
-                                            {!! Form::text('FISCAL_YR',null,['class'=>'form-control','placeholder'=>'Fiscal Year']) !!}
-                                            {!! $errors->first('FISCAL_YR', '<span class="text text-danger">:message</span>') !!}
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group {{ ($errors->has('REF_NO'))?'has-error':'' }}">
                                             <label>Ref. No.</label>
                                             <label class="text text-danger">*</label>
@@ -72,22 +64,22 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <label>Ref. Date :</label><label class="text text-danger">*</label>
                                         <div class="form-group {{ ($errors->has('REF_DT_NEP'))?'has-error':'' }}">
-                                            {!! Form::text('REF_DT_NEP',null,['class'=>'form-control','placeholder'=>'B.S.']) !!}
+                                            {!! Form::text('REF_DT_NEP',null,['class'=>'form-control','id'=>'refDateNp','placeholder'=>'B.S.']) !!}
                                             {!! $errors->first('REF_DT_NEP', '<span class="text text-danger">:message</span>') !!}
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3" style="margin-top: 30px;">
+                                    <div class="col-md-2" style="margin-top: 30px;">
                                         <div class="form-group {{ ($errors->has('REF_DT_ENG'))?'has-error':'' }}">
-                                            {!! Form::text('REF_DT_ENG',null,['class'=>'form-control','placeholder'=>'A.D']) !!}
+                                            {!! Form::text('REF_DT_ENG',null,['class'=>'form-control','id'=>'refDateEng','placeholder'=>'A.D']) !!}
                                             {!! $errors->first('REF_DT_ENG', '<span class="text text-danger">:message</span>') !!}
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group {{ ($errors->has('REG_NO'))?'has-error':'' }}">
                                             <label>Reg. No.</label>
                                             <label class="text text-danger">*</label>
@@ -96,35 +88,35 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group {{ ($errors->has('REG_DT_NEP'))?'has-error':'' }}">
                                             <label>Reg. Date</label>
                                             <label class="text text-danger">*</label> :
-                                            {!! Form::text('REG_DT_NEP',null,['class'=>'form-control','placeholder'=>'B.S.']) !!}
+                                            {!! Form::text('REG_DT_NEP',null,['class'=>'form-control','id'=>'regDateNp','placeholder'=>'B.S.']) !!}
                                             {!! $errors->first('REG_DT_NEP', '<span class="text text-danger">:message</span>') !!}
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3" style="margin-top: 30px;">
+                                    <div class="col-md-2" style="margin-top: 30px;">
                                         <div class="form-group {{ ($errors->has('REG_DT_ENG'))?'has-error':'' }}">
-                                            {!! Form::text('REG_DT_ENG',null,['class'=>'form-control','placeholder'=>'A.D.']) !!}
+                                            {!! Form::text('REG_DT_ENG',null,['class'=>'form-control','id'=>'regDateEng','placeholder'=>'A.D.']) !!}
                                             {!! $errors->first('REG_DT_ENG', '<span class="text text-danger">:message</span>') !!}
                                         </div>
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="row col-md-12">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group {{ ($errors->has('ISSUED_BY'))?'has-error':'' }}">
-                                            <label>Issued By</label>
+                                            <label>Issued By</label><label class="text text-danger">*</label>
                                             {!! Form::text('ISSUED_BY',null,['class'=>'form-control','placeholder'=>'Issued By']) !!}
                                             {!! $errors->first('ISSUED_BY', '<span class="text text-danger">:message</span>') !!}
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="form-group {{ ($errors->has('ADDRESS'))?'has-error':'' }}">
-                                            <label>Address</label>
+                                            <label>Address</label><label class="text text-danger">*</label>
                                             {!! Form::text('ADDRESS',null,['class'=>'form-control','placeholder'=>'Address']) !!}
                                             {!! $errors->first('ADDRESS', '<span class="text text-danger">:message</span>') !!}
                                         </div>
@@ -132,7 +124,7 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group {{ ($errors->has('SUBJECT'))?'has-error':'' }}">
-                                            <label>Subject</label>
+                                            <label>Subject</label><label class="text text-danger">*</label>
                                             {!! Form::text('SUBJECT',null,['class'=>'form-control','placeholder'=>'Subject']) !!}
                                             {!! $errors->first('SUBJECT', '<span class="text text-danger">:message</span>') !!}
                                         </div>
@@ -148,33 +140,6 @@
 
                                 </div>
                                 <hr/>
-                                <div class="row col-md-12">
-                                    <div class="col-md-3">
-                                        <div class="form-group {{ ($errors->has('ENTERED_BY'))?'has-error':'' }}">
-                                            <label>User</label>
-                                            <label class="text text-danger">*</label>
-                                            {!! Form::text('ENTERED_BY',null,['class'=>'form-control','placeholder'=>'Reg No.']) !!}
-                                            {!! $errors->first('ENTERED_BY', '<span class="text text-danger">:message</span>') !!}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="form-group {{ ($errors->has('ENTERED_DT_NEP'))?'has-error':'' }}">
-                                            <label>Date</label>
-                                            <label class="text text-danger">*</label> :
-                                            {!! Form::text('ENTERED_DT_NEP',null,['class'=>'form-control','placeholder'=>'B.S.']) !!}
-                                            {!! $errors->first('ENTERED_DT_NEP', '<span class="text text-danger">:message</span>') !!}
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3" style="margin-top: 30px;">
-                                        <div class="form-group {{ ($errors->has('ENTERED_DT_ENG'))?'has-error':'' }}">
-                                            {!! Form::text('ENTERED_DT_ENG',null,['class'=>'form-control','placeholder'=>'A.D.']) !!}
-                                            {!! $errors->first('ENTERED_DT_ENG', '<span class="text text-danger">:message</span>') !!}
-                                        </div>
-                                    </div>
-
-                                </div>
                                 <div class="row col-md-12">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary" name="save">Update</button>

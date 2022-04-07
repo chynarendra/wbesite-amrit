@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ReportController;
+
 Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('reload-captcha', 'Auth\LoginController@reloadCaptcha');
@@ -71,6 +73,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/update/{id}','GeneralDispatchController@update');
         Route::delete('/destroy/{id}','GeneralDispatchController@destroy');
         Route::get('/{id}','GeneralDispatchController@show');
+    });
+
+    Route::prefix('/report')->group(function (){
+        Route::get('/general/dispatch',[ReportController::class,'generalDispatch']);
     });
 
 });

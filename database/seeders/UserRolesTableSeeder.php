@@ -215,6 +215,15 @@ class UserRolesTableSeeder extends Seeder
                 'allow_edit' => 1,
                 'allow_delete' => 1,
                 'allow_show' => 1,
+            ],
+            [
+                'user_type_id' => 1,
+                'menu_id' => 23,
+                'allow_view' => 1,
+                'allow_add' => 1,
+                'allow_edit' => 1,
+                'allow_delete' => 1,
+                'allow_show' => 1,
             ]
         ];
 

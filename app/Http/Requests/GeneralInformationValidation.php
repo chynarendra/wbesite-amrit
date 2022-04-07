@@ -25,6 +25,15 @@ class GeneralInformationValidation extends FormRequest
     {
         return [
             //
+            'REF_NO'=>'required',
+            'REF_DT_NEP'=>'required',
+            'REF_DT_ENG'=>'required',
+            'REG_NO'=>'required',
+            'REG_DT_NEP'=>'required',
+            'REG_DT_ENG'=>'required',
+            'ISSUED_BY'=>'required',
+            'ADDRESS'=>'required',
+            'SUBJECT'=>'required',
         ];
     }
 }

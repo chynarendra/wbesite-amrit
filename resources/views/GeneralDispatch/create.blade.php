@@ -97,7 +97,7 @@
 
                                     <div class="col-md-2" style="margin-top: 30px;">
                                         <div class="form-group {{ ($errors->has('DISPATCH_DT_ENG'))?'has-error':'' }}">
-                                            {!! Form::text('DISPATCH_DT_ENG',null,['class'=>'form-control','placeholder'=>'A.D']) !!}
+                                            {!! Form::text('DISPATCH_DT_ENG',null,['class'=>'form-control','id'=>'refDateEng','placeholder'=>'A.D']) !!}
                                             {!! $errors->first('DISPATCH_DT_ENG', '<span class="text text-danger">:message</span>') !!}
                                         </div>
                                     </div>
@@ -159,13 +159,4 @@
         </section>
     </div>
     <!-- /.content-wrapper -->
-@endsection
-@section('js')
-    <script>
-        $('#refDateNp').change(function (){
-            var mainInput = document.getElementById("refDateNp");
-            mainInput.nepaliDatePicker();
-        });
-
-    </script>
 @endsection

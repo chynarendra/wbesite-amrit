@@ -79,7 +79,7 @@
 
                                     <div class="col-md-2" style="margin-top: 30px;">
                                         <div class="form-group {{ ($errors->has('REF_DT_ENG'))?'has-error':'' }}">
-                                            {!! Form::text('REF_DT_ENG',null,['class'=>'form-control','placeholder'=>'A.D']) !!}
+                                            {!! Form::text('REF_DT_ENG',null,['class'=>'form-control','id'=>'refDateEng','placeholder'=>'A.D']) !!}
                                             {!! $errors->first('REF_DT_ENG', '<span class="text text-danger">:message</span>') !!}
                                         </div>
                                     </div>
@@ -97,14 +97,14 @@
                                         <div class="form-group {{ ($errors->has('REG_DT_NEP'))?'has-error':'' }}">
                                             <label>Reg. Date</label>
                                             <label class="text text-danger">*</label> :
-                                            {!! Form::text('REG_DT_NEP',null,['class'=>'form-control','placeholder'=>'B.S.']) !!}
+                                            {!! Form::text('REG_DT_NEP',null,['class'=>'form-control','id'=>'regDateNp','placeholder'=>'B.S.']) !!}
                                             {!! $errors->first('REG_DT_NEP', '<span class="text text-danger">:message</span>') !!}
                                         </div>
                                     </div>
 
                                     <div class="col-md-2" style="margin-top: 30px;">
                                         <div class="form-group {{ ($errors->has('REG_DT_ENG'))?'has-error':'' }}">
-                                            {!! Form::text('REG_DT_ENG',null,['class'=>'form-control','placeholder'=>'A.D.']) !!}
+                                            {!! Form::text('REG_DT_ENG',null,['class'=>'form-control','id'=>'regDateEng','placeholder'=>'A.D.']) !!}
                                             {!! $errors->first('REG_DT_ENG', '<span class="text text-danger">:message</span>') !!}
                                         </div>
                                     </div>
@@ -166,13 +166,4 @@
         </section>
     </div>
     <!-- /.content-wrapper -->
-@endsection
-@section('js')
-    <script>
-        $('#refDateNp').change(function (){
-            var mainInput = document.getElementById("refDateNp");
-            mainInput.nepaliDatePicker();
-        });
-
-    </script>
 @endsection

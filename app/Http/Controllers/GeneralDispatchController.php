@@ -49,7 +49,7 @@ class GeneralDispatchController extends Controller
             $fiscalYear=$this->fiscalYear->getFiscalYearByDate($request->DISPATCH_DT_ENG);
             $data=$request->all();
             $data['FISCAL_YR']=$fiscalYear->code;
-            $data['ENTERED_BY']=Auth::user()->name;
+            $data['ENTERED_BY']=Auth::user()->full_name;
             $data['ENTERED_DT_ENG']=date('Y-m-d');
             $data['ENTERED_DT_NEP']=date('Y-m-d');
             $create=DispatchGeneral::create($data);
@@ -59,6 +59,7 @@ class GeneralDispatchController extends Controller
 
         }catch (\Exception $e) {
             $e->getMessage();
+            dd($e);
             session()->flash('error', 'Exception : ' . $e);
             return back();
         }
