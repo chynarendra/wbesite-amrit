@@ -58,8 +58,14 @@
 }
 .form-control{
     height: 30px !important;
+    padding: 5px !important;
     border-radius: 0px !important;
 }
 .select2 .select2-container .select2-container--default .select2-container--focus{
     height: 30px !important;
+}
+.cutsom-btn{
+    padding: 1px 5px;
+    border-radius: 0px;
+    margin-bottom: 7px;
 }

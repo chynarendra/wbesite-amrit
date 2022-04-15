@@ -2,6 +2,7 @@
 <script src="{{url('plugins/chart/highcharts.js')}}"></script>
 <script src="{{url('plugins/chart/export-data.js')}}"></script>
 <script src="{{url('plugins/chart/exporting.js')}}"></script>
+<title>@yield('page_title','Dashboard')</title>
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

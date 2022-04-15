@@ -46,6 +46,11 @@
             var regDateField = document.getElementById("regDateNp");
             refDateField.nepaliDatePicker();
             regDateField.nepaliDatePicker();
+
+            var fromDispatchDateField= document.getElementById("fromDispatchDate");
+            var toDispatchDateField = document.getElementById("toDispatchDate");
+            fromDispatchDateField.nepaliDatePicker();
+            toDispatchDateField.nepaliDatePicker();
         };
     </script>
 

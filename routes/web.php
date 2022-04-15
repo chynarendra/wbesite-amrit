@@ -77,6 +77,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::prefix('/report')->group(function (){
         Route::get('/general/dispatch',[ReportController::class,'generalDispatch']);
+        Route::get('/general/registration',[ReportController::class,'generalRegistration']);
     });
 
 });

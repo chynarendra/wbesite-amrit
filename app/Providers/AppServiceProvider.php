@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Providers;
+use App\Repository\DispatchGeneral\DispatchGeneralInterface;
+use App\Repository\DispatchGeneral\DispatchGeneralRepository;
 use App\Repository\fiscalYear\FiscalYearInterface;
 use App\Repository\fiscalYear\FiscalYearRepository;
 use App\Repository\office\OfficeInterface;
@@ -20,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         //
         $this->app->bind(OfficeInterface::class,OfficeRepositroy::class);
         $this->app->bind(FiscalYearInterface::class,FiscalYearRepository::class);
+        $this->app->bind(DispatchGeneralInterface::class,DispatchGeneralRepository::class);
     }
 
     /**

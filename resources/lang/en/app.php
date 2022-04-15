@@ -171,6 +171,5 @@ return [
     'loginAttemptLimitRequired' =>'Login Attempt Required ?',
     'leave'=>'Leave',
     'SalesStaff'=>'Sales Staff',
-
-
+    'report'=>'Report'
 ];

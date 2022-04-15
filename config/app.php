@@ -22,7 +22,7 @@ return [
     |
     | This value determines the "environment" your application is currently
     | running in. This may determine how you prefer to configure various
-    | services the application utilizes. Set this in your ".env" file.
+    | services the application utilizes. Set this in your ".mysql_env" file.
     |
     */
 
@@ -178,7 +178,7 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
         App\Providers\MailConfigServiceProvider::class,
-//        Yajra\Oci8\Oci8ServiceProvider::class,
+        Yajra\Oci8\Oci8ServiceProvider::class,
 
 
 

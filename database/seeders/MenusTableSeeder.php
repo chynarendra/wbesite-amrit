@@ -265,6 +265,16 @@ class MenusTableSeeder extends Seeder
                 'menu_order' => '10',
                 'action_module_status' => '1',
             ],
+            [
+                'parent_id' => '23',
+                'menu_name' => 'Information Registration',
+                'menu_link' => '/report/general/registration',
+                'menu_controller' => 'ReportController',
+                'menu_icon' => 'fas fa-file',
+                'menu_status' => '1',
+                'menu_order' => '10',
+                'action_module_status' => '1',
+            ],
         ];
         DB::table('menus')->insert($rows);
     }

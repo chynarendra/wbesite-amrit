@@ -12,6 +12,18 @@ $("document").ready(function () {
         changeYear: true,
     });
 
+    $("#dispatch_from_date").datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        changeYear: true,
+    });
+
+    $("#dispatch_to_date").datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        changeYear: true,
+    });
+
     $("#leave_from_date").datepicker({
         dateFormat: 'yy-mm-dd',
         changeMonth: true,
@@ -103,6 +115,11 @@ $("document").ready(function () {
         changeYear: true,
     });
 
+    $(".getDate").datepicker({
+        dateFormat: 'yy-mm-dd',
+        changeMonth: true,
+        changeYear: true,
+    });
 
 });
 
