@@ -1,11 +1,19 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ReportController;
 
 Auth::routes();
-Route::get('/', 'HomeController@index');
+// frontend routes
+Route::get('/', 'Frontend\MainController@index');
+Route::get('/films', 'Frontend\FilmController@index');
+Route::get('/films/{id}', 'Frontend\FilmController@view');
+Route::get('/photos', 'Frontend\PhotoController@index');
+Route::get('/photos/{id}', 'Frontend\PhotoController@view');
+Route::get('/identity', 'Frontend\IdentityController@index');
+Route::get('/identity/{id}', 'Frontend\IdentityController@view');
+Route::post('/user/message', 'Frontend\MainController@storeMessage');
 Route::get('reload-captcha', 'Auth\LoginController@reloadCaptcha');
+
 
 Route::group(['middleware' => ['auth']], function () {
 
@@ -43,7 +51,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/loginSetting', 'SystemSetting\LoginSettingController');
 //        Route::resource('/registerSetting', 'SystemSetting\RegisterSettingController');
         Route::post('/uploadSystemSettingFile/{id}', 'SystemSetting\AppSettingController@uploadFile');
-        Route::post('/updateStatus/{id}', 'SystemSetting\LoginSettingController@updateStatus');
         Route::resource('/officeType', 'Configurations\OfficeTypeController');
         Route::post('/officeType/status/{id}', 'Configurations\OfficeTypeController@status');
         Route::resource('/office', 'Configurations\OfficeController');
@@ -55,29 +62,23 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/fiscalYear', 'Configurations\FiscalYearController');
         Route::post('/fiscalYear/status/{id}', 'Configurations\FiscalYearController@status');
     });
-    Route::prefix('/general/info')->group(function (){
-        Route::get('/','GeneralInformationController@index');
-        Route::get('/create','GeneralInformationController@create');
-        Route::post('/store','GeneralInformationController@store');
-        Route::get('/edit/{id}','GeneralInformationController@edit');
-        Route::put('/update/{id}','GeneralInformationController@update');
-        Route::delete('/destroy/{id}','GeneralInformationController@destroy');
-        Route::get('/{id}','GeneralInformationController@show');
-    });
 
-    Route::prefix('/general/dispatch')->group(function (){
-        Route::get('/','GeneralDispatchController@index');
-        Route::get('/create','GeneralDispatchController@create');
-        Route::post('/store','GeneralDispatchController@store');
-        Route::get('/edit/{id}','GeneralDispatchController@edit');
-        Route::put('/update/{id}','GeneralDispatchController@update');
-        Route::delete('/destroy/{id}','GeneralDispatchController@destroy');
-        Route::get('/{id}','GeneralDispatchController@show');
+    Route::prefix('admin')->group(function () {
+        Route::resource('/pages', 'Admin\PageController');
+        Route::post('/pages/status/{id}', 'Admin\PageController@status');
+        Route::resource('/menus', 'Admin\HeaderMenuController');
+        Route::post('/menus/status/{id}', 'Admin\HeaderMenuController@status');
+        Route::resource('/videos', 'Admin\VideosController');
+        Route::post('/videos/status/{id}', 'Admin\VideosController@status');
+        Route::resource('/photos', 'Admin\PhotoController');
+        Route::post('/photos/status/{id}', 'Admin\PhotoController@status');
+        Route::post('/photos/slide/status/{id}', 'Admin\PhotoController@changeSlideStatus');
+        Route::resource('/clients', 'Admin\ClientController');
+        Route::post('/clients/status/{id}', 'Admin\ClientController@status');
+        Route::resource('/identities', 'Admin\IdentityController');
+        Route::post('/identities/status/{id}', 'Admin\IdentityController@status');
+        Route::get('/user/message', 'Admin\UserMessageController@index');
     });
-
-    Route::prefix('/report')->group(function (){
-        Route::get('/general/dispatch',[ReportController::class,'generalDispatch']);
-        Route::get('/general/registration',[ReportController::class,'generalRegistration']);
-    });
-
+    
+    
 });

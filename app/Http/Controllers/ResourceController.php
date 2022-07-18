@@ -19,7 +19,28 @@ class ResourceController extends Controller
     public function index($view, $data)
     {
         if($view !=null && $data !=null){
-            $page_title=$data['page_title'];
+            $page_title=isset($data['page_title'])?$data['page_title']:'';
+            $page_url=isset($data['page_url'])?$data['page_url']:'';
+            $page_slide_url=isset($data['page_slide_url'])?$data['page_slide_url']:'';
+            $page_route=isset($data['page_route'])?$data['page_route']:'';
+            $results=isset($data['results'])?$data['results']:'';
+            $result=isset($data['result'])?$data['result']:'';
+            $request=isset($data['request'])?$data['request']:'';
+            $officeList=isset($data['officeList'])?$data['officeList']:'';
+            $districtList=isset($data['districtList'])?$data['districtList']:'';
+            $pages=isset($data['pages'])?$data['pages']:'';
+            $modules=isset($data['modules'])?$data['modules']:'';
+            $parentMenus=isset($data['parent_menus'])?$data['parent_menus']:'';
+            $menuTypes=isset($data['menu_type'])?$data['menu_type']:'';
+            $typeList =isset($data['typeList'])?$data['typeList']:'';
+            $menus =isset($data['menus'])?$data['menus']:'';
+            $menuRepo =isset($data['menuRepo'])?$data['menuRepo']:'';
+            $request =isset($data['request'])?$data['request']:'';
+            $users=isset($data['users '])?$data['users ']:'';
+            $moduleNames =isset($data['moduleNames'])?$data['moduleNames']:'';
+            $actionNames =isset($data['actionNames'])?$data['actionNames']:'';
+            $file_upload_url  =isset($data['file_upload_url'])?$data['file_upload_url']:'';
+            $status_url =isset($data['status_url '])?$data['status_url ']:'';
 
             if(isset($data['users'])){
                 $users=$data['users'];
@@ -27,172 +48,10 @@ class ResourceController extends Controller
                 $users='';
             }
 
-            if(isset($data['customer'])){
-                $customer=$data['customer'];
-            }else{
-                $customer='';
-            }
-
-            if(isset($data['purchased_products'])){
-                $purchased_products=$data['purchased_products'];
-            }else{
-                $purchased_products='';
-            }
-
-            if(isset($data['customerId'])){
-                $customerId=$data['customerId'];
-            }else{
-                $customerId='';
-            }
-            if(isset($data['results'])){
-                $results=$data['results'];
-            }else{
-                $results='';
-            }
-
-            if(isset($data['menus'])){
-                $menus=$data['menus'];
-            }else{
-                $menus=[];
-            }
-
-            if(isset($data['menuRepo'])){
-                $menuRepo=$data['menuRepo'];
-            }else{
-                $menuRepo=[];
-            }
-
-            if(isset($data['typeList'])){
-                $typeList=$data['typeList'];
-            }else{
-                $typeList=[];
-            }
-
-            if(isset($data['page_route'])){
-                $page_route=$data['page_route'];
-            }else{
-                $page_route='';
-            }
-
-            if(isset($data['page_url'])){
-                $page_url=$data['page_url'];
-            }else{
-                $page_url='';
-            }
-
-            if(isset($data['request'])){
-                $request=$data['request'];
-            }else{
-                $request=[];
-            }
-        
-            if(isset($data['totalResult'])){
-                $totalResult=$data['totalResult'];
-            }else{
-                $totalResult=[];
-            }
-
-            if(isset($data['cityList'])){
-                $cityList=$data['cityList'];
-            }else{
-                $cityList=[];
-            }
-
-            if(isset($data['productCategoryList'])){
-                $productCategoryList=$data['productCategoryList'];
-            }else{
-                $productCategoryList=[];
-            }
-
-            if(isset($data['sourceList'])){
-                $sourceList=$data['sourceList'];
-            }else{
-                $sourceList=[];
-            }
-
-            if(isset($data['customerList'])){
-                $customerList=$data['customerList'];
-            }else{
-                $customerList=[];
-            }
-
-            if(isset($data['campaignList'])){
-                $campaignList=$data['campaignList'];
-            }else{
-                $campaignList=[];
-            }
-
-            if(isset($data['productList'])){
-                $productList=$data['productList'];
-            }else{
-                $productList=[];
-            }
-
-            if(isset($data['paymentMethodList'])){
-                $paymentMethodList=$data['paymentMethodList'];
-            }else{
-                $paymentMethodList=[];
-            }
-
-            if(isset($data['moduleNames'])){
-                $moduleNames=$data['moduleNames'];
-            }else{
-                $moduleNames='';
-            }
-
-            if(isset($data['actionNames'])){
-                $actionNames=$data['actionNames'];
-            }else{
-                $actionNames='';
-            }
-
-            if(isset($data['totalLogs'])){
-                $totalLogs=$data['totalLogs'];
-            }else{
-                $totalLogs='';
-            }
-
-            if(isset($data['districtList'])){
-                $districtList=$data['districtList'];
-            }else{
-                $districtList=[];
-            }
-
-            if(isset($data['officeList'])){
-                $officeList=$data['officeList'];
-            }else{
-                $officeList=[];
-            }
-
-            if(isset($data['result'])){
-                $result=$data['result'];
-            }else{
-                $result=[];
-            }
-
-            if(isset($data['file_upload_url'])){
-                $file_upload_url=$data['file_upload_url'];
-            }else{
-                $file_upload_url=[];
-            }
-
-            if(isset($data['status_url'])){
-                $status_url=$data['status_url'];
-            }else{
-                $status_url=[];
-            }
-
-            if(isset($data['fieldVisitDetail'])){
-                $fieldVisitDetail=$data['fieldVisitDetail'];
-            }else{
-                $fieldVisitDetail='';
-            }
-
-            return view($view, compact('data','page_title','page_url','page_route','request',
-            'results','cityList','productCategoryList','sourceList','totalResult','customerList',
-            'productList','paymentMethodList','typeList','menus','menuRepo','users','moduleNames',
-            'actionNames','totalLogs','districtList','officeList','result','file_upload_url','status_url',
-            'fieldVisitDetail','customer','customerId','purchased_products','campaignList'));
+            return view($view, compact('data','pages','parentMenus','moduleNames',
+            'actionNames','users','menuTypes','menus','menuRepo','request','typeList',
+            'modules','result','page_title','page_url','page_slide_url','page_route',
+            'officeList','districtList','request','results','file_upload_url','status_url'));
 
         }else{
             session()->flash('error', Lang::get('app.viewFileNotFound'));
@@ -208,53 +67,6 @@ class ResourceController extends Controller
             $page_title=$data['page_title'];
             $page_url=$data['page_url'];
             $page_route=$data['page_route'];
-            if(isset($data['cityList'])){
-                $cityList=$data['cityList'];
-            }else{
-                $cityList=[];
-            }
-
-            if(isset($data['productCategoryList'])){
-                $productCategoryList=$data['productCategoryList'];
-            }else{
-                $productCategoryList=[];
-            }
-
-            if(isset($data['sourceList'])){
-                $sourceList=$data['sourceList'];
-            }else{
-                $sourceList=[];
-            }
-
-            if(isset($data['customerList'])){
-                $customerList=$data['customerList'];
-            }else{
-                $customerList=[];
-            }
-
-            if(isset($data['campaignList'])){
-                $campaignList=$data['campaignList'];
-            }else{
-                $campaignList=[];
-            }
-
-            if(isset($data['customerList'])){
-                $customerList=$data['customerList'];
-            }else{
-                $customerList=[];
-            }
-
-            if(isset($data['productList'])){
-                $productList=$data['productList'];
-            }else{
-                $productList=[];
-            }
-
-            if(isset($data['paymentMethodList'])){
-                $paymentMethodList=$data['paymentMethodList'];
-            }else{
-                $paymentMethodList=[];
-            }
 
             if(isset($data['appUserDetail'])){
                 $appUserDetail=$data['appUserDetail'];
@@ -262,7 +74,6 @@ class ResourceController extends Controller
                 $appUserDetail='';
             }
             
-
             return view($view, compact('data','page_title','page_url','page_route','cityList',
             'productCategoryList','sourceList','campaignList','campaignList','customerList',
             'productList','paymentMethodList','appUserDetail'));
@@ -299,50 +110,15 @@ class ResourceController extends Controller
             $id = (int)$id;
             $value = $model->find($id);
             if ($value) {
-
                 $page_title=$data['page_title'];
                 $page_url=$data['page_url'];
                 $page_route=$data['page_route'];
+                $pages=isset($data['pages'])?$data['pages']:'';
+                $modules=isset($data['modules'])?$data['modules']:'';
+                $parentMenus=isset($data['parent_menus'])?$data['parent_menus']:'';
+                $menuTypes=isset($data['menu_type'])?$data['menu_type']:'';
 
-                if(isset($data['details'])){
-                    $details=$data['details'];
-                }else{
-                    $details='';
-                }
-
-                if(isset($data['status_history'])){
-                    $status_history=$data['status_history'];
-                }else{
-                    $status_history='';
-                }
-
-                if(isset($data['payments'])){
-                    $payments=$data['payments'];
-                }else{
-                    $payments='';
-                }
-
-                if(isset($data['purchased_products'])){
-                    $purchased_products=$data['purchased_products'];
-                }else{
-                    $purchased_products='';
-                }
-    
-                if(isset($data['appUserDetail'])){
-                    $appUserDetail=$data['appUserDetail'];
-                }else{
-                    $appUserDetail='';
-                }
-    
-                if(isset($data['fieldVisitDetail'])){
-                    $fieldVisitDetail=$data['fieldVisitDetail'];
-                }else{
-                    $fieldVisitDetail='';
-                }
-
-                return view($view, compact('data','details','appUserDetail',
-                'fieldVisitDetail','page_title','page_url','page_route','status_history',
-                'purchased_products','payments'));
+                return view($view, compact('data','value','page_title','page_url','page_route','pages','modules','parentMenus','menuTypes'));
             } else {
                 session()->flash('error', Lang::get('app.dataNotFoundMessage'));
             }
@@ -351,6 +127,7 @@ class ResourceController extends Controller
         } catch (\Exception $e) {
             $exception = $e->getMessage();
             session()->flash('error', 'EXCEPTION :' . $exception);
+            return back();
         }
     }
 
@@ -419,32 +196,6 @@ class ResourceController extends Controller
         }
     }
 
-    public function destroyLeave($model, $id, $logMenu = null, $file = null, $filePath = null)
-    {
-        try {
-            $value = $model->find($id);
-            if ($value) {
-                $this->createLog($value->id, $logMenu, '4');
-                $leaveDates=MonthLeaves::where('app_user_leave_id',$id)->get();
-                if(sizeof($leaveDates) > 0){
-                    foreach ($leaveDates as $date){
-                        $date->delete();
-                    }
-                }
-                $value->delete();
-                @unlink(storage_path() . '/app/public/' . $filePath . '/' . $file);
-            }else {
-                session()->flash('error', Lang::get('app.dataNotFoundMessage'));
-            }
-            session()->flash('success', Lang::get('app.deleteMessage'));
-            return back();
-        } catch (\Exception $e) {
-            $e->getMessage();
-            session()->flash('error', 'Exception : ' . $e);
-            return back();
-        }
-    }
-
    /* check foreign key form child table */
     public function checkForeignKey($table, $id, $foreignId)
     {
@@ -459,14 +210,49 @@ class ResourceController extends Controller
             $id = (int)$id;
             $value = DB::table($table)->find($id);
             if (isset($value->status) && $value->status == '0') {
-                DB::table($table)->where('id',$id)->update(['status'=>'1']);
+                $update=DB::table($table)->where('id',$id)->update(['status'=>'1']);
                 $this->createLog($value->id, $logMenu, '5');
                 session()->flash('success', Lang::get('app.statusActiveMessage'));
             } elseif (isset($value->status) && $value->status == '1') {
                 DB::table($table)->where('id',$id)->update(['status'=> '0']);
                 $this->createLog($value->id, $logMenu, '6');
                 session()->flash('success', Lang::get('app.statusInactiveMessage'));
-            }else{
+            }elseif (isset($value->status) && $value->status == 'active') {
+                DB::table($table)->where('id',$id)->update(['status'=> 'inactive']);
+                $this->createLog($value->id, $logMenu, '6');
+                session()->flash('success', Lang::get('app.statusInactiveMessage'));
+            }elseif (isset($value->status) && $value->status == 'inactive') {
+                DB::table($table)->where('id',$id)->update(['status'=> 'active']);
+                $this->createLog($value->id, $logMenu, '6');
+                session()->flash('success', Lang::get('app.statusInactiveMessage'));
+            }
+            else{
+                session()->flash('error', Lang::get('app.errorStatusMessage'));
+            }
+            return back();
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            session()->flash('error', $message);
+            return back();
+        }
+
+    }
+
+    public function slide($table, $id, $logMenu)
+    {
+        try {
+            $id = (int)$id;
+            $value = DB::table($table)->find($id);
+            if (isset($value->is_slide) && $value->is_slide == 'no') {
+                $update=DB::table($table)->where('id',$id)->update(['is_slide'=>'yes']);
+                $this->createLog($value->id, $logMenu, '5');
+                session()->flash('success', Lang::get('app.statusActiveMessage'));
+            } elseif (isset($value->is_slide) && $value->is_slide == 'yes') {
+                DB::table($table)->where('id',$id)->update(['is_slide'=> 'no']);
+                $this->createLog($value->id, $logMenu, '6');
+                session()->flash('success', Lang::get('app.statusInactiveMessage'));
+            }
+            else{
                 session()->flash('error', Lang::get('app.errorStatusMessage'));
             }
             return back();

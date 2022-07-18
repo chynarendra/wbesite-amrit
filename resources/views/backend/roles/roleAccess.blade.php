@@ -39,18 +39,17 @@
                             {!! Form::open(['class'=>'form-inline','url'=>'roles/userTypeRoleAccess','method'=>'GET']) !!}
                             <div class="form-group col-sm-6 col-xs-6 col-md-3 col-lg-3">
 
-                                {{Form::select('type_id',$typeList->pluck('type_name','id'),Request::get('type_id'),['class'=>'form-control select2','style'=>'width:100%;','required','id'=>'type_id','placeholder'=>
+                                {{Form::select('type_id',$typeList->pluck('type_name','id'),$request->type_id,['class'=>'form-control select2','style'=>'width:100%;','required','id'=>'type_id','placeholder'=>
                                 'Select User Type'])}}
                                 {!! $errors->first('type_id', '<span class="text-danger">:message</span>') !!}
 
                             </div>
-                            &nbsp; &nbsp;
+                            
                             <button type="submit" class="btn btn-primary"
-                                    name="filter">
+                                    name="filter" value="filter">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                                 {{trans('app.filter')}}
                             </button>
-                            &nbsp; &nbsp;  &nbsp; &nbsp;
                             <a href="{{url('/roles/userTypeRoleAccess')}}"
                                class="btn btn-default"> <i
                                         class="fas  fa-sync-alt"></i> {{trans('app.refresh')}}
@@ -79,8 +78,7 @@
                                         @foreach($menus as $key=>$menu)
 
                                             <?php
-                                            $secondLevelMenus = $menuRepo->getAccessMenu($menu->id,
-                                                Request::get('type_id'));
+                                            $secondLevelMenus = $menuRepo->getAccessMenu($menu->id,$request->type_id);
                                             ?>
                                             <tr>
                                                 <td>{{ ++$key }}. {{ $menu->menu_name }}</td>

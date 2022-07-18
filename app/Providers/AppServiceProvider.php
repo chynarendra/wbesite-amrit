@@ -7,8 +7,10 @@ use App\Repository\fiscalYear\FiscalYearInterface;
 use App\Repository\fiscalYear\FiscalYearRepository;
 use App\Repository\office\OfficeInterface;
 use App\Repository\office\OfficeRepositroy;
+use App\ViewComposers\HeaderComposer;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
+   
     public function register()
     {
         //
@@ -33,5 +36,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+        View::composer(
+            '*',HeaderComposer::class
+           );
     }
 }

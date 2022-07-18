@@ -63,7 +63,15 @@ class OfficeController extends BaseController
      */
     public function store(OfficeRequest $request)
     {
-        $response = $this->resource->store($this->model, $request->all(), $this->logMenu);
+        $data=$request->all();
+        if($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $filename = $file->getClientOriginalName();
+            $path = public_path().'/uploads/office/';
+            $file->move($path, $filename);
+            $data['logo']='/uploads/office/'.$filename;
+        }
+        $response = $this->resource->store($this->model, $data, $this->logMenu);
         return $response;
     }
     /**
@@ -75,7 +83,15 @@ class OfficeController extends BaseController
      */
     public function update(OfficeRequest $request, $id)
     {
-        $response = $this->resource->update($this->model, $id, $request->all(), $this->logMenu);
+        $data=$request->all();
+        if($request->hasFile('logo')){
+            $file = $request->file('logo');
+            $filename = $file->getClientOriginalName();
+            $path = public_path().'/uploads/office/';
+            $file->move($path, $filename);
+            $data['logo']='/uploads/office/'.$filename;
+        }
+        $response = $this->resource->update($this->model, $id, $data, $this->logMenu);
         return $response;
 
     }

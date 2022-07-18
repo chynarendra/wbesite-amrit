@@ -11,13 +11,13 @@
             </div>
             {!! Form::open(['method' => 'POST', 'class'=>'inline', 'url'=>[$page_url. '/'.'status/'.$data->id]]) !!}
             <div class="modal-body">
-                @if($data->status == 1)
+                @if($data->status == 1 || $data->status=='active')
                     <input type="hidden" name="status" value="0">
                     <p>Are you sure you want to
                         inactive?</p>
                 @else
                     <input type="hidden" name="status" value="0">
-                    <p>Are you sure you want to active?</p>
+                    <p>Are you sure you want to change?</p>
                 @endif
             </div>
             <div class="modal-footer justify-content-center">

@@ -1,13 +1,13 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; <?php echo date('Y');?> <a
-                href="{{url('/dashboard')}}">@if(systemSetting()->app_name){{systemSetting()->app_name}} @else {{ env('APP_NAME') }}  @endif </a>All
+    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="{{url('/dashboard')}}">@if(systemSetting()->app_name){{systemSetting()->app_name}} @else {{ env('APP_NAME') }} @endif </a>All
         rights reserved</strong>
     <div class="float-right d-none d-sm-inline-block">
         <b>Developed By: </b> Narendra
     </div>
-@yield('js')
+    @yield('js')
+    @stack('js')
 
-<!-- jQuery -->
+    <!-- jQuery -->
     <script src="{{url('plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
     <script src="{{url('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -30,7 +30,9 @@
     <script src="{{url('plugins/toastr/toastr.min.js')}}"></script>
     <!-- Select2 -->
     <script src={{url("plugins/select2/js/select2.full.js")}}></script>
+
     <!-- English Datepicker -->
+    <script type="text/javascript" src="{{asset('plugins/english-datepicker/english-datepicker.min.js')}}"></script>
 
     <script src={{url("plugins/bootstrap-toggle/js/bootstrap-toggle.js")}}></script>
     <!-- summernote -->
@@ -40,40 +42,78 @@
 
     <script src="{{asset('nepaliCalendar/js/nepali.datepicker.v3.7.min.js')}}" type="text/javascript"></script>
 
-    <script type="text/javascript">
-        window.onload = function () {
-            var refDateField= document.getElementById("refDateNp");
-            var regDateField = document.getElementById("regDateNp");
-            refDateField.nepaliDatePicker();
-            regDateField.nepaliDatePicker();
-
-            var fromDispatchDateField= document.getElementById("fromDispatchDate");
-            var toDispatchDateField = document.getElementById("toDispatchDate");
-            fromDispatchDateField.nepaliDatePicker();
-            toDispatchDateField.nepaliDatePicker();
-        };
+    <script>
+        $(function() {
+            // Summernote
+            $('#summernote').summernote()
+        })
     </script>
 
     <script>
-        $('#refDateEng').click(function () {
-            var mainInput = $('#refDateNp').val();
-            var dateObj = NepaliFunctions.ConvertToDateObject(mainInput, "YYYY-MM-DD");
-            var npDateObj = NepaliFunctions.BS2AD(dateObj);
-            var adDate = NepaliFunctions.ConvertDateFormat(npDateObj, "YYYY-MM-DD")
-            $('#refDateEng').val(adDate);
+        $(function() {
+            // Summernote
+            $('#summernote1').summernote()
+        })
+    </script>
 
+    <script>
+        $(function() {
+            // Summernote
+            $('#summernote2').summernote()
+        })
+    </script>
+    <script>
+        $('#menuType').change(function() {
+            var menuType = $('#menuType').val();
+            if (menuType == 'module') {
+                $('#module').show();
+                $('#externalUrl').hide();
+                $('#page').hide();
+            } else if (menuType == 'url') {
+                $('#module').hide();
+                $('#externalUrl').show();
+                $('#page').hide();
+            } else {
+                $('#module').hide();
+                $('#externalUrl').hide();
+                $('#page').show();
+            }
         });
     </script>
 
     <script>
-        $('#regDateEng').click(function () {
-            var mainInput =$('#regDateNp').val();
-            var dateObj =NepaliFunctions.ConvertToDateObject(mainInput, "YYYY-MM-DD");
-            var npDateObj=NepaliFunctions.BS2AD(dateObj);
-            var adDate=NepaliFunctions.ConvertDateFormat(npDateObj, "YYYY-MM-DD")
-            $('#regDateEng').val(adDate);
-
+        $('#menuTypeEdit').change(function() {
+            var menuTypeEdit = $('#menuTypeEdit').val();
+            if (menuTypeEdit == 'module') {
+                $('#moduleEdit').show();
+                $('#externalUrlEdit').hide();
+                $('#pageEdit').hide();
+            } else if (menuTypeEdit == 'url') {
+                $('#moduleEdit').hide();
+                $('#externalUrlEdit').show();
+                $('#pageEdit').hide();
+            } else {
+                $('#moduleEdit').hide();
+                $('#externalUrlEdit').hide();
+                $('#pageEdit').show();
+            }
         });
+
+        var menuTypeEdit = $('#menuTypeEdit').val();
+            if (menuTypeEdit == 'module') {
+                $('#moduleEdit').show();
+                $('#externalUrlEdit').hide();
+                $('#pageEdit').hide();
+            } else if (menuTypeEdit == 'url') {
+                $('#moduleEdit').hide();
+                $('#externalUrlEdit').show();
+                $('#pageEdit').hide();
+            } else {
+                $('#moduleEdit').hide();
+                $('#externalUrlEdit').hide();
+                $('#pageEdit').show();
+            }
+
     </script>
 
 </footer>

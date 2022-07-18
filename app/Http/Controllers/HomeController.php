@@ -33,36 +33,8 @@ class HomeController extends BaseController
     public function index(Request $request)
     {
         $total_user = $this->commonRepository->getTotalData($this->userModel,'true');
-        // high chart
-        $customerStatus = CustomerStatus::all();
-        $monthNames = englishMonthNames();
-        //for month wise
-        $customer_month_wise_js_final_data = '';
-        $customer_month_wise_js_series_data = '';
-        foreach ($customerStatus as $s) {
-            $customerStatusId = $s->id;
-            $statusName = $s->name;
-
-            $data = [];
-            for ($i = 1; $i <= 12; $i++) {
-                $data[] = isset($res_total[0]->totals) ? $res_total[0]->totals : 0;
-
-            }
-            $customer_month_wise_coma_data = implode(", ", $data);
-            $customer_month_wise_js_data = 'data : [' . $customer_month_wise_coma_data . ']';
-            $month_registration_js_source_data = '{
-            name: "' . $statusName . '",
-            ' . $customer_month_wise_js_data . '
-            },';
-            $customer_month_wise_js_final_data .= $month_registration_js_source_data;
-        }
-
-        $customer_month_wise_js_series_data = 'series:[
-        ' . $customer_month_wise_js_final_data . '
-        ]';
-
         $page_title ='Dashboard';
-        return view('backend.dashboard',compact('total_user','page_title','customer_month_wise_js_series_data','monthNames'));
+        return view('backend.dashboard',compact('total_user','page_title'));
     }
 
     /* get auth login user activity */

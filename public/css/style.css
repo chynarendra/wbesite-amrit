@@ -57,8 +57,8 @@
     flex-wrap: nowrap;
 }
 .form-control{
-    height: 30px !important;
-    padding: 5px !important;
+    /* height: 30px !important; */
+    /* padding: 5px !important; */
     border-radius: 0px !important;
 }
 .select2 .select2-container .select2-container--default .select2-container--focus{
@@ -68,4 +68,26 @@
     padding: 1px 5px;
     border-radius: 0px;
     margin-bottom: 7px;
+}
+
+.custom-padding-td{
+    padding-left: 5px !important;
+    padding-right: 0px !important;
+}
+
+.custom-width-td{
+    width: 13%;
+}
+.bottom-padding-0{
+    padding-bottom: 0px !important;
+}
+.bottom-margin-0{
+    margin-bottom: 0px !important;
+}
+.table td, .table th{
+    padding: 0.50rem !important;
+}
+
+.modal-content{
+    text-align: left !important;
 }

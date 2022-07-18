@@ -24,8 +24,7 @@ class OfficeRepositroy implements OfficeInterface
 
     public function getHeadOfficeDetail()
     {
-        $office=Office::where('office_type_id',1)->select('id','office_name','office_address',
-            'office_phone','office_fb','office_website')->first();
+        $office=Office::where('office_type_id',1)->first();
         return $office;
     }
 

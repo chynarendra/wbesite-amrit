@@ -20,7 +20,13 @@ class CreateOfficesTable extends Migration
             $table->string('office_address')->nullable();
             $table->string('office_phone')->nullable();
             $table->string('office_fb')->nullable();
-            $table->string('office_website')->nullable();
+            $table->string('office_insta')->nullable();
+            $table->string('office_youtube')->nullable();
+            $table->string('office_twitter')->nullable();
+            $table->string('office_email')->nullable();
+            $table->string('logo');
+            $table->string('sub_title');
+            $table->longText('about')->nullable();
             $table->enum('status',['1','0'])->default('1');
             $table->softDeletes();
             $table->timestamps();

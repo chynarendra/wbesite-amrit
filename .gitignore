@@ -7,7 +7,7 @@
 /.vscode
 /nbproject
 /.vagrant
-.mysql_env
+.env
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml

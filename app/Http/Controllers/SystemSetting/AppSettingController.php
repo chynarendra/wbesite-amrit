@@ -82,7 +82,7 @@ class AppSettingController extends BaseController
 
     }
     /* upload  file only */
-    public function uploadFile($id, UploadFileRequest $request)
+    public function uploadFile($id,Request $request)
     {
         /* check log menu */
         if($request->logMenu !=null)

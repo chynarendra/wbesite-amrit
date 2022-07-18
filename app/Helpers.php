@@ -38,7 +38,7 @@ function helperPermission()
         ->where('menu_controller', '=', $controller_name)
         ->first();
 
-    if (sizeof(array($sqlValue)) > 0) {
+    if ($sqlValue) {
 
         $isView = $sqlValue->allow_view;
         $isAdd = $sqlValue->allow_add;

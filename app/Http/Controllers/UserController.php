@@ -98,6 +98,8 @@ class UserController extends BaseController
         if($request->rand_password == 1){
             $password = rand_string(8);
             $data['password'] = bcrypt($password);
+        }else{
+            $data['password']=bcrypt($request->password);
         }
         //check image form request
         if (!empty($request->file('image'))) {
@@ -258,7 +260,7 @@ class UserController extends BaseController
     }
 
     //update profile pic
-    public function profilePic(UploadFileRequest $request)
+    public function profilePic(Request $request)
     {
         $response = $this->resource->updateUploadedFile($this->model, Auth::user()->id, $request->column_name, $request->update_file, Auth::user()->full_name, $this->filePath);
         return $response;
