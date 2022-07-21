@@ -52,9 +52,6 @@
 
   <!-- Main CSS files -->
   <link rel="stylesheet" href="{{url('/frontend/css/main.css')}}">
-
-  <link rel="stylesheet" href="{{url('/frontend/css/carousel.css')}}">
-
   <!-- add alt layout here -->
   <link rel="stylesheet" href="{{url('frontend/css/style-color1.css')}}">
 

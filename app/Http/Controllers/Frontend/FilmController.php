@@ -19,7 +19,7 @@ class FilmController extends Controller
     }
 
     public function view($id){
-        $video=Video::where('status','1')->find($id);
+        $video=Video::find($id);
         return view('frontend.film.view',compact('video'));
 
     }

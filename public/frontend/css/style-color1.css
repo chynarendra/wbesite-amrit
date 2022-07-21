@@ -19,13 +19,13 @@ a {
 
 /* Home page  */
 #mainpage .section-home {
-  background: url("../img/bg-home-portrait.jpg");
+  /* background: url("../img/bg-gradient3.jpg"); */
   background-repeat: none;
   background-position: center;
   background-size: cover; }
   @media (min-width: 960px) {
     #mainpage .section-home {
-      background: url("../img/bg-home-landscape.jpg");
+      /* background: url("../img/bg-gradient3.jpg"); */
       background-repeat: none;
       background-position: center;
       background-size: cover; } }

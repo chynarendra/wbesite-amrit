@@ -65,7 +65,6 @@
                                         <th>Office Details</th>
                                         <th>{{trans('Office Type')}}</th>
                                         <th>About</th>
-                                        <th>Logo</th>
                                         <th>{{trans('app.status')}}</th>
                                         <th>{{trans('app.action')}}</th>
                                     </tr>
@@ -91,7 +90,6 @@
                                             @endif
                                         </td>
                                         <td>{{$data->about}}</td>
-                                        <td><img src="{{asset($data->logo)}}" /></td>
 
                                         <td>
                                             @if($data->status == '1')
@@ -222,11 +220,7 @@
                                                                     {!! $errors->first('about', '<span class="text text-danger">:message</span>') !!}
                                                                 </div>
 
-                                                                <div class="form-group col-md-6 {{ ($errors->has('logo'))?'has-error':'' }}">
-                                                                    <label>Logo</label><br />
-                                                                    {!! Form::file('logo',null,['class'=>'form-control','placeholder'=>'Logo']) !!}
-                                                                    {!! $errors->first('logo', '<span class="text text-danger">:message</span>') !!}
-                                                                </div>
+                                                
 
                                                                 <div class="form-group col-md-6">
                                                                     <label for="status">{{trans('app.status')}} </label><br>
@@ -369,11 +363,7 @@
                                                     {!! $errors->first('about', '<span class="text text-danger">:message</span>') !!}
                                                 </div>
 
-                                                <div class="form-group col-md-6 {{ ($errors->has('logo'))?'has-error':'' }}">
-                                                    <label>Logo</label><br />
-                                                    {!! Form::file('logo',null,['class'=>'form-control','placeholder'=>'Logo']) !!}
-                                                    {!! $errors->first('logo', '<span class="text text-danger">:message</span>') !!}
-                                                </div>
+                                               
 
                                                 <div class="form-group col-md-6">
                                                     <label for="status">{{trans('app.status')}} </label><br>

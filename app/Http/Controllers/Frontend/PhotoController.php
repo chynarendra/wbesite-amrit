@@ -15,7 +15,12 @@ class PhotoController extends Controller
     }
 
     public function view($id){
-        $photo=Photo::where('status','1')->where('is_slide','no')->first();
-        return view('frontend.photo.view',compact('photo'));
+        $photo=Photo::find($id);
+        if($photo){
+            return view('frontend.photo.view',compact('photo'));
+        }else{
+            return back();
+        }
+        
     }
 }

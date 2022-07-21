@@ -66,8 +66,9 @@
             </div>
             <!-- End of list projects section -->
 
-            @include('frontend.contact')
         </div>
+        @include('frontend.contact')
+
     </main>
 
     @include('frontend.footer')

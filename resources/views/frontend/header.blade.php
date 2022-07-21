@@ -15,7 +15,7 @@
   <!-- End of menu icon toggler -->
 
   <!-- Begin of logo/brand -->
-  <a class="navbar-brand" href="./#">
+  <a class="navbar-brand" href="{{url('/')}}">
     <span class="logo">
       @if($headOfficeDetail->logo!=null)
       <img class="light-logo" src="{{url($headOfficeDetail->logo)}}" alt="Logo">

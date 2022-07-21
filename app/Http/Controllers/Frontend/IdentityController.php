@@ -15,7 +15,7 @@ class IdentityController extends Controller
     }
 
     public function view($id){
-        $identity=Identity::where('status','1')->first();
+        $identity=Identity::find($id);
         return view('frontend.identity.view',compact('identity'));
     }
 }

@@ -31,7 +31,7 @@
                             </div>
                             <p>{{$photo->subtitle}}</p>
                             <p>
-                            <img class="" src="{{asset('/storage'.$photo->photo)}}" alt="An image">
+                            <img class="" style="width:50%" src="{{asset('/storage'.$photo->photo)}}" alt="An image">
                             </p>
                             <p>{!! $photo->content !!}</p>
                             
